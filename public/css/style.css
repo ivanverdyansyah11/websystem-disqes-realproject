@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'urbanist-regular';
+    src: url('../font/urbanist/Urbanist-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'urbanist-medium';
+    src: url('../font/urbanist/Urbanist-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'urbanist-semibold';
+    src: url('../font/urbanist/Urbanist-SemiBold.ttf') format('truetype');
+}
+
+:root {
+    --primary-color: 80, 72, 229;
+    --dark-color: 80, 80, 80;
+    --regular-font: 'urbanist-regular';
+    --medium-font: 'urbanist-medium';
+    --semibold-font: 'urbanist-semibold';
+}
+
+* {
+    font-family: var(--medium-font);
+}
+
+p,h6,h5,h4,h3,h2,h1 {
+    margin-bottom: 0 !important;
+}
+
+.card-login {
+    padding: 40px 56px;
+}
+
+.background-image {
+    background-image: url('../img/background-image.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.input {
+    width: 100%;
+    border-radius: 8px;
+    padding: 18px 22px;
+    outline: none;
+    stroke: none;
+    border: 2px solid rgba(var(--dark-color), 0.12);
+    color: rgba(var(--dark-color), 1);
+    font-size: 0.938rem;
+}
+
+p.caption-input {
+    font-size: 0.813rem;
+    padding: 0 10px;
+    background-color: white;
+    color: rgba(var(--dark-color), 0.52);
+    width: fit-content;
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    z-index: 9999;
+}
+
+.input-checkbox {
+    gap: 8px;
+}
+
+.input-checkbox label {
+    font-size: 0.938rem;
+    color: rgba(var(--dark-color), 1);
+}
+
+.button-login {
+    width: 100%;
+    background-color: rgba(var(--primary-color), 1);
+    border-radius: 8px;
+    padding: 16px 22px;
+    display: inline-block;
+    color: white;
+    font-size: 0.938rem;
+    border: none;
+    stroke: none;
+    outline: none;
+}
+
+.link-primary {
+    font-size: 0.938rem;
+    color: rgba(var(--primary-color), 1);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.caption-login {
+    font-size: 0.813rem;
+    color: rgba(var(--dark-color), 0.72);
+    line-height: 150%;
+    text-decoration: none;
+}
+
+.caption-login span {
+    color: rgba(var(--primary-color), 1);
+}
+
+.caption-redirect {
+    font-size: 0.938rem;
+    color: rgba(var(--dark-color), 0.72);
+}
+
+.link-redirect {
+    font-size: 0.938rem;
+    color: rgba(var(--primary-color), 1);
+    text-decoration: none;
+}
+
+.link-redirect:hover {
+    text-decoration: underline;
+}

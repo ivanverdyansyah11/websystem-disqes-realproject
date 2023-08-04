@@ -1,6 +1,6 @@
 <?php
 
-define('BASEURL', 'http://localhost/spp/public/');
+define('BASEURL', 'http://localhost/disqes/public/');
 
 // database
 define('DB_HOST', 'localhost');
