@@ -10,7 +10,7 @@ class pengguna_model extends Database
     $this->db = new Database();
   }
 
-  public function getUserLogin($username, $password)
+  public function getUserSignIn($username, $password)
   {
     $query = "SELECT * FROM pengguna WHERE username=:username && password=:password";
     $this->db->query($query);

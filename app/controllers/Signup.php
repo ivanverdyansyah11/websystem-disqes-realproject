@@ -1,21 +1,21 @@
 <?php
 
-class Login extends Controller
+class Signup extends Controller
 {
   public function index()
   {
-    $data['title'] = "Login";
+    $data['title'] = "Signup";
     $this->view('templates/header', $data);
-    $this->view('login/index', $data);
+    $this->view('signup/index', $data);
     $this->view('templates/footer', $data);
   }
 
-  public function loginAction()
+  public function signupAction()
   {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $data['user'] = $this->model('pengguna_model')->getUserLogin($username, $password);
+    $data['user'] = $this->model('pengguna_model')->getUserSignUp($username, $password);
 
     if ($data['user'] == NULL) {
       header("Location:" . BASEURL . "/login");

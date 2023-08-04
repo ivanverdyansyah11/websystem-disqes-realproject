@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login Page</title>
+    <title>Disqes | Signin Page</title>
     <link rel="stylesheet" href="<?= BASEURL; ?>css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
@@ -25,7 +25,7 @@
                         <div class="wrapper d-flex flex-column" style="gap: 16px;">
                             <div class="input-wrapper w-100 position-relative">
                                 <p class="caption-input">Email</p>
-                                <input type="text" class="input position-relative">
+                                <input type="email" class="input position-relative">
                             </div>
                             <div class="input-wrapper w-100 position-relative">
                                 <p class="caption-input">Password</p>
@@ -42,7 +42,7 @@
                         <button class="button-login text-center">Sign in</button>
                     </form>
                     <p class="caption-login" style="margin-top: 12px;">This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</p>
-                    <span class="caption-redirect" style="margin-top: 48px;">Don’t have an account? <a href="#" class="link-redirect">Sign up</a></span>
+                    <span class="caption-redirect" style="margin-top: 48px;">Don’t have an account? <a href="<?= BASEURL; ?>signup" class="link-redirect">Sign up</a></span>
                 </div>
             </div>
         </div>
