@@ -17,7 +17,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-8 p-0 background-image" style="height: 100vh;"></div>
+            <div class="d-none d-lg-inline-block col-lg-7 col-xl-8 p-0 background-image" style="height: 100vh;"></div>
             <div class="col p-0">
                 <div class="card-login w-100 d-flex flex-column align-items-center">
                     <img src="<?= BASEURL; ?>img/brand-logo.svg" alt="Brand Logo" style="margin-bottom: 48px;">
