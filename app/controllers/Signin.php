@@ -10,6 +10,22 @@ class Signin extends Controller
     $this->view('templates/footer', $data);
   }
 
+  public function confirmEmail()
+  {
+    $data['title'] = "Confirm Email";
+    $this->view('templates/header', $data);
+    $this->view('signin/confirm', $data);
+    $this->view('templates/footer', $data);
+  }
+
+  public function changePassword()
+  {
+    $data['title'] = "Change Password";
+    $this->view('templates/header', $data);
+    $this->view('signin/change', $data);
+    $this->view('templates/footer', $data);
+  }
+
   public function signinAction()
   {
     $username = $_POST['username'];
