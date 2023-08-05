@@ -252,11 +252,46 @@
         </div>
     </div>
 
+    <div class="modal fade" id="editSection" tabindex="-1" aria-labelledby="editSectionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content d-flex flex-column">
+                <div class="content-header d-flex justify-content-between align-items-center">
+                    <h4 class="title">Edit Test Section</h4>
+                    <div class="wrapper-icon" data-bs-dismiss="modal">
+                        <div class="exit-icon"></div>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <div class="input-wrapper w-100 position-relative">
+                            <p class="caption-input">Name</p>
+                            <input type="text" class="input position-relative" id="nameInputEditSection">
+                        </div>
+                        <div class="wrapper d-flex gap-2">
+                            <button class="button-primary d-flex align-items-center">
+                                <div class="save-icon"></div>
+                                Save
+                            </button>
+                            <button type="button" class="reset-button-edit-section button-transparent d-flex align-items-center">
+                                <div class="reset-icon"></div>
+                                Reset
+                            </button>
+                            <button type="button" class="button-transparent d-flex align-items-center" data-bs-dismiss="modal">
+                                <div class="cancel-icon"></div>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="addNewSuite" tabindex="-1" aria-labelledby="addNewSuiteLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content d-flex flex-column">
                 <div class="content-header d-flex justify-content-between align-items-center">
-                    <h4 class="title">Add New Suite</h4>
+                    <h4 class="title">Add New Test Suite</h4>
                     <div class="wrapper-icon" data-bs-dismiss="modal">
                         <div class="exit-icon"></div>
                     </div>
@@ -295,7 +330,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content d-flex flex-column">
                 <div class="content-header d-flex justify-content-between align-items-center">
-                    <h4 class="title">Edit Suite</h4>
+                    <h4 class="title">Edit Test Suite</h4>
                     <div class="wrapper-icon" data-bs-dismiss="modal">
                         <div class="exit-icon"></div>
                     </div>
@@ -375,6 +410,8 @@
     const resetButtonEditSuite = document.querySelector('.reset-button-edit-suite');
     const nameInputAddSection = document.querySelector('#nameInputAddSection');
     const resetButtonAddSection = document.querySelector('.reset-button-add-section');
+    const nameInputEditSection = document.querySelector('#nameInputEditSection');
+    const resetButtonEditSection = document.querySelector('.reset-button-edit-section');
 
     filterButton.addEventListener('click', function() {
         filterBar.classList.toggle('active');
@@ -398,6 +435,10 @@
 
     resetButtonAddSection.addEventListener('click', function() {
         nameInputAddSection.value = '';
+    });
+
+    resetButtonEditSection.addEventListener('click', function() {
+        nameInputEditSection.value = '';
     });
 
     arrowSuite.forEach(element => {
