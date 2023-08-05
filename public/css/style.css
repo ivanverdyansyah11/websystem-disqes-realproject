@@ -26,7 +26,7 @@
 
 * {
     font-family: var(--medium-font);
-    transition: 250ms;
+    transition: 250ms !important;
 }
 
 body {
@@ -155,7 +155,8 @@ p.caption-input {
 
 .dashboard-icon,
 .test-case-icon,
-.project-icon {
+.project-icon,
+.logout-icon {
     width: 20px;
     height: 20px;
     background-image: url('../img/sidebar/dashbaord.svg');
@@ -172,12 +173,19 @@ p.caption-input {
     background-image: url('../img/sidebar/project.svg');
 }
 
+.logout-icon {
+    background-image: url('../img/sidebar/logout.svg');
+}
+
 .menu-link {
     display: flex;
     justify-content: center;
     width: 100%;
     padding: 15px 0 !important;
     background-color: transparent;
+    border: none;
+    stroke: none;
+    outline: none;
 }
 
 .menu-link.active,
@@ -198,6 +206,11 @@ p.caption-input {
 .menu-link.active > .project-icon,
 .menu-link:hover > .project-icon {
     background-image: url('../img/sidebar/project-active.svg');
+}
+
+.menu-link.active .logout-icon,
+.menu-link:hover .logout-icon {
+    background-image: url('../img/sidebar/logout-active.svg');
 }
 
 .hamburger {
@@ -228,6 +241,81 @@ p.caption-input {
     background-position: center;
 }
 /* END SIDEBAR STYLE */
+
+
+/* TOPBAR STYLE */
+.topbar {
+    background-color: rgba(var(--third-color), 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 24px 28px;
+}
+
+.topbar .user-name {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.topbar .user-icon {
+    width: 20px;
+    height: 20px;
+    background-image: url('../img/topbar/user-icon.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.topbar .arrow-icon {
+    width: 10px;
+    height: 10px;
+    background-image: url('../img/topbar/arrow-icon.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.topbar .wrapper-profile {
+    cursor: pointer;
+}
+
+.topbar .topbar-menu {
+    width: 100%;
+    background-color: rgba(var(--third-color), 1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    top: 16px;
+    right: 0;
+    z-index: -9999;
+    opacity: 0;
+}
+
+.topbar .topbar-menu.active {
+    top: 36px;
+    opacity: 1;
+    z-index: 9999;
+}
+
+.topbar button {
+    all: unset;
+    cursor: pointer;
+    width: 100%;
+    font-size: 0.938rem;
+    color: rgba(255, 255, 255, 0.52);
+    padding: 12px 18px;
+}
+
+.topbar button:hover {
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.topbar .logout-icon {
+    width: 15px;
+    height: 15px;
+    background-image: url('../img/topbar/logout-icon.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* END TOPBAR STYLE */
 
 
 /* DASHBOARD STYLE */
