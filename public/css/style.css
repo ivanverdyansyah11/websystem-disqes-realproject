@@ -747,6 +747,45 @@ h4.title {
     opacity: 1;
     z-index: 999;
 }
+
+.content-project .table-header {
+    padding: 0 16px;
+    height: 60px;
+    background-color: rgba(var(--fourth-color), 1);
+}
+
+.content-project .table-header p {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.content-project .table-body {
+    padding: 8px 16px;
+    background-color: rgba(var(--third-color), 1);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.content-project .table-body p {
+    font-size: 0.938rem;
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.content-project .wrapper-action {
+    top: 0;
+    right: 0;
+    left: 0;
+    position: relative;
+    transform: translate(-30px);
+    opacity: 0;
+    z-index: -2;
+}
+
+.content-project .wrapper-action.active {
+    transform: translate(0);
+    opacity: 1;
+    z-index: 2;
+}
 /* END DASHBOARD STYLE */
 
 

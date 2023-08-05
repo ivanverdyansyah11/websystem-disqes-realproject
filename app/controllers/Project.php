@@ -1,12 +1,12 @@
 <?php
 
-class TestCase extends Controller
+class Project extends Controller
 {
   public function index()
   {
-    $data['title'] = "Test Case";
+    $data['title'] = "Project";
     $this->view('templates/header', $data);
-    $this->view('test-case/index', $data);
+    $this->view('project/index', $data);
     $this->view('templates/footer', $data);
   }
 }
