@@ -15,6 +15,9 @@
 
 :root {
     --primary-color: 80, 72, 229;
+    --secondary-color: 11, 15, 25;
+    --third-color: 17, 24, 39;
+    --fourth-color: 25, 32, 54;
     --dark-color: 80, 80, 80;
     --regular-font: 'urbanist-regular';
     --medium-font: 'urbanist-medium';
@@ -23,12 +26,18 @@
 
 * {
     font-family: var(--medium-font);
+    transition: 250ms;
+}
+
+body {
+    overflow-x: hidden;
 }
 
 p,h6,h5,h4,h3,h2,h1 {
     margin-bottom: 0 !important;
 }
 
+/* SIGNIN STYLE */
 .card-login {
     padding: 40px 56px;
 }
@@ -117,4 +126,128 @@ p.caption-input {
 
 .link-redirect:hover {
     text-decoration: underline;
+}
+/* END SIGNIN STYLE */
+
+
+/* SIDEBAR STYLE */
+.sidebar {
+    width: 76px;
+    min-height: 100vh;
+    height: fit-content;
+    background-color: rgba(var(--third-color), 1);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 22px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-logo {
+    width: 32px;
+    height: 28px;
+    background-image: url('../img/brand-logo/logo.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 22px;
+}
+
+.dashboard-icon,
+.test-case-icon,
+.project-icon {
+    width: 20px;
+    height: 20px;
+    background-image: url('../img/sidebar/dashbaord.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.test-case-icon {
+    background-image: url('../img/sidebar/test-case.svg');
+}
+
+.project-icon {
+    background-image: url('../img/sidebar/project.svg');
+}
+
+.menu-link {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 0 !important;
+    background-color: transparent;
+}
+
+.menu-link.active,
+.menu-link:hover {
+    background-color: rgba(var(--fourth-color), 1);
+}
+
+.menu-link.active > .dashboard-icon,
+.menu-link:hover > .dashboard-icon {
+    background-image: url('../img/sidebar/dashboard-active.svg');
+}
+
+.menu-link.active > .test-case-icon,
+.menu-link:hover > .test-case-icon {
+    background-image: url('../img/sidebar/test-case-active.svg');
+}
+
+.menu-link.active > .project-icon,
+.menu-link:hover > .project-icon {
+    background-image: url('../img/sidebar/project-active.svg');
+}
+
+.hamburger {
+    width: 52px;
+    height: 52px;
+    background-color: rgba(var(--third-color), 1);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.hamburger:active {
+    border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.hamburger-icon {
+    width: 16px;
+    height: 16px;
+    background-image: url('../img/sidebar/hamburger-icon.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* END SIDEBAR STYLE */
+
+
+/* DASHBOARD STYLE */
+.body-color {
+    background-color: rgba(var(--secondary-color), 1);
+    width: 100%;
+    min-height: 100vh;
+    height: fit-content;
+}
+/* END DASHBOARD STYLE */
+
+
+@media (max-width: 575.98px) {
+    .sidebar {
+        position: absolute;
+        top: 0;
+        left: -76px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
 }
