@@ -159,7 +159,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteSuite" tabindex="-1" aria-labelledby="deleteSuiteLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteProject" tabindex="-1" aria-labelledby="deleteProjectLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content d-flex flex-column" style="gap: 14px !important;">
                 <div class="content-header d-flex justify-content-between align-items-center">
@@ -167,7 +167,7 @@
                 </div>
                 <div class="content-body">
                     <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
-                        <p class="caption-delete">Are you sure you want to delete this <span>test suite</span>? This action cannot be undone, and the <span>test suite</span> will be permanently removed from the system.</p>
+                        <p class="caption-delete">Are you sure you want to delete this <span>project</span>? This action cannot be undone, and the <span>project</span> will be permanently removed from the system.</p>
                         <div class="wrapper d-flex gap-2">
                             <button class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
