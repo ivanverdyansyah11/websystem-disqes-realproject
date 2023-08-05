@@ -208,11 +208,50 @@
                     <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAdd">
+                            <input type="text" class="input position-relative" id="nameInputAddSuite">
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
-                            <input type="text" class="input position-relative" id="descriptionInputAdd">
+                            <input type="text" class="input position-relative" id="descriptionInputAddSuite">
+                        </div>
+                        <div class="wrapper d-flex gap-2">
+                            <button class="button-primary d-flex align-items-center">
+                                <div class="save-icon"></div>
+                                Save
+                            </button>
+                            <button type="button" class="reset-button-add-suite button-transparent d-flex align-items-center">
+                                <div class="reset-icon"></div>
+                                Reset
+                            </button>
+                            <button type="button" class="button-transparent d-flex align-items-center" data-bs-dismiss="modal">
+                                <div class="cancel-icon"></div>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="addNewSuite" tabindex="-1" aria-labelledby="addNewSuiteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content d-flex flex-column">
+                <div class="content-header d-flex justify-content-between align-items-center">
+                    <h4 class="title">Add New Suite</h4>
+                    <div class="wrapper-icon" data-bs-dismiss="modal">
+                        <div class="exit-icon"></div>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <div class="input-wrapper w-100 position-relative">
+                            <p class="caption-input">Name</p>
+                            <input type="text" class="input position-relative" id="nameInputAddSuite">
+                        </div>
+                        <div class="input-wrapper w-100 position-relative">
+                            <p class="caption-input">Description</p>
+                            <input type="text" class="input position-relative" id="descriptionInputAddSuite">
                         </div>
                         <div class="wrapper d-flex gap-2">
                             <button class="button-primary d-flex align-items-center">
@@ -245,6 +284,9 @@
     const arrowSuite = document.querySelectorAll('.arrow-suite');
     const wrapperHeader = document.querySelectorAll('.wrapper-header');
     const caseMenu = document.querySelectorAll('.case-menu');
+    const nameInputAddSuite = document.querySelector('#nameInputAddSuite');
+    const descriptionInputAddSuite = document.querySelector('#descriptionInputAddSuite');
+    const resetButtonAddSuite = document.querySelector('.reset-button-add-suite');
 
     filterButton.addEventListener('click', function() {
         filterBar.classList.toggle('active');
@@ -254,6 +296,11 @@
         keyInput.value = '';
         nameInput.value = '';
         suiteInput.value = 'Choose Suite Selection';
+    });
+
+    resetButtonAddSuite.addEventListener('click', function() {
+        nameInputAddSuite.value = '';
+        descriptionInputAddSuite.value = '';
     });
 
     arrowSuite.forEach(element => {
