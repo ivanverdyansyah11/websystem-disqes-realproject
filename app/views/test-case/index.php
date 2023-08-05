@@ -82,7 +82,7 @@
                     <div class="wrapper-action d-flex align-items-center">
                         <div class="box-rotate position-relative"></div>
                         <div class="card-action d-flex position-relative">
-                            <button type="button" class="wrapper-icon">
+                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection">
                                 <div class="add-section-icon"></div>
                             </button>
                             <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
@@ -95,8 +95,19 @@
                     </div>
                 </div>
 
-                <a href="#" class="suite-menu">
-                    <p>Dashboard Sales</p>
+                <a href="#" class="suite-menu position-relative">
+                    <p class="position-relative">Dashboard Sales</p>
+                    <div class="wrapper-action d-flex align-items-center">
+                        <div class="box-rotate position-relative"></div>
+                        <div class="card-action d-flex position-relative">
+                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                <div class="edit-icon"></div>
+                            </button>
+                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                <div class="delete-icon"></div>
+                            </button>
+                        </div>
+                    </div>
                 </a>
             </div>
 
@@ -114,7 +125,7 @@
                     <div class="wrapper-action d-flex align-items-center">
                         <div class="box-rotate position-relative"></div>
                         <div class="card-action d-flex position-relative">
-                            <button type="button" class="wrapper-icon">
+                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection">
                                 <div class="add-section-icon"></div>
                             </button>
                             <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
@@ -127,8 +138,19 @@
                     </div>
                 </div>
 
-                <a href="#" class="suite-menu">
-                    <p>Report Sales</p>
+                <a href="#" class="suite-menu position-relative">
+                    <p class="position-relative">Report Sales</p>
+                    <div class="wrapper-action d-flex align-items-center">
+                        <div class="box-rotate position-relative"></div>
+                        <div class="card-action d-flex position-relative">
+                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                <div class="edit-icon"></div>
+                            </button>
+                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                <div class="delete-icon"></div>
+                            </button>
+                        </div>
+                    </div>
                 </a>
             </div>
 
@@ -192,6 +214,41 @@
                 </div>
             </div>
             <div class="wrapper-close"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addNewSection" tabindex="-1" aria-labelledby="addNewSectionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content d-flex flex-column">
+                <div class="content-header d-flex justify-content-between align-items-center">
+                    <h4 class="title">Add New Test Section</h4>
+                    <div class="wrapper-icon" data-bs-dismiss="modal">
+                        <div class="exit-icon"></div>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <div class="input-wrapper w-100 position-relative">
+                            <p class="caption-input">Name</p>
+                            <input type="text" class="input position-relative" id="nameInputAddSection">
+                        </div>
+                        <div class="wrapper d-flex gap-2">
+                            <button class="button-primary d-flex align-items-center">
+                                <div class="save-icon"></div>
+                                Save
+                            </button>
+                            <button type="button" class="reset-button-add-section button-transparent d-flex align-items-center">
+                                <div class="reset-icon"></div>
+                                Reset
+                            </button>
+                            <button type="button" class="button-transparent d-flex align-items-center" data-bs-dismiss="modal">
+                                <div class="cancel-icon"></div>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -309,12 +366,15 @@
     const arrowSuite = document.querySelectorAll('.arrow-suite');
     const wrapperHeader = document.querySelectorAll('.wrapper-header');
     const caseMenu = document.querySelectorAll('.case-menu');
+    const suiteMenu = document.querySelectorAll('.suite-menu');
     const nameInputAddSuite = document.querySelector('#nameInputAddSuite');
     const descriptionInputAddSuite = document.querySelector('#descriptionInputAddSuite');
     const resetButtonAddSuite = document.querySelector('.reset-button-add-suite');
     const nameInputEditSuite = document.querySelector('#nameInputEditSuite');
     const descriptionInputEditSuite = document.querySelector('#descriptionInputEditSuite');
     const resetButtonEditSuite = document.querySelector('.reset-button-edit-suite');
+    const nameInputAddSection = document.querySelector('#nameInputAddSection');
+    const resetButtonAddSection = document.querySelector('.reset-button-add-section');
 
     filterButton.addEventListener('click', function() {
         filterBar.classList.toggle('active');
@@ -334,6 +394,10 @@
     resetButtonEditSuite.addEventListener('click', function() {
         nameInputEditSuite.value = '';
         descriptionInputEditSuite.value = '';
+    });
+
+    resetButtonAddSection.addEventListener('click', function() {
+        nameInputAddSection.value = '';
     });
 
     arrowSuite.forEach(element => {
@@ -357,6 +421,17 @@
     });
 
     caseMenu.forEach(element => {
+        element.addEventListener('mouseover', function() {
+            const wrapperAction = this.querySelector('.wrapper-action');
+            wrapperAction.classList.add('active');
+        });
+        element.addEventListener('mouseout', function() {
+            const wrapperAction = this.querySelector('.wrapper-action');
+            wrapperAction.classList.remove('active');
+        });
+    });
+
+    suiteMenu.forEach(element => {
         element.addEventListener('mouseover', function() {
             const wrapperAction = this.querySelector('.wrapper-action');
             wrapperAction.classList.add('active');
