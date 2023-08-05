@@ -85,7 +85,7 @@
                             <button type="button" class="wrapper-icon">
                                 <div class="add-section-icon"></div>
                             </button>
-                            <button type="button" class="wrapper-icon">
+                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
                                 <div class="edit-icon"></div>
                             </button>
                             <button type="button" class="wrapper-icon">
@@ -117,7 +117,7 @@
                             <button type="button" class="wrapper-icon">
                                 <div class="add-section-icon"></div>
                             </button>
-                            <button type="button" class="wrapper-icon">
+                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
                                 <div class="edit-icon"></div>
                             </button>
                             <button type="button" class="wrapper-icon">
@@ -233,12 +233,12 @@
             </div>
         </div>
     </div>
-    
-    <div class="modal fade" id="addNewSuite" tabindex="-1" aria-labelledby="addNewSuiteLabel" aria-hidden="true">
+
+    <div class="modal fade" id="editSuite" tabindex="-1" aria-labelledby="editSuiteLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content d-flex flex-column">
                 <div class="content-header d-flex justify-content-between align-items-center">
-                    <h4 class="title">Add New Suite</h4>
+                    <h4 class="title">Edit Suite</h4>
                     <div class="wrapper-icon" data-bs-dismiss="modal">
                         <div class="exit-icon"></div>
                     </div>
@@ -247,18 +247,18 @@
                     <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddSuite">
+                            <input type="text" class="input position-relative" id="nameInputEditSuite">
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
-                            <input type="text" class="input position-relative" id="descriptionInputAddSuite">
+                            <input type="text" class="input position-relative" id="descriptionInputEditSuite">
                         </div>
                         <div class="wrapper d-flex gap-2">
                             <button class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
-                            <button type="button" class="reset-button-add-suite button-transparent d-flex align-items-center">
+                            <button type="button" class="reset-button-edit-suite button-transparent d-flex align-items-center">
                                 <div class="reset-icon"></div>
                                 Reset
                             </button>
@@ -287,6 +287,9 @@
     const nameInputAddSuite = document.querySelector('#nameInputAddSuite');
     const descriptionInputAddSuite = document.querySelector('#descriptionInputAddSuite');
     const resetButtonAddSuite = document.querySelector('.reset-button-add-suite');
+    const nameInputEditSuite = document.querySelector('#nameInputEditSuite');
+    const descriptionInputEditSuite = document.querySelector('#descriptionInputEditSuite');
+    const resetButtonEditSuite = document.querySelector('.reset-button-edit-suite');
 
     filterButton.addEventListener('click', function() {
         filterBar.classList.toggle('active');
@@ -301,6 +304,11 @@
     resetButtonAddSuite.addEventListener('click', function() {
         nameInputAddSuite.value = '';
         descriptionInputAddSuite.value = '';
+    });
+
+    resetButtonEditSuite.addEventListener('click', function() {
+        nameInputEditSuite.value = '';
+        descriptionInputEditSuite.value = '';
     });
 
     arrowSuite.forEach(element => {
