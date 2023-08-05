@@ -34,7 +34,7 @@ p,h6,h5,h4,h3,h2,h1 {
 }
 
 .background-image {
-    background-image: url('../img/background-image.svg');
+    background-image: url('../img/signin/background-image.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

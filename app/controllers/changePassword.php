@@ -1,12 +1,12 @@
 <?php
 
-class Signup extends Controller
+class changePassword extends Controller
 {
   public function index()
   {
-    $data['title'] = "Signup";
+    $data['title'] = "Change Password";
     $this->view('templates/header', $data);
-    $this->view('signup/index', $data);
+    $this->view('changePassword/index', $data);
     $this->view('templates/footer', $data);
   }
 }

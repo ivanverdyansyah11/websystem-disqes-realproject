@@ -1,12 +1,12 @@
 <?php
 
-class Signup extends Controller
+class confirmEmail extends Controller
 {
   public function index()
   {
-    $data['title'] = "Signup";
+    $data['title'] = "Confirm Email";
     $this->view('templates/header', $data);
-    $this->view('signup/index', $data);
+    $this->view('confirmEmail/index', $data);
     $this->view('templates/footer', $data);
   }
 }
