@@ -287,6 +287,31 @@
         </div>
     </div>
 
+    <div class="modal fade" id="deleteSection" tabindex="-1" aria-labelledby="deleteSectionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content d-flex flex-column" style="gap: 14px !important;">
+                <div class="content-header d-flex justify-content-between align-items-center">
+                    <h4 class="title">Are you sure?</h4>
+                </div>
+                <div class="content-body">
+                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <p class="caption-delete">Are you sure you want to delete this <span>test section</span>? This action cannot be undone, and the <span>test section</span> will be permanently removed from the system.</p>
+                        <div class="wrapper d-flex gap-2">
+                            <button class="button-primary d-flex align-items-center">
+                                <div class="save-icon"></div>
+                                Save
+                            </button>
+                            <button type="button" class="button-transparent d-flex align-items-center" data-bs-dismiss="modal">
+                                <div class="cancel-icon"></div>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="addNewSuite" tabindex="-1" aria-labelledby="addNewSuiteLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content d-flex flex-column">
