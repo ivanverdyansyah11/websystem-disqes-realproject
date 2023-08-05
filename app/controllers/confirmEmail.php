@@ -1,6 +1,6 @@
 <?php
 
-class confirmEmail extends Controller
+class ConfirmEmail extends Controller
 {
   public function index()
   {

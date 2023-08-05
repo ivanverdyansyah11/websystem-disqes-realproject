@@ -25,7 +25,7 @@
                 <div class="sidebar">
                     <div class="sidebar-logo"></div>
                     <div class="sidebar-menu w-100 d-flex flex-column" style="gap: 4px;">
-                        <a href="#" class="menu-link active">
+                        <a href="#" class="menu-link">
                             <div class="dashboard-icon"></div>
                         </a>
                         <a href="#" class="menu-link">

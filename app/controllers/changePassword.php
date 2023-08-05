@@ -1,6 +1,6 @@
 <?php
 
-class changePassword extends Controller
+class ChangePassword extends Controller
 {
   public function index()
   {

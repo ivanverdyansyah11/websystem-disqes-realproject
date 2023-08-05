@@ -390,6 +390,123 @@ h4.title {
     height: 18px;
     background-image: url('../img/dashboard/status.svg');
 }
+
+.filter-bar {
+    padding: 16px 22px;
+    background-color: rgba(var(--third-color), 1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.filter-button {
+    cursor: pointer;
+}
+
+.filter-bar .filter-icon {
+    width: 15px;
+    height: 15px;
+    background-image: url('../img/icon/filter-icon.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.filter-bar p {
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.filter-bar .arrow-icon {
+    width: 10px;
+    height: 10px;
+    background-image: url('../img/icon/arrow-icon.svg');
+    opacity: 0.42;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0ms !important;
+}
+
+.filter-bar.active .arrow-icon {
+    transform: rotate(180deg);
+    transition: 0ms !important;
+}
+
+.filter-bar .filter-content {
+    margin-top: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.filter-bar.active .filter-content {
+    margin-top: 28px;
+    height: fit-content;
+    opacity: 1;
+}
+
+.content .input {
+    width: 100%;
+    border-radius: 8px;
+    padding: 18px 22px;
+    outline: none;
+    stroke: none;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.938rem;
+    background-color: rgba(var(--third-color), 1);
+}
+
+.content p.caption-input {
+    font-size: 0.813rem;
+    padding: 0 10px;
+    background-color: rgba(var(--third-color), 1);
+    color: rgba(255, 255, 255, 0.86);
+    width: fit-content;
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    z-index: 9999;
+    font-family: var(--regular-font);
+}
+
+.content .button-primary,
+.content .button-transparent {
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    stroke: none;
+    color: rgba(var(--third-color), 1);
+    font-size: 0.875rem;
+    background-color: rgba(var(--primary-dark-color), 1);
+    font-family: var(--semibold-font);
+    gap: 8px;
+}
+
+.content .button-primary:hover {
+    opacity: 0.84;
+}
+
+.content .button-transparent {
+    background-color: transparent;
+    color: rgba(var(--primary-dark-color), 1);
+}
+
+.content .button-transparent:hover {
+    background-color: rgba(var(--primary-dark-color), 0.06);
+}
+
+.content .search-icon,
+.content .reset-icon {
+    width: 13px;
+    height: 13px;
+    background-image: url('../img/icon/search-icon.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.content .reset-icon {
+    background-image: url('../img/icon/reset-icon.svg');
+}
 /* END DASHBOARD STYLE */
 
 
