@@ -41,10 +41,10 @@
                         <div class="wrapper-action d-flex align-items-center">
                             <div class="box-rotate position-relative"></div>
                             <div class="card-action d-flex position-relative">
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
+                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editProject">
                                     <div class="edit-icon"></div>
                                 </button>
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSuite">
+                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteProject">
                                     <div class="delete-icon"></div>
                                 </button>
                             </div>
@@ -67,10 +67,10 @@
                         <div class="wrapper-action d-flex align-items-center">
                             <div class="box-rotate position-relative"></div>
                             <div class="card-action d-flex position-relative">
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
+                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editProject">
                                     <div class="edit-icon"></div>
                                 </button>
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSuite">
+                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteProject">
                                     <div class="delete-icon"></div>
                                 </button>
                             </div>
@@ -120,11 +120,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editSuite" tabindex="-1" aria-labelledby="editSuiteLabel" aria-hidden="true">
+    <div class="modal fade" id="editProject" tabindex="-1" aria-labelledby="editProjectLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content d-flex flex-column">
                 <div class="content-header d-flex justify-content-between align-items-center">
-                    <h4 class="title">Edit Test Suite</h4>
+                    <h4 class="title">Edit Project</h4>
                     <div class="wrapper-icon" data-bs-dismiss="modal">
                         <div class="exit-icon"></div>
                     </div>
@@ -133,18 +133,18 @@
                     <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputEditSuite">
+                            <input type="text" class="input position-relative" id="nameInputEditProject">
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
-                            <input type="text" class="input position-relative" id="descriptionInputEditSuite">
+                            <input type="text" class="input position-relative" id="descriptionInputEditProject">
                         </div>
                         <div class="wrapper d-flex gap-2">
                             <button class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
-                            <button type="button" class="reset-button-edit-suite button-transparent d-flex align-items-center">
+                            <button type="button" class="reset-button-edit-project button-transparent d-flex align-items-center">
                                 <div class="reset-icon"></div>
                                 Reset
                             </button>
@@ -190,10 +190,18 @@
     const nameInputAddProject = document.querySelector('#nameInputAddProject');
     const descriptionInputAddProject = document.querySelector('#descriptionInputAddProject');
     const resetButtonAddProject = document.querySelector('.reset-button-add-project');
+    const nameInputEditProject = document.querySelector('#nameInputEditProject');
+    const descriptionInputEditProject = document.querySelector('#descriptionInputEditProject');
+    const resetButtonEditProject = document.querySelector('.reset-button-edit-project');
 
     resetButtonAddProject.addEventListener('click', function() {
         nameInputAddProject.value = '';
         descriptionInputAddProject.value = '';
+    });
+
+    resetButtonEditProject.addEventListener('click', function() {
+        nameInputEditProject.value = '';
+        descriptionInputEditProject.value = '';
     });
 
     tableBody.forEach(element => {
