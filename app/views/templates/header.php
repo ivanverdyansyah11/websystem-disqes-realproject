@@ -25,13 +25,13 @@
                 <div class="sidebar">
                     <div class="sidebar-logo"></div>
                     <div class="sidebar-menu w-100 d-flex flex-column" style="gap: 4px;">
-                        <a href="#" class="menu-link">
+                        <a href="<?= BASEURL; ?>dashboard" class="menu-link">
                             <div class="dashboard-icon"></div>
                         </a>
-                        <a href="#" class="menu-link">
+                        <a href="<?= BASEURL; ?>testcase" class="menu-link">
                             <div class="test-case-icon"></div>
                         </a>
-                        <a href="#" class="menu-link">
+                        <a href="<?= BASEURL; ?>project" class="menu-link">
                             <div class="project-icon"></div>
                         </a>
                         <form action="" class="w-100 d-md-none">

@@ -810,12 +810,13 @@ h4.title {
 
 .modal .caption-delete {
     font-size: 0.938rem;
-    color: rgba(255, 255, 255, 0.86);
+    color: rgba(255, 255, 255, 0.64);
     font-family: var(--regular-font);
 }
 
 .modal .caption-delete span {
     font-family: var(--semibold-font);
+    color: rgba(255, 255, 255, 0.86);
     font-weight: bold;
 }
 /* END MODAL STYLE */
