@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-lg-11 col-xl-10">
             <form action="" class="card-form d-flex flex-column w-100">
                 <div class="row">
                     <div class="col-12 mb-4">
@@ -14,7 +14,7 @@
                             <input type="text" class="input position-relative" id="nameInputAddCase">
                         </div>
                     </div>
-                    <div class="col-6 mb-4">
+                    <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Suite</p>
                             <select class="input position-relative" id="suiteInputAddCase">
@@ -24,7 +24,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-6 mb-4">
+                    <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Section</p>
                             <select class="input position-relative" id="sectionInputAddCase">
