@@ -160,7 +160,7 @@
         <div class="col">
             <div class="table-header d-flex justify-content-between align-items-center">
                 <p class="table-title">Dashboard</p>
-                <a href="#" class="button-primary d-flex align-items-center">
+                <a href="<?= BASEURL; ?>testcase/add" class="button-primary d-flex align-items-center">
                     <div class="add-icon"></div>
                     New
                 </a>

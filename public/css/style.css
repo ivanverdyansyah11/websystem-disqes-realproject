@@ -20,6 +20,7 @@
     --third-color: 17, 24, 39;
     --fourth-color: 25, 32, 54;
     --dark-color: 80, 80, 80;
+    --red-color: 209, 67, 67;
     --regular-font: 'urbanist-regular';
     --medium-font: 'urbanist-medium';
     --semibold-font: 'urbanist-semibold';
@@ -71,6 +72,7 @@ a {
     border: 2px solid rgba(var(--dark-color), 0.12);
     color: rgba(var(--dark-color), 1);
     font-size: 0.938rem;
+    position: relative;
 }
 
 p.caption-input {
@@ -481,7 +483,8 @@ h4.title {
 }
 
 .content .button-primary,
-.content .button-transparent {
+.content .button-transparent,
+.content .button-outline {
     padding: 8px 16px;
     border-radius: 5px;
     border: none;
@@ -498,6 +501,26 @@ h4.title {
     opacity: 0.84;
 }
 
+.content .button-outline {
+    background-color: transparent;
+    color: rgba(var(--primary-dark-color), 1);
+    border: 1px solid rgba(var(--primary-dark-color), 1);
+}
+
+.content .button-outline.button-minus {
+    background-color: transparent;
+    color: rgba(var(--red-color), 1);
+    border: 1px solid rgba(var(--red-color), 1);
+}
+
+.content .button-outline.button-minus:hover {
+    background-color: rgba(var(--red-color), 0.06);
+}
+
+.content .button-outline:hover {
+    background-color: rgba(var(--primary-dark-color), 0.06);
+}
+
 .content .button-transparent {
     background-color: transparent;
     color: rgba(var(--primary-dark-color), 1);
@@ -511,6 +534,7 @@ h4.title {
 .content .add-icon,
 .content .save-icon,
 .content .cancel-icon,
+.content .add-outline-icon,
 .content .reset-icon {
     width: 13px;
     height: 13px;
@@ -534,6 +558,10 @@ h4.title {
 
 .content .cancel-icon {
     background-image: url('../img/icon/exit-primary-icon.svg');
+}
+
+.content .add-outline-icon {
+    background-image: url('../img/icon/add-outline-icon.svg');
 }
 
 .content .table-header {
@@ -785,6 +813,38 @@ h4.title {
     transform: translate(0);
     opacity: 1;
     z-index: 2;
+}
+
+.content .card-form {
+    padding: 22px 16px;
+    border-radius: 8px;
+    background-color: rgba(var(--third-color), 1);
+}
+
+.content .subtitle {
+    font-size: 0.938rem;
+    color: rgba(255, 255, 255, 0.86);
+    font-family: var(--regular-font);
+}
+
+.content .minus-icon {
+    width: 16px;
+    height: 16px;
+    background-image: url('../img/icon/minus-icon.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.content .col-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content .input-wrapper {
+    width: 100%;
+    position: relative;
 }
 /* END DASHBOARD STYLE */
 
