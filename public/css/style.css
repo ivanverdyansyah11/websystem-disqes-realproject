@@ -87,6 +87,73 @@ p.caption-input {
     z-index: 2;
 }
 
+.caption-input-table {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: -8px;
+    left: 0;
+    padding: 0 12px;
+    z-index: 2;
+}
+
+.caption-input-table p {
+    font-size: 0.813rem;
+    padding: 0 10px;
+    background-color: rgba(var(--third-color), 1);
+    color: rgba(255, 255, 255, 0.86);
+    width: fit-content;
+}
+
+.caption-input-table .add-table-icon,
+.caption-input-table .remove-table-icon {
+    width: 14px;
+    height: 14px;
+    background-image: url('../img/icon/add-table-icon.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.caption-input-table .remove-table-icon {
+    background-image: url('../img/icon/remove-table-icon.svg');
+}
+
+.caption-input-table .wrapper-button {
+    padding: 0 10px !important;
+    background-color: rgba(var(--third-color), 1) !important;
+    cursor: pointer;
+}
+
+.content .table-input,
+.content .table-input tr,
+.content .table-input td {
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-collapse: collapse;
+}
+
+.content .table-input {
+    width: 100%;
+}
+
+.content .table-input td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.content .table-input .input-transparent {
+    width: 100%;
+    color: rgba(255, 255, 255, 0.86);
+    background-color: transparent;
+    font-size: 0.938rem;
+    border: none;
+    stroke: none;
+    outline: none;
+    padding: 8px 12px;
+}
+
 .input-checkbox {
     gap: 8px;
 }
