@@ -516,12 +516,14 @@ h4.title {
     margin-top: 0;
     height: 0;
     opacity: 0;
+    transition: opacity 0ms !important;
 }
 
 .filter-bar.active .filter-content {
     margin-top: 28px;
     height: fit-content;
     opacity: 1;
+    transition: opacity 0ms !important;
 }
 
 .content .input {
