@@ -222,7 +222,7 @@ p.caption-input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 9999;
+    z-index: 3;
 }
 
 .sidebar-logo {
@@ -731,13 +731,28 @@ h4.title {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: -100px;
+    right: -150px;
     opacity: 0;
     z-index: -999;
 }
 
 .content .wrapper-action.active {
-    right: -120px;
+    right: -184px;
+    opacity: 1;
+    z-index: 999;
+}
+
+.content .suite-menu .wrapper-action {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -130px;
+    opacity: 0;
+    z-index: -999;
+}
+
+.content .suite-menu .wrapper-action.active {
+    right: -160px;
     opacity: 1;
     z-index: 999;
 }
@@ -774,6 +789,8 @@ h4.title {
     cursor: pointer;
 }
 
+.content .card-action .up-icon,
+.content .card-action .down-icon,
 .content .card-action .add-section-icon,
 .content .card-action .edit-icon,
 .content .card-action .delete-icon {
@@ -785,6 +802,8 @@ h4.title {
     background-repeat: no-repeat;
 }
 
+.content .card-action .up-icon,
+.content .card-action .down-icon,
 .content .card-action .edit-icon,
 .content .card-action .delete-icon {
     width: 16px;
@@ -794,6 +813,14 @@ h4.title {
 
 .content .card-action .delete-icon {
     background-image: url('../img/icon/delete-icon.svg');
+}
+
+.content .card-action .up-icon {
+    background-image: url('../img/icon/up-icon.svg');
+}
+
+.content .card-action .down-icon {
+    background-image: url('../img/icon/down-icon.svg');
 }
 
 .content .wrapper-close {
@@ -913,10 +940,27 @@ h4.title {
     width: 100%;
     position: relative;
 }
+
+.content .list-move-case,
+.content .list-move-suite,
+.content .list-move-section {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.content .list-move-case li,
+.content .list-move-suite li,
+.content .list-move-section li {
+    list-style: none;
+}
 /* END DASHBOARD STYLE */
 
 
 /* MODAL STYLE */
+.modal {
+    z-index: 9999;
+}
+
 .modal-content {
     background-color: rgba(var(--third-color), 1);
     border: 1px solid rgba(255, 255, 255, 0.06);

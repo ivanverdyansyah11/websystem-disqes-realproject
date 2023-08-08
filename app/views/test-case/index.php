@@ -68,96 +68,147 @@
                 <div class="all-suite-icon"></div>
                 <p>All Test Cases</p>
             </a>
-            <div class="wrapper-suite">
-                <div class="wrapper-header position-relative">
-                    <a href="#" class="suite-header d-flex align-items-center justify-content-between position-relative">
-                        <div class="wrapper-header d-flex align-items-center">
-                            <div class="suite-icon"></div>
-                            <p>Dashboard</p>
-                        </div>
-                        <div class="arrow-suite p-1 pe-0">
-                            <div class="arrow-icon"></div>
-                        </div>
-                    </a>
-                    <div class="wrapper-action d-flex align-items-center">
-                        <div class="box-rotate position-relative"></div>
-                        <div class="card-action d-flex position-relative">
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection">
-                                <div class="add-section-icon"></div>
-                            </button>
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
-                                <div class="edit-icon"></div>
-                            </button>
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSuite">
-                                <div class="delete-icon"></div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
-                <a href="#" class="suite-menu position-relative">
-                    <p class="position-relative">Dashboard Sales</p>
-                    <div class="wrapper-action d-flex align-items-center">
-                        <div class="box-rotate position-relative"></div>
-                        <div class="card-action d-flex position-relative">
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
-                                <div class="edit-icon"></div>
-                            </button>
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
-                                <div class="delete-icon"></div>
-                            </button>
+            <ul class="list-move-suite">
+                <li>
+                    <div class="wrapper-suite">
+                        <div class="wrapper-header position-relative">
+                            <a href="#" class="suite-header d-flex align-items-center justify-content-between position-relative">
+                                <div class="wrapper-header d-flex align-items-center">
+                                    <div class="suite-icon"></div>
+                                    <p>Dashboard</p>
+                                </div>
+                                <div class="arrow-suite p-1 pe-0">
+                                    <div class="arrow-icon"></div>
+                                </div>
+                            </a>
+                            <div class="wrapper-action d-flex align-items-center">
+                                <div class="box-rotate position-relative"></div>
+                                <div class="card-action d-flex position-relative">
+                                    <button type="button" class="wrapper-icon" onclick="upMoveSuite()">
+                                        <div class="up-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" onclick="downMoveSuite()">
+                                        <div class="down-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection">
+                                        <div class="add-section-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
+                                        <div class="edit-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSuite">
+                                        <div class="delete-icon"></div>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
 
-            <div class="wrapper-suite">
-                <div class="wrapper-header position-relative">
-                    <a href="#" class="suite-header d-flex align-items-center justify-content-between">
-                        <div class="wrapper-header d-flex align-items-center">
-                            <div class="suite-icon"></div>
-                            <p>Report</p>
-                        </div>
-                        <div class="arrow-suite p-1 pe-0">
-                            <div class="arrow-icon"></div>
-                        </div>
-                    </a>
-                    <div class="wrapper-action d-flex align-items-center">
-                        <div class="box-rotate position-relative"></div>
-                        <div class="card-action d-flex position-relative">
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection">
-                                <div class="add-section-icon"></div>
-                            </button>
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
-                                <div class="edit-icon"></div>
-                            </button>
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSuite">
-                                <div class="delete-icon"></div>
-                            </button>
-                        </div>
+                        <a href="#" class="suite-menu position-relative">
+                            <p class="position-relative">Dashboard Sales</p>
+                            <div class="wrapper-action d-flex align-items-center">
+                                <div class="box-rotate position-relative"></div>
+                                <div class="card-action d-flex position-relative">
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                        <div class="edit-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                        <div class="delete-icon"></div>
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </div>
+                </li>
+                <li>
+                    <div class="wrapper-suite">
+                        <div class="wrapper-header position-relative">
+                            <a href="#" class="suite-header d-flex align-items-center justify-content-between">
+                                <div class="wrapper-header d-flex align-items-center">
+                                    <div class="suite-icon"></div>
+                                    <p>Report</p>
+                                </div>
+                                <div class="arrow-suite p-1 pe-0">
+                                    <div class="arrow-icon"></div>
+                                </div>
+                            </a>
+                            <div class="wrapper-action d-flex align-items-center">
+                                <div class="box-rotate position-relative"></div>
+                                <div class="card-action d-flex position-relative">
+                                    <button type="button" class="wrapper-icon" onclick="upMoveSuite()">
+                                        <div class="up-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" onclick="downMoveSuite()">
+                                        <div class="down-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection">
+                                        <div class="add-section-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
+                                        <div class="edit-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSuite">
+                                        <div class="delete-icon"></div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                <a href="#" class="suite-menu position-relative">
-                    <p class="position-relative">Report Sales</p>
-                    <div class="wrapper-action d-flex align-items-center">
-                        <div class="box-rotate position-relative"></div>
-                        <div class="card-action d-flex position-relative">
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
-                                <div class="edit-icon"></div>
-                            </button>
-                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
-                                <div class="delete-icon"></div>
-                            </button>
-                        </div>
+                        <ul class="list-move-section">
+                            <li>
+                                <a href="#" class="suite-menu position-relative">
+                                    <p class="position-relative">Report Sales</p>
+                                    <div class="wrapper-action d-flex align-items-center">
+                                        <div class="box-rotate position-relative"></div>
+                                        <div class="card-action d-flex position-relative">
+                                            <button type="button" class="wrapper-icon" onclick="upMoveSection()">
+                                                <div class="up-icon"></div>
+                                            </button>
+                                            <button type="button" class="wrapper-icon" onclick="downMoveSection()">
+                                                <div class="down-icon"></div>
+                                            </button>
+                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                                <div class="edit-icon"></div>
+                                            </button>
+                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                                <div class="delete-icon"></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="suite-menu position-relative">
+                                    <p class="position-relative">Report Management</p>
+                                    <div class="wrapper-action d-flex align-items-center">
+                                        <div class="box-rotate position-relative"></div>
+                                        <div class="card-action d-flex position-relative">
+                                            <button type="button" class="wrapper-icon" onclick="upMoveSection()">
+                                                <div class="up-icon"></div>
+                                            </button>
+                                            <button type="button" class="wrapper-icon" onclick="downMoveSection()">
+                                                <div class="down-icon"></div>
+                                            </button>
+                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                                <div class="edit-icon"></div>
+                                            </button>
+                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                                <div class="delete-icon"></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                </a>
-            </div>
+                </li>
+            </ul>
+
 
             <div class="wrapper-close"></div>
         </div>
 
-        <div class="col">
+        <div class="col col-case">
             <div class="table-header d-flex justify-content-between align-items-center">
                 <p class="table-title">Dashboard</p>
                 <a href="<?= BASEURL; ?>testcase/add" class="button-primary d-flex align-items-center">
@@ -169,50 +220,74 @@
                 <p>Name</p>
             </div>
 
-            <div class="case-menu position-relative">
-                <a href="#">See a graph of the number of sales transactions per day</a>
-                <div class="wrapper-action d-flex align-items-center">
-                    <div class="box-rotate position-relative"></div>
-                    <div class="card-action d-flex position-relative">
-                        <a href="#" type="button" class="wrapper-icon">
-                            <div class="edit-icon"></div>
-                        </a>
-                        <button type="button" class="wrapper-icon">
-                            <div class="delete-icon"></div>
-                        </button>
+            <ul class="list-move-case">
+                <li>
+                    <div class="case-menu position-relative">
+                        <a href="#">See a graph of the number of sales transactions per day</a>
+                        <div class="wrapper-action d-flex align-items-center">
+                            <div class="box-rotate position-relative"></div>
+                            <div class="card-action d-flex position-relative">
+                                <button type="button" class="wrapper-icon" onclick="upMoveCase()">
+                                    <div class="up-icon"></div>
+                                </button>
+                                <button type="button" class="wrapper-icon" onclick="downMoveCase()">
+                                    <div class="down-icon"></div>
+                                </button>
+                                <a href="<?= BASEURL; ?>testcase/edit" type="button" class="wrapper-icon">
+                                    <div class="edit-icon"></div>
+                                </a>
+                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase">
+                                    <div class="delete-icon"></div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="case-menu position-relative">
-                <a href="#">Filter the report date of the number of transactions per day</a>
-                <div class="wrapper-action d-flex align-items-center">
-                    <div class="box-rotate position-relative"></div>
-                    <div class="card-action d-flex position-relative">
-                        <a href="#" type="button" class="wrapper-icon">
-                            <div class="edit-icon"></div>
-                        </a>
-                        <button type="button" class="wrapper-icon">
-                            <div class="delete-icon"></div>
-                        </button>
+                </li>
+                <li>
+                    <div class="case-menu position-relative">
+                        <a href="#">Filter the report date of the number of transactions per day</a>
+                        <div class="wrapper-action d-flex align-items-center">
+                            <div class="box-rotate position-relative"></div>
+                            <div class="card-action d-flex position-relative">
+                                <button type="button" class="wrapper-icon" onclick="upMoveCase()">
+                                    <div class="up-icon"></div>
+                                </button>
+                                <button type="button" class="wrapper-icon" onclick="downMoveCase()">
+                                    <div class="down-icon"></div>
+                                </button>
+                                <a href="<?= BASEURL; ?>testcase/edit" type="button" class="wrapper-icon">
+                                    <div class="edit-icon"></div>
+                                </a>
+                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase">
+                                    <div class="delete-icon"></div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="case-menu position-relative">
-                <a href="#">View monthly sales report graphs</a>
-                <div class="wrapper-action d-flex align-items-center">
-                    <div class="box-rotate position-relative"></div>
-                    <div class="card-action d-flex position-relative">
-                        <a href="#" type="button" class="wrapper-icon">
-                            <div class="edit-icon"></div>
-                        </a>
-                        <button type="button" class="wrapper-icon">
-                            <div class="delete-icon"></div>
-                        </button>
+                </li>
+                <li>
+                    <div class="case-menu position-relative">
+                        <a href="#">View monthly sales report graphs</a>
+                        <div class="wrapper-action d-flex align-items-center">
+                            <div class="box-rotate position-relative"></div>
+                            <div class="card-action d-flex position-relative">
+                                <button type="button" class="wrapper-icon" onclick="upMoveCase()">
+                                    <div class="up-icon"></div>
+                                </button>
+                                <button type="button" class="wrapper-icon" onclick="downMoveCase()">
+                                    <div class="down-icon"></div>
+                                </button>
+                                <a href="<?= BASEURL; ?>testcase/edit" type="button" class="wrapper-icon">
+                                    <div class="edit-icon"></div>
+                                </a>
+                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase">
+                                    <div class="delete-icon"></div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </li>
+            </ul>
             <div class="wrapper-close"></div>
         </div>
     </div>
@@ -414,10 +489,37 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="deleteCase" tabindex="-1" aria-labelledby="deleteCaseLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content d-flex flex-column" style="gap: 14px !important;">
+                <div class="content-header d-flex justify-content-between align-items-center">
+                    <h4 class="title">Are you sure?</h4>
+                </div>
+                <div class="content-body">
+                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <p class="caption-delete">Are you sure you want to delete this <span>test case</span>? This action cannot be undone, and the <span>test case</span> will be permanently removed from the system.</p>
+                        <div class="wrapper d-flex gap-2">
+                            <button class="button-primary d-flex align-items-center">
+                                <div class="save-icon"></div>
+                                Save
+                            </button>
+                            <button type="button" class="button-transparent d-flex align-items-center" data-bs-dismiss="modal">
+                                <div class="cancel-icon"></div>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <script>
+    let listMoveCase = document.querySelector('.list-move-case');
+    let listMoveSuite = document.querySelector('.list-move-suite');
     const filterButton = document.querySelector('.filter-button');
     const filterBar = document.querySelector('.filter-bar');
     const keyInput = document.querySelector('#keyInput');
@@ -437,6 +539,56 @@
     const resetButtonAddSection = document.querySelector('.reset-button-add-section');
     const nameInputEditSection = document.querySelector('#nameInputEditSection');
     const resetButtonEditSection = document.querySelector('.reset-button-edit-section');
+
+    function upMoveCase() {
+        const selectedItem = document.querySelector('.wrapper-action.active').parentElement.parentElement;
+
+        if (selectedItem && selectedItem.previousElementSibling) {
+            listMoveCase.insertBefore(selectedItem, selectedItem.previousElementSibling);
+        }
+    }
+
+    function downMoveCase() {
+        const selectedItem = document.querySelector('.wrapper-action.active').parentElement.parentElement;
+
+        if (selectedItem && selectedItem.nextElementSibling) {
+            listMoveCase.insertBefore(selectedItem.nextElementSibling, selectedItem);
+        }
+    }
+
+    function upMoveSuite() {
+        const selectedItem = document.querySelector('.wrapper-action.active').parentElement.parentElement.parentElement;
+
+        if (selectedItem && selectedItem.previousElementSibling) {
+            listMoveSuite.insertBefore(selectedItem, selectedItem.previousElementSibling);
+        }
+    }
+
+    function downMoveSuite() {
+        const selectedItem = document.querySelector('.wrapper-action.active').parentElement.parentElement.parentElement;
+
+        if (selectedItem && selectedItem.nextElementSibling) {
+            listMoveSuite.insertBefore(selectedItem.nextElementSibling, selectedItem);
+        }
+    }
+
+    function upMoveSection() {
+        const listMoveSection = document.querySelector('.wrapper-action.active').parentElement.parentElement.parentElement;
+        const selectedItem = document.querySelector('.wrapper-action.active').parentElement.parentElement;
+
+        if (selectedItem && selectedItem.previousElementSibling) {
+            listMoveSection.insertBefore(selectedItem, selectedItem.previousElementSibling);
+        }
+    }
+
+    function downMoveSection() {
+        const listMoveSection = document.querySelector('.wrapper-action.active').parentElement.parentElement.parentElement;
+        const selectedItem = document.querySelector('.wrapper-action.active').parentElement.parentElement;
+
+        if (selectedItem && selectedItem.nextElementSibling) {
+            listMoveSection.insertBefore(selectedItem.nextElementSibling, selectedItem);
+        }
+    }
 
     filterButton.addEventListener('click', function() {
         filterBar.classList.toggle('active');
@@ -469,9 +621,11 @@
     arrowSuite.forEach(element => {
         element.addEventListener('click', function() {
             const wrapperSuite = element.parentElement.parentElement.parentElement;
-            const suiteMenu = wrapperSuite.querySelector('.suite-menu');
+            const suiteMenu = wrapperSuite.querySelectorAll('.suite-menu');
+            for (let i = 0; i < suiteMenu.length; i++) {
+                suiteMenu[i].classList.toggle('active');
+            };
             this.classList.toggle('active');
-            suiteMenu.classList.toggle('active');
         });
     });
 
