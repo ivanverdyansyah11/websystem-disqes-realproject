@@ -82,7 +82,7 @@
                                     <div class="arrow-icon"></div>
                                 </div>
                             </a>
-                            <div class="wrapper-action d-flex align-items-center">
+                            <div class="wrapper-action action-suite d-flex align-items-center">
                                 <div class="box-rotate position-relative"></div>
                                 <div class="card-action d-flex position-relative">
                                     <button type="button" class="wrapper-icon" onclick="upMoveSuite()">
@@ -104,20 +104,31 @@
                             </div>
                         </div>
 
-                        <a href="#" class="suite-menu position-relative">
-                            <p class="position-relative">Dashboard Sales</p>
-                            <div class="wrapper-action d-flex align-items-center">
-                                <div class="box-rotate position-relative"></div>
-                                <div class="card-action d-flex position-relative">
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
-                                        <div class="edit-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
-                                        <div class="delete-icon"></div>
-                                    </button>
-                                </div>
-                            </div>
-                        </a>
+                        <ul class="list-move-section">
+                            <li>
+                                <a href="#" class="suite-menu position-relative">
+                                    <p class="position-relative">Dashboard Sales</p>
+                                    <div class="wrapper-action action-section d-flex align-items-center">
+                                        <div class="box-rotate position-relative"></div>
+                                        <div class="card-action d-flex position-relative">
+                                            <button type="button" class="wrapper-icon" onclick="upMoveSection()">
+                                                <div class="up-icon"></div>
+                                            </button>
+                                            <button type="button" class="wrapper-icon" onclick="downMoveSection()">
+                                                <div class="down-icon"></div>
+                                            </button>
+                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                                <div class="edit-icon"></div>
+                                            </button>
+                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                                <div class="delete-icon"></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
                     </div>
                 </li>
                 <li>
@@ -132,7 +143,7 @@
                                     <div class="arrow-icon"></div>
                                 </div>
                             </a>
-                            <div class="wrapper-action d-flex align-items-center">
+                            <div class="wrapper-action action-suite d-flex align-items-center">
                                 <div class="box-rotate position-relative"></div>
                                 <div class="card-action d-flex position-relative">
                                     <button type="button" class="wrapper-icon" onclick="upMoveSuite()">
@@ -158,7 +169,7 @@
                             <li>
                                 <a href="#" class="suite-menu position-relative">
                                     <p class="position-relative">Report Sales</p>
-                                    <div class="wrapper-action d-flex align-items-center">
+                                    <div class="wrapper-action action-section d-flex align-items-center">
                                         <div class="box-rotate position-relative"></div>
                                         <div class="card-action d-flex position-relative">
                                             <button type="button" class="wrapper-icon" onclick="upMoveSection()">
@@ -180,7 +191,7 @@
                             <li>
                                 <a href="#" class="suite-menu position-relative">
                                     <p class="position-relative">Report Management</p>
-                                    <div class="wrapper-action d-flex align-items-center">
+                                    <div class="wrapper-action action-section d-flex align-items-center">
                                         <div class="box-rotate position-relative"></div>
                                         <div class="card-action d-flex position-relative">
                                             <button type="button" class="wrapper-icon" onclick="upMoveSection()">
@@ -224,7 +235,7 @@
                 <li>
                     <div class="case-menu position-relative">
                         <a href="#">See a graph of the number of sales transactions per day</a>
-                        <div class="wrapper-action d-flex align-items-center">
+                        <div class="wrapper-action action-case d-flex align-items-center">
                             <div class="box-rotate position-relative"></div>
                             <div class="card-action d-flex position-relative">
                                 <button type="button" class="wrapper-icon" onclick="upMoveCase()">
@@ -246,7 +257,7 @@
                 <li>
                     <div class="case-menu position-relative">
                         <a href="#">Filter the report date of the number of transactions per day</a>
-                        <div class="wrapper-action d-flex align-items-center">
+                        <div class="wrapper-action action-case d-flex align-items-center">
                             <div class="box-rotate position-relative"></div>
                             <div class="card-action d-flex position-relative">
                                 <button type="button" class="wrapper-icon" onclick="upMoveCase()">
@@ -268,7 +279,7 @@
                 <li>
                     <div class="case-menu position-relative">
                         <a href="#">View monthly sales report graphs</a>
-                        <div class="wrapper-action d-flex align-items-center">
+                        <div class="wrapper-action action-case d-flex align-items-center">
                             <div class="box-rotate position-relative"></div>
                             <div class="card-action d-flex position-relative">
                                 <button type="button" class="wrapper-icon" onclick="upMoveCase()">

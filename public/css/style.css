@@ -993,6 +993,21 @@ h4.title {
 /* END MODAL STYLE */
 
 
+@media (max-width: 991.98px) {
+    .content .action-suite,
+    .content .action-section,
+    .content .action-case {
+        right: 70px !important;
+    }
+    
+    .content .action-suite.active,
+    .content .action-section.active,
+    .content .action-case.active {
+        right: 40px !important;
+    }
+}
+
+
 @media (max-width: 575.98px) {
     .sidebar {
         position: absolute;
