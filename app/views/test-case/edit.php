@@ -116,6 +116,34 @@
 <script>
     const rowStep = document.querySelector('.row-step');
     const stepButton = document.querySelector('.button-step');
+    const resetButton = document.querySelector('.reset-button-add-case');
+
+    resetButton.addEventListener('click', function() {
+        const nameInput = document.querySelector('#nameInputAddCase');
+        const suiteInput = document.querySelector('#suiteInputAddCase');
+        const sectionInput = document.querySelector('#sectionInputAddCase');
+        const preconditionInput = document.querySelector('#preconditionInputAddCase');
+        const inputText = document.querySelectorAll('#inputText');
+        const inputTable = document.querySelectorAll('.input-transparent');
+        const expectedInput = document.querySelectorAll('#expectedInputAddCase');
+
+        nameInput.value = '';
+        suiteInput.value = 'Choose Suite Selection';
+        sectionInput.value = 'Choose Section Selection';
+        preconditionInput.value = '';
+
+        for (let i = 0; i < inputText.length; i++) {
+            inputText[i].value = '';
+        }
+
+        for (let i = 0; i < expectedInput.length; i++) {
+            expectedInput[i].value = '';
+        }
+
+        for (let i = 0; i < inputTable.length; i++) {
+            inputTable[i].value = '';
+        }
+    });
 
     rowStep.addEventListener('click', function(e) {
         if (e.target.className === 'add-table-icon') {
@@ -240,7 +268,7 @@
         const inputExpected = document.createElement('input');
         inputExpected.classList.add('input');
         inputExpected.type = 'text';
-        inputExpected.id = 'instructionInputAddCase';
+        inputExpected.id = 'expectedInputAddCase';
 
         const wrapperIcon = document.createElement('div');
         wrapperIcon.classList.add('wrapper-icon');
