@@ -15,19 +15,23 @@ class Signup extends Controller
 
   public function signUpAction()
   {
+    $data['user'] = $this->model('User_model')->getUserByEmail($_POST);
+    var_dump($data['user']);
 
-    var_dump($_POST['email']);
-
-    $data['user'] = $this->model('User_model')->insertUserSignup($_POST);
-
-    // if ($this->model('User_model')->insertUserSignup($_POST) > 0) {
-    //   Flasher::setFlash('success', 'Successfully create account!');
-    //   header("Location:" . BASEURL . "signin");
-    //   exit;
-    // } else {
-    //   Flasher::setFlash('danger', 'Failed to create account!');
-    //   header("Location:" . BASEURL . "signup");
-    //   exit;
-    // }
+    if (!$data['user']) {
+      if ($this->model('User_model')->insertUserSignup($_POST) > 0) {
+        Flasher::setFlash('success', 'Successfully create account!');
+        header("Location:" . BASEURL . "signin");
+        exit;
+      } else {
+        Flasher::setFlash('danger', 'Failed to create account!');
+        header("Location:" . BASEURL . "signup");
+        exit;
+      }
+    } else {
+      Flasher::setFlash('danger', 'Email is already registered!');
+      header("Location:" . BASEURL . "signup");
+      exit;
+    }
   }
 }

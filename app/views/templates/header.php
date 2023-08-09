@@ -25,13 +25,13 @@
                 <div class="sidebar">
                     <div class="sidebar-logo"></div>
                     <div class="sidebar-menu w-100 d-flex flex-column" style="gap: 4px;">
-                        <a href="<?= BASEURL; ?>dashboard" class="menu-link">
+                        <a href="<?= BASEURL; ?>dashboard" class="<?= $_GET['url'] == 'dashboard' ? 'active' : '' ?> menu-link">
                             <div class="dashboard-icon"></div>
                         </a>
-                        <a href="<?= BASEURL; ?>testcase" class="menu-link">
+                        <a href="<?= BASEURL; ?>testcase" class="<?= $_GET['url'] == 'testcase' ? 'active' : '' ?> menu-link">
                             <div class="test-case-icon"></div>
                         </a>
-                        <a href="<?= BASEURL; ?>project" class="menu-link">
+                        <a href="<?= BASEURL; ?>project" class="<?= $_GET['url'] == 'project' ? 'active' : '' ?> menu-link">
                             <div class="project-icon"></div>
                         </a>
                         <form action="" class="w-100 d-md-none">
