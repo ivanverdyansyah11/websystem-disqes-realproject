@@ -22,6 +22,9 @@
             <div class="d-none d-lg-inline-block col-lg-7 col-xl-8 p-0 background-image" style="height: 100vh;"></div>
             <div class="col p-0">
                 <div class="card-login w-100 d-flex flex-column align-items-center">
+                    <div class="flasher-wrap w-100">
+                        <?php Flasher::flash(); ?>
+                    </div>
                     <img src="<?= BASEURL; ?>img/brand-logo/brand-logo.svg" alt="Brand Logo" style="margin-bottom: 48px;">
                     <form action="<?= BASEURL; ?>signin/signInAction" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <div class="wrapper d-flex flex-column" style="gap: 16px;">
