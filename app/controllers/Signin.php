@@ -23,7 +23,7 @@ class Signin extends Controller
       exit;
     } else {
       $data['project'] = $this->model('Project_model')->getProjectFirst();
-      $_SESSION['project'] = $data['project']['name'];
+      $_SESSION['project'] = $data['project']['id'];
 
       $_SESSION['username'] = $data['user']['username'];
       header("Location:" . BASEURL . "dashboard");

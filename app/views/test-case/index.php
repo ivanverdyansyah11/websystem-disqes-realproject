@@ -1,4 +1,11 @@
 <div class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="flasher-wrap w-100">
+                <?php Flasher::flash(); ?>
+            </div>
+        </div>
+    </div>
     <div class="row section-gap">
         <div class="col-12">
             <h4 class="title">Test Case</h4>
@@ -70,149 +77,70 @@
             </a>
 
             <ul class="list-move-suite">
-                <li>
-                    <div class="wrapper-suite">
-                        <div class="wrapper-header position-relative">
-                            <a href="#" class="suite-header d-flex align-items-center justify-content-between position-relative">
-                                <div class="wrapper-header d-flex align-items-center">
-                                    <div class="suite-icon"></div>
-                                    <p>Dashboard</p>
-                                </div>
-                                <div class="arrow-suite p-1 pe-0">
-                                    <div class="arrow-icon"></div>
-                                </div>
-                            </a>
-                            <div class="wrapper-action action-suite d-flex align-items-center">
-                                <div class="box-rotate position-relative"></div>
-                                <div class="card-action d-flex position-relative">
-                                    <button type="button" class="wrapper-icon" onclick="upMoveSuite()">
-                                        <div class="up-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" onclick="downMoveSuite()">
-                                        <div class="down-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection">
-                                        <div class="add-section-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
-                                        <div class="edit-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSuite">
-                                        <div class="delete-icon"></div>
-                                    </button>
+                <?php $i = 1; ?>
+                <?php foreach ($data['test_suites'] as $test_suite) : ?>
+                    <li>
+                        <div class="wrapper-suite">
+                            <div class="wrapper-header position-relative">
+                                <a href="#" class="suite-header d-flex align-items-center justify-content-between position-relative">
+                                    <div class="wrapper-header d-flex align-items-center">
+                                        <div class="suite-icon"></div>
+                                        <p><?= $test_suite['name'] ?></p>
+                                    </div>
+                                    <div class="arrow-suite p-1 pe-0">
+                                        <div class="arrow-icon"></div>
+                                    </div>
+                                </a>
+                                <div class="wrapper-action action-suite d-flex align-items-center">
+                                    <div class="box-rotate position-relative"></div>
+                                    <div class="card-action d-flex position-relative">
+                                        <button type="button" class="wrapper-icon" onclick="upMoveSuite()">
+                                            <div class="up-icon"></div>
+                                        </button>
+                                        <button type="button" class="wrapper-icon" onclick="downMoveSuite()">
+                                            <div class="down-icon"></div>
+                                        </button>
+                                        <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection" data-id="<?= $test_suite['id']; ?>">
+                                            <div class="add-section-icon"></div>
+                                        </button>
+                                        <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite" data-id="<?= $test_suite['id']; ?>">
+                                            <div class="edit-icon"></div>
+                                        </button>
+                                        <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSuite" data-id="<?= $test_suite['id']; ?>">
+                                            <div class="delete-icon"></div>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+
+                            <ul class="list-move-section">
+                                <li>
+                                    <a href="#" class="suite-menu position-relative">
+                                        <p class="position-relative">Dashboard Sales</p>
+                                        <div class="wrapper-action action-section d-flex align-items-center">
+                                            <div class="box-rotate position-relative"></div>
+                                            <div class="card-action d-flex position-relative">
+                                                <button type="button" class="wrapper-icon" onclick="upMoveSection()">
+                                                    <div class="up-icon"></div>
+                                                </button>
+                                                <button type="button" class="wrapper-icon" onclick="downMoveSection()">
+                                                    <div class="down-icon"></div>
+                                                </button>
+                                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                                    <div class="edit-icon"></div>
+                                                </button>
+                                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                                    <div class="delete-icon"></div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
                         </div>
-
-                        <ul class="list-move-section">
-                            <li>
-                                <a href="#" class="suite-menu position-relative">
-                                    <p class="position-relative">Dashboard Sales</p>
-                                    <div class="wrapper-action action-section d-flex align-items-center">
-                                        <div class="box-rotate position-relative"></div>
-                                        <div class="card-action d-flex position-relative">
-                                            <button type="button" class="wrapper-icon" onclick="upMoveSection()">
-                                                <div class="up-icon"></div>
-                                            </button>
-                                            <button type="button" class="wrapper-icon" onclick="downMoveSection()">
-                                                <div class="down-icon"></div>
-                                            </button>
-                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
-                                                <div class="edit-icon"></div>
-                                            </button>
-                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
-                                                <div class="delete-icon"></div>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </li>
-                <li>
-                    <div class="wrapper-suite">
-                        <div class="wrapper-header position-relative">
-                            <a href="#" class="suite-header d-flex align-items-center justify-content-between">
-                                <div class="wrapper-header d-flex align-items-center">
-                                    <div class="suite-icon"></div>
-                                    <p>Report</p>
-                                </div>
-                                <div class="arrow-suite p-1 pe-0">
-                                    <div class="arrow-icon"></div>
-                                </div>
-                            </a>
-                            <div class="wrapper-action action-suite d-flex align-items-center">
-                                <div class="box-rotate position-relative"></div>
-                                <div class="card-action d-flex position-relative">
-                                    <button type="button" class="wrapper-icon" onclick="upMoveSuite()">
-                                        <div class="up-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" onclick="downMoveSuite()">
-                                        <div class="down-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection">
-                                        <div class="add-section-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSuite">
-                                        <div class="edit-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSuite">
-                                        <div class="delete-icon"></div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <ul class="list-move-section">
-                            <li>
-                                <a href="#" class="suite-menu position-relative">
-                                    <p class="position-relative">Report Sales</p>
-                                    <div class="wrapper-action action-section d-flex align-items-center">
-                                        <div class="box-rotate position-relative"></div>
-                                        <div class="card-action d-flex position-relative">
-                                            <button type="button" class="wrapper-icon" onclick="upMoveSection()">
-                                                <div class="up-icon"></div>
-                                            </button>
-                                            <button type="button" class="wrapper-icon" onclick="downMoveSection()">
-                                                <div class="down-icon"></div>
-                                            </button>
-                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
-                                                <div class="edit-icon"></div>
-                                            </button>
-                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
-                                                <div class="delete-icon"></div>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="suite-menu position-relative">
-                                    <p class="position-relative">Report Management</p>
-                                    <div class="wrapper-action action-section d-flex align-items-center">
-                                        <div class="box-rotate position-relative"></div>
-                                        <div class="card-action d-flex position-relative">
-                                            <button type="button" class="wrapper-icon" onclick="upMoveSection()">
-                                                <div class="up-icon"></div>
-                                            </button>
-                                            <button type="button" class="wrapper-icon" onclick="downMoveSection()">
-                                                <div class="down-icon"></div>
-                                            </button>
-                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
-                                                <div class="edit-icon"></div>
-                                            </button>
-                                            <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
-                                                <div class="delete-icon"></div>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                    </li>
+                <?php endforeach; ?>
             </ul>
 
 
@@ -316,7 +244,7 @@
                     <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddSection">
+                            <input type="text" class="input position-relative" id="nameInputAddSection" name="name">
                         </div>
                         <div class="wrapper d-flex gap-2">
                             <button class="button-primary d-flex align-items-center">
@@ -408,17 +336,18 @@
                     </div>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form action="<?= BASEURL; ?>testcase/addTestSuiteAction" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddSuite">
+                            <input type="text" class="input position-relative" id="nameInputAddSuite" name="name" autocomplete="off">
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
-                            <input type="text" class="input position-relative" id="descriptionInputAddSuite">
+                            <input type="text" class="input position-relative" id="descriptionInputAddSuite" name="description" autocomplete="off">
                         </div>
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -447,17 +376,17 @@
                     </div>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form id="formeditSuite" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputEditSuite">
+                            <input type="text" class="input position-relative" id="nameInputEditSuite" name="name">
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
-                            <input type="text" class="input position-relative" id="descriptionInputEditSuite">
+                            <input type="text" class="input position-relative" id="descriptionInputEditSuite" name="description">
                         </div>
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -528,7 +457,24 @@
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
+    $(document).on('click', '[data-bs-target="#editSuite"]', function() {
+        let id = $(this).data('id');
+        $('#formeditSuite').attr('action', 'http://localhost/disqes/public/testcase/editTestSuiteAction/' + id);
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost/disqes/public/project/edit/' + id,
+            success: function(data) {
+                $('[data-value="id"]').val(data[0].id);
+                $('[data-value="name"]').val(data[0].name);
+                $('[data-value="description"]').val(data[0].description);
+            }
+        });
+    });
+
     let listMoveCase = document.querySelector('.list-move-case');
     let listMoveSuite = document.querySelector('.list-move-suite');
     const filterButton = document.querySelector('.filter-button');

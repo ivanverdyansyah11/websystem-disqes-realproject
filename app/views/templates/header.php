@@ -56,7 +56,7 @@
                                 <div class="arrow-icon"></div>
                             </div>
                             <div class="topbar-menu position-absolute">
-                                <form action="<?= BASEURL; ?>signin/logout" class="w-100">
+                                <form action="<?= BASEURL; ?>signin/logout" class="w-100 mb-0">
                                     <button class="d-flex align-items-center gap-3">
                                         <div class="logout-icon"></div>
                                         Logout
