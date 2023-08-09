@@ -9,6 +9,14 @@ class Project_model extends Database
     $this->db = new Database();
   }
 
+  public function getAllProject()
+  {
+    $query = "SELECT * FROM project";
+    $this->db->query($query);
+    $this->db->execute();
+    return $this->db->resultSet();
+  }
+
   public function insertProject($data)
   {
     $query = "INSERT INTO project(name,description) VALUES(:name,:description)";

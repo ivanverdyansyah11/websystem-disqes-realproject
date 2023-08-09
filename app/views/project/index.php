@@ -33,58 +33,37 @@
                     </div>
                 </div>
             </div>
-            <div class="table-body d-flex align-items-center">
-                <div class="row align-items-center w-100">
-                    <div class="col">
-                        <p>Retail</p>
-                    </div>
-                    <div class="col d-none d-md-inline-block">
-                        <p>14</p>
-                    </div>
-                    <div class="col d-none d-md-inline-block">
-                        <p>10</p>
-                    </div>
-                    <div class="col body-action">
-                        <div class="wrapper-action d-flex align-items-center">
-                            <div class="box-rotate position-relative"></div>
-                            <div class="card-action d-flex position-relative">
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editProject">
-                                    <div class="edit-icon"></div>
-                                </button>
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteProject">
-                                    <div class="delete-icon"></div>
-                                </button>
+
+            <?php $i = 1; ?>
+            <?php foreach ($data['projects'] as $project) : ?>
+                <div class="table-body d-flex align-items-center">
+                    <div class="row align-items-center w-100">
+                        <div class="col">
+                            <p><?= $project['name']; ?></p>
+                        </div>
+                        <div class="col d-none d-md-inline-block">
+                            <p>14</p>
+                        </div>
+                        <div class="col d-none d-md-inline-block">
+                            <p>10</p>
+                        </div>
+                        <div class="col body-action">
+                            <div class="wrapper-action d-flex align-items-center">
+                                <div class="box-rotate position-relative"></div>
+                                <div class="card-action d-flex position-relative">
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editProject">
+                                        <div class="edit-icon"></div>
+                                    </button>
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteProject">
+                                        <div class="delete-icon"></div>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="table-body d-flex align-items-center">
-                <div class="row align-items-center w-100">
-                    <div class="col">
-                        <p>Cashier</p>
-                    </div>
-                    <div class="col d-none d-md-inline-block">
-                        <p>10</p>
-                    </div>
-                    <div class="col d-none d-md-inline-block">
-                        <p>0</p>
-                    </div>
-                    <div class="col body-action">
-                        <div class="wrapper-action d-flex align-items-center">
-                            <div class="box-rotate position-relative"></div>
-                            <div class="card-action d-flex position-relative">
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editProject">
-                                    <div class="edit-icon"></div>
-                                </button>
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteProject">
-                                    <div class="delete-icon"></div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
+
         </div>
     </div>
 

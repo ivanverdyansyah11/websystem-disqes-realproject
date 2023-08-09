@@ -6,6 +6,7 @@ class Project extends Controller
   {
     if (isset($_SESSION['username'])) {
       $data['title'] = "Project";
+      $data['projects'] = $this->model('Project_model')->getAllProject();
       $this->view('templates/header', $data);
       $this->view('project/index', $data);
       $this->view('templates/footer', $data);
