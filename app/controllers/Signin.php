@@ -10,10 +10,7 @@ class Signin extends Controller
 
   public function signInAction()
   {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $data['user'] = $this->model('User_model')->getUserSignIn($email, $password);
+    $data['user'] = $this->model('User_model')->getUserSignIn($_POST);
 
     if ($data['user'] == NULL) {
       header("Location:" . BASEURL . "signin");

@@ -8,13 +8,13 @@ class Signup extends Controller
     $this->view('signup/index', $data);
   }
 
-  public function signupAction()
+  public function signUpAction()
   {
-    if ($this->model('Kelas_model')->insertDataKelas($_POST) > 0) {
-      header("Location:" . BASEURL . "signup");
+    if ($this->model('User_model')->insertUserSignup($_POST) > 0) {
+      header("Location:" . BASEURL . "signin");
       exit;
     } else {
-      header("Location:" . BASEURL . "signin");
+      header("Location:" . BASEURL . "signup");
       exit;
     }
   }
