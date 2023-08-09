@@ -12,4 +12,20 @@ class ConfirmEmail extends Controller
       exit;
     };
   }
+
+  public function confirmEmailAction()
+  {
+    $data['user'] = $this->model('User_model')->getUserByEmail($_POST);
+
+    $_SESSION['user'] = $data['user']['id'];
+
+    if ($_SESSION['user']) {
+      header("Location:" . BASEURL . "changePassword");
+      exit;
+    } else {
+      Flasher::setFlash('success', 'Failed to confirm email!');
+      header("Location:" . BASEURL . "confirmEmail");
+      exit;
+    }
+  }
 }
