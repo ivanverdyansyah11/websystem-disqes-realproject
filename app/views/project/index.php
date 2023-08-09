@@ -54,7 +54,7 @@
                                     <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editProject">
                                         <div class="edit-icon"></div>
                                     </button>
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteProject">
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">
                                         <div class="delete-icon"></div>
                                     </button>
                                 </div>
@@ -152,7 +152,7 @@
                     <h4 class="title">Are you sure?</h4>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form id="formDeleteProject" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <p class="caption-delete">Are you sure you want to delete this <span>project</span>? This action cannot be undone, and the <span>project</span> will be permanently removed from the system.</p>
                         <div class="wrapper d-flex gap-2">
                             <button class="button-primary d-flex align-items-center">
@@ -171,7 +171,15 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
+    $(document).on('click', '[data-bs-target="#deleteProject"]', function() {
+        let id = $(this).data('id');
+        $('#formDeleteProject').attr('action', 'http://localhost/disqes/public/project/deleteAction/' + id);
+    });
+
     const tableBody = document.querySelectorAll('.table-body');
     const nameInputAddProject = document.querySelector('#nameInputAddProject');
     const descriptionInputAddProject = document.querySelector('#descriptionInputAddProject');

@@ -28,4 +28,17 @@ class Project extends Controller
       exit;
     }
   }
+
+  public function deleteAction($id)
+  {
+    if ($this->model('Project_model')->deleteProject($id) > 0) {
+      Flasher::setFlash('success', 'Successfully delete project!');
+      header("Location:" . BASEURL . "project");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to delete project!');
+      header("Location:" . BASEURL . "project");
+      exit;
+    }
+  }
 }

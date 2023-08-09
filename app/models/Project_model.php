@@ -26,4 +26,13 @@ class Project_model extends Database
     $this->db->execute();
     return $this->db->rowCount();
   }
+
+  public function deleteProject($id)
+  {
+    $query = "DELETE FROM project WHERE id=:id";
+    $this->db->query($query);
+    $this->db->bind('id', $id);
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
 }
