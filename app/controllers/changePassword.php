@@ -4,7 +4,12 @@ class ChangePassword extends Controller
 {
   public function index()
   {
-    $data['title'] = "Change Password";
-    $this->view('changePassword/index', $data);
+    if (!isset($_SESSION['username'])) {
+      $data['title'] = "Change Password";
+      $this->view('changePassword/index', $data);
+    } else {
+      header("Location:" . BASEURL . "dashboard");
+      exit;
+    };
   }
 }

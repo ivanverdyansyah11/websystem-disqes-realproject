@@ -31,6 +31,11 @@
     transition: 250ms !important;
 }
 
+.alert {
+    font-size: 0.938rem;
+    font-family: var(--regular-font);
+}
+
 body {
     overflow-x: hidden;
     -ms-overflow-style: none;

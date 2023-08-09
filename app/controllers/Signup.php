@@ -4,8 +4,13 @@ class Signup extends Controller
 {
   public function index()
   {
-    $data['title'] = "Signup";
-    $this->view('signup/index', $data);
+    if (!isset($_SESSION['username'])) {
+      $data['title'] = "Signup";
+      $this->view('signup/index', $data);
+    } else {
+      header("Location:" . BASEURL . "dashboard");
+      exit;
+    };
   }
 
   public function signUpAction()

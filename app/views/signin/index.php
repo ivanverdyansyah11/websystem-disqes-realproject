@@ -30,11 +30,11 @@
                         <div class="wrapper d-flex flex-column" style="gap: 16px;">
                             <div class="input-wrapper w-100 position-relative">
                                 <p class="caption-input">Email</p>
-                                <input type="email" class="input position-relative" name="email">
+                                <input type="email" class="input position-relative" name="email" autocomplete="off">
                             </div>
                             <div class="input-wrapper w-100 position-relative">
                                 <p class="caption-input">Password</p>
-                                <input type="password" class="input position-relative" name="password">
+                                <input type="password" class="input position-relative" name="password" autocomplete="off">
                             </div>
                         </div>
                         <div class="wrapper d-flex justify-content-end align-items-center">

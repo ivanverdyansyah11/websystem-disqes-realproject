@@ -51,12 +51,12 @@
                             <div class="wrapper-profile d-flex align-items-center position-relative" style="gap: 16px;">
                                 <div class="topbar-profile d-flex align-items-center" style="gap: 12px;">
                                     <div class="user-icon"></div>
-                                    <h6 class="user-name">Winda Pratama</h6>
+                                    <h6 class="user-name"><?= $_SESSION['username']; ?></h6>
                                 </div>
                                 <div class="arrow-icon"></div>
                             </div>
                             <div class="topbar-menu position-absolute">
-                                <form action="" class="w-100">
+                                <form action="<?= BASEURL; ?>signin/logout" class="w-100">
                                     <button class="d-flex align-items-center gap-3">
                                         <div class="logout-icon"></div>
                                         Logout

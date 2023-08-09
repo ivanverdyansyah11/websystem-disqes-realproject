@@ -4,8 +4,13 @@ class Signin extends Controller
 {
   public function index()
   {
-    $data['title'] = "Signin";
-    $this->view('signin/index', $data);
+    if (!isset($_SESSION['username'])) {
+      $data['title'] = "Signin";
+      $this->view('signin/index', $data);
+    } else {
+      header("Location:" . BASEURL . "dashboard");
+      exit;
+    };
   }
 
   public function signInAction()
@@ -13,11 +18,21 @@ class Signin extends Controller
     $data['user'] = $this->model('User_model')->getUserSignIn($_POST);
 
     if ($data['user'] == NULL) {
+      Flasher::setFlash('danger', 'Email or Password does not exist!');
       header("Location:" . BASEURL . "signin");
       exit;
     } else {
+      $_SESSION['username'] = $data['user']['username'];
       header("Location:" . BASEURL . "dashboard");
       exit;
     }
+  }
+
+  public  function logout()
+  {
+    unset($_SESSION['username']);
+    session_destroy();
+    header("Location:" . BASEURL . "signin");
+    exit;
   }
 }
