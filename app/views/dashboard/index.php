@@ -9,7 +9,7 @@
             <div class="card-menu d-flex justify-content-between">
                 <div class="wrapper">
                     <h6 class="menu-title">Test Case</h6>
-                    <h5 class="menu-value">897</h5>
+                    <h5 class="menu-value">-</h5>
                 </div>
                 <div class="menu-icon d-flex justify-content-center align-items-center">
                     <div class="test-case-icon"></div>
@@ -20,7 +20,7 @@
             <div class="card-menu d-flex justify-content-between">
                 <div class="wrapper">
                     <h6 class="menu-title">Test Ruins</h6>
-                    <h5 class="menu-value">144</h5>
+                    <h5 class="menu-value">-</h5>
                 </div>
                 <div class="menu-icon d-flex justify-content-center align-items-center">
                     <div class="test-ruins-icon"></div>
@@ -31,7 +31,7 @@
             <div class="card-menu d-flex justify-content-between">
                 <div class="wrapper">
                     <h6 class="menu-title">Status</h6>
-                    <h5 class="menu-value">20%</h5>
+                    <h5 class="menu-value">-</h5>
                 </div>
                 <div class="menu-icon d-flex justify-content-center align-items-center">
                     <div class="status-icon"></div>

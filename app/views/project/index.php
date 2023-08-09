@@ -42,10 +42,10 @@
                             <p><?= $project['name']; ?></p>
                         </div>
                         <div class="col d-none d-md-inline-block">
-                            <p>14</p>
+                            <p>-</p>
                         </div>
                         <div class="col d-none d-md-inline-block">
-                            <p>10</p>
+                            <p>-</p>
                         </div>
                         <div class="col body-action">
                             <div class="wrapper-action d-flex align-items-center">

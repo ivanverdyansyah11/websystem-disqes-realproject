@@ -17,6 +17,14 @@ class Project_model extends Database
     return $this->db->resultSet();
   }
 
+  public function getProjectFirst()
+  {
+    $query = "SELECT * FROM project LIMIT 1;";
+    $this->db->query($query);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
   public function getProjectById($id)
   {
     $query = "SELECT * FROM project WHERE id=:id";
