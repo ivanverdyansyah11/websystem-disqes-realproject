@@ -21,6 +21,7 @@
     --fourth-color: 25, 32, 54;
     --dark-color: 80, 80, 80;
     --red-color: 209, 67, 67;
+    --green-color: 0, 255, 215;
     --regular-font: 'urbanist-regular';
     --medium-font: 'urbanist-medium';
     --semibold-font: 'urbanist-semibold';
@@ -29,11 +30,6 @@
 * {
     font-family: var(--medium-font);
     transition: 250ms !important;
-}
-
-.alert {
-    font-size: 0.938rem;
-    font-family: var(--regular-font);
 }
 
 body {
@@ -959,6 +955,18 @@ h4.title {
 .content .list-move-suite li,
 .content .list-move-section li {
     list-style: none;
+}
+
+.content .alert {
+    font-size: 0.938rem;
+    font-family: var(--regular-font);
+    background-color: rgba(var(--green-color), 0.12);
+    border: 1px solid rgba(var(--green-color), 0.18);
+    color: rgba(var(--green-color), 1);
+}
+
+.content .alert {
+
 }
 /* END DASHBOARD STYLE */
 

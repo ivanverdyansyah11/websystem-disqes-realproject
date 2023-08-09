@@ -14,4 +14,17 @@ class Project extends Controller
       exit;
     };
   }
+
+  public function addAction()
+  {
+    if ($this->model('Project_model')->insertProject($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully create project!');
+      header("Location:" . BASEURL . "project");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to create project!');
+      header("Location:" . BASEURL . "project");
+      exit;
+    }
+  }
 }

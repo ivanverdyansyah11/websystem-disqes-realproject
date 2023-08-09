@@ -1,4 +1,11 @@
 <div class="content content-project">
+    <div class="row">
+        <div class="col-12">
+            <div class="flasher-wrap w-100">
+                <?php Flasher::flash(); ?>
+            </div>
+        </div>
+    </div>
     <div class="row section-gap">
         <div class="col-12 d-flex justify-content-md-between align-items-center gap-3 gap-md-0">
             <h4 class="title">Project</h4>
@@ -91,17 +98,17 @@
                     </div>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form action="<?= BASEURL; ?>project/addAction" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddProject">
+                            <input type="text" class="input position-relative" id="nameInputAddProject" name="name" autocomplete="off">
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
-                            <input type="text" class="input position-relative" id="descriptionInputAddProject">
+                            <input type="text" class="input position-relative" id="descriptionInputAddProject" name="description" autocomplete="off">
                         </div>
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
