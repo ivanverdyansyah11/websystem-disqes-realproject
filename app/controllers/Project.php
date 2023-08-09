@@ -29,6 +29,25 @@ class Project extends Controller
     }
   }
 
+  public function edit($id)
+  {
+    $data['project'] = $this->model('Project_model')->getProjectById($id);
+    $data['projectJson'] = $this->model('Project_model')->getProjectByIdJson($data['project']);
+  }
+
+  public function editAction()
+  {
+    if ($this->model('Project_model')->editProject($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully edit project!');
+      header("Location:" . BASEURL . "project");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to edit project!');
+      header("Location:" . BASEURL . "project");
+      exit;
+    }
+  }
+
   public function deleteAction($id)
   {
     if ($this->model('Project_model')->deleteProject($id) > 0) {

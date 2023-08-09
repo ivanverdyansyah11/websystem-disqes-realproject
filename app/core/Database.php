@@ -69,4 +69,12 @@ class Database
     {
         return $this->stmt->rowCOunt();
     }
+
+    public function jsonResponse($data, $status = 200)
+    {
+        http_response_code($status);
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit();
+    }
 }

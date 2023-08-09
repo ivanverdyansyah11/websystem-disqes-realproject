@@ -51,7 +51,7 @@
                             <div class="wrapper-action d-flex align-items-center">
                                 <div class="box-rotate position-relative"></div>
                                 <div class="card-action d-flex position-relative">
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editProject">
+                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">
                                         <div class="edit-icon"></div>
                                     </button>
                                     <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">
@@ -116,17 +116,18 @@
                     </div>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form id="formEditProject" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <input type="hidden" name="id" data-value="id">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputEditProject">
+                            <input type="text" class="input position-relative" id="nameInputEditProject" name="name" data-value="name">
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
-                            <input type="text" class="input position-relative" id="descriptionInputEditProject">
+                            <input type="text" class="input position-relative" id="descriptionInputEditProject" name="description" data-value="description">
                         </div>
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -155,7 +156,7 @@
                     <form id="formDeleteProject" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <p class="caption-delete">Are you sure you want to delete this <span>project</span>? This action cannot be undone, and the <span>project</span> will be permanently removed from the system.</p>
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -175,6 +176,20 @@
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
+    $(document).on('click', '[data-bs-target="#editProject"]', function() {
+        let id = $(this).data('id');
+        $('#formEditProject').attr('action', 'http://localhost/disqes/public/project/editAction/' + id);
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost/disqes/public/project/edit/' + id,
+            success: function(data) {
+                $('[data-value="id"]').val(data[0].id);
+                $('[data-value="name"]').val(data[0].name);
+                $('[data-value="description"]').val(data[0].description);
+            }
+        });
+    });
+
     $(document).on('click', '[data-bs-target="#deleteProject"]', function() {
         let id = $(this).data('id');
         $('#formDeleteProject').attr('action', 'http://localhost/disqes/public/project/deleteAction/' + id);

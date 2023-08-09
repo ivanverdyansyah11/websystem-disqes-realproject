@@ -957,12 +957,19 @@ h4.title {
     list-style: none;
 }
 
-.content .alert {
+.content .alert.alert-success,
+.content .alert.alert-danger {
     font-size: 0.938rem;
     font-family: var(--regular-font);
     background-color: rgba(var(--green-color), 0.12);
     border: 1px solid rgba(var(--green-color), 0.18);
     color: rgba(var(--green-color), 1);
+}
+
+.content .alert.alert-danger {
+    background-color: rgba(var(--red-color), 0.12);
+    border: 1px solid rgba(var(--red-color), 0.18);
+    color: rgba(var(--red-color), 1);
 }
 /* END DASHBOARD STYLE */
 

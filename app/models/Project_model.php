@@ -17,10 +17,35 @@ class Project_model extends Database
     return $this->db->resultSet();
   }
 
+  public function getProjectById($id)
+  {
+    $query = "SELECT * FROM project WHERE id=:id";
+    $this->db->query($query);
+    $this->db->bind('id', $id);
+    $this->db->execute();
+    return $this->db->resultSet();
+  }
+
+  public function getProjectByIdJson($data)
+  {
+    return $this->db->jsonResponse($data);
+  }
+
   public function insertProject($data)
   {
     $query = "INSERT INTO project(name,description) VALUES(:name,:description)";
     $this->db->query($query);
+    $this->db->bind('name', $data['name']);
+    $this->db->bind('description', $data['description']);
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
+
+  public function editProject($data)
+  {
+    $query = "UPDATE project SET `name`=:name,`description`=:description WHERE id=:id";
+    $this->db->query($query);
+    $this->db->bind('id', $data['id']);
     $this->db->bind('name', $data['name']);
     $this->db->bind('description', $data['description']);
     $this->db->execute();
