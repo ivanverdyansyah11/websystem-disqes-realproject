@@ -53,4 +53,13 @@ class Testsuite_model extends Database
     $this->db->execute();
     return $this->db->rowCount();
   }
+
+  public function deleteTestSuite($id)
+  {
+    $query = "DELETE FROM test_suite WHERE id=:id";
+    $this->db->query($query);
+    $this->db->bind('id', $id);
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
 }

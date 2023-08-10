@@ -376,7 +376,7 @@
                     </div>
                 </div>
                 <div class="content-body">
-                    <form id="formeditSuite" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form id="formEditSuite" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <input type="hidden" name="id">
                         <div class="input-wrapper w-100 position-relative" data-value="id">
                             <p class="caption-input">Name</p>
@@ -413,10 +413,10 @@
                     <h4 class="title">Are you sure?</h4>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form id="formDeleteSuite" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <p class="caption-delete">Are you sure you want to delete this <span>test suite</span>? This action cannot be undone, and the <span>test suite</span> will be permanently removed from the system.</p>
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -464,7 +464,7 @@
 <script>
     $(document).on('click', '[data-bs-target="#editSuite"]', function() {
         let id = $(this).data('id');
-        $('#formeditSuite').attr('action', 'http://localhost/disqes/public/testcase/editTestSuiteAction/' + id);
+        $('#formEditSuite').attr('action', 'http://localhost/disqes/public/testcase/editTestSuiteAction/' + id);
         $.ajax({
             type: 'get',
             url: 'http://localhost/disqes/public/testcase/editTestSuite/' + id,
@@ -474,6 +474,11 @@
                 $('[data-value="description"]').val(data.description);
             }
         });
+    });
+
+    $(document).on('click', '[data-bs-target="#deleteSuite"]', function() {
+        let id = $(this).data('id');
+        $('#formDeleteSuite').attr('action', 'http://localhost/disqes/public/testcase/deleteTestSuiteAction/' + id);
     });
 
     let listMoveCase = document.querySelector('.list-move-case');

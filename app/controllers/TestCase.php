@@ -74,4 +74,17 @@ class TestCase extends Controller
       exit;
     }
   }
+
+  public function deleteTestSuiteAction($id)
+  {
+    if ($this->model('Testsuite_model')->deleteTestSuite($id) > 0) {
+      Flasher::setFlash('success', 'Successfully delete test suite!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to delete test suite!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
 }
