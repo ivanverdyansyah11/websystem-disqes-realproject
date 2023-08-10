@@ -377,13 +377,14 @@
                 </div>
                 <div class="content-body">
                     <form id="formeditSuite" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
-                        <div class="input-wrapper w-100 position-relative">
+                        <input type="hidden" name="id">
+                        <div class="input-wrapper w-100 position-relative" data-value="id">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputEditSuite" name="name">
+                            <input type="text" class="input position-relative" id="nameInputEditSuite" name="name" data-value="name" autocomplete="off">
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
-                            <input type="text" class="input position-relative" id="descriptionInputEditSuite" name="description">
+                            <input type="text" class="input position-relative" id="descriptionInputEditSuite" name="description" data-value="description" autocomplete="off">
                         </div>
                         <div class="wrapper d-flex gap-2">
                             <button type="submit" class="button-primary d-flex align-items-center">
@@ -466,11 +467,11 @@
         $('#formeditSuite').attr('action', 'http://localhost/disqes/public/testcase/editTestSuiteAction/' + id);
         $.ajax({
             type: 'get',
-            url: 'http://localhost/disqes/public/project/edit/' + id,
+            url: 'http://localhost/disqes/public/testcase/editTestSuite/' + id,
             success: function(data) {
-                $('[data-value="id"]').val(data[0].id);
-                $('[data-value="name"]').val(data[0].name);
-                $('[data-value="description"]').val(data[0].description);
+                $('[data-value="id"]').val(data.id);
+                $('[data-value="name"]').val(data.name);
+                $('[data-value="description"]').val(data.description);
             }
         });
     });

@@ -31,7 +31,7 @@ class Project_model extends Database
     $this->db->query($query);
     $this->db->bind('id', $id);
     $this->db->execute();
-    return $this->db->resultSet();
+    return $this->db->resultSingle();
   }
 
   public function getProjectByIdJson($data)

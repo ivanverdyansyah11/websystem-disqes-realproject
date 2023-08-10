@@ -18,6 +18,20 @@ class Testsuite_model extends Database
     return $this->db->resultSet();
   }
 
+  public function getTestSuiteById($id)
+  {
+    $query = "SELECT * FROM test_suite WHERE id=:id";
+    $this->db->query($query);
+    $this->db->bind('id', $id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
+  public function getTestSuiteByIdJson($data)
+  {
+    return $this->db->jsonResponse($data);
+  }
+
   public function insertTestSuite($data)
   {
     $query = "INSERT INTO test_suite(name,description,project_id) VALUES(:name,:description,:project_id)";
