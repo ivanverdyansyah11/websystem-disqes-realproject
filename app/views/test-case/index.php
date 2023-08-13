@@ -82,15 +82,15 @@
                     <li>
                         <div class="wrapper-suite">
                             <div class="wrapper-header position-relative">
-                                <button type="submit" class="suite-header d-flex align-items-center justify-content-between position-relative">
+                                <a href="<?= BASEURL; ?>testcase/testsuite/<?= $test_suite['id']; ?>" class="suite-header d-flex align-items-center justify-content-between position-relative">
                                     <div class="wrapper-header d-flex align-items-center">
                                         <div class="suite-icon"></div>
                                         <p><?= $test_suite['name']; ?></p>
                                     </div>
-                                    <div class="arrow-suite p-1 pe-0" data-target="#getTestSectionByTestSuiteId" data-id="<?= $test_suite['id']; ?>">
+                                    <div class="arrow-suite p-1 pe-0">
                                         <div class="arrow-icon"></div>
                                     </div>
-                                </button>
+                                </a>
                                 <div class="wrapper-action action-suite d-flex align-items-center">
                                     <div class="box-rotate position-relative"></div>
                                     <div class="card-action d-flex position-relative">
@@ -114,35 +114,36 @@
                             </div>
 
                             <ul class="list-move-section">
-                                <li>
-                                    <a href="#" class="suite-menu position-relative">
-                                        <p class="position-relative">Dashboard Sales</p>
-                                        <div class="wrapper-action action-section d-flex align-items-center">
-                                            <div class="box-rotate position-relative"></div>
-                                            <div class="card-action d-flex position-relative">
-                                                <button type="button" class="wrapper-icon" onclick="upMoveSection()">
-                                                    <div class="up-icon"></div>
-                                                </button>
-                                                <button type="button" class="wrapper-icon" onclick="downMoveSection()">
-                                                    <div class="down-icon"></div>
-                                                </button>
-                                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
-                                                    <div class="edit-icon"></div>
-                                                </button>
-                                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
-                                                    <div class="delete-icon"></div>
-                                                </button>
+                                <?php $i = 1; ?>
+                                <?php foreach ($data['test_sections'] as $test_section) : ?>
+                                    <li>
+                                        <a href="#" class="suite-menu position-relative <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?>">
+                                            <p class="position-relative"><?= $test_section['name'] ?></p>
+                                            <div class="wrapper-action action-section d-flex align-items-center">
+                                                <div class="box-rotate position-relative"></div>
+                                                <div class="card-action d-flex position-relative">
+                                                    <button type="button" class="wrapper-icon" onclick="upMoveSection()">
+                                                        <div class="up-icon"></div>
+                                                    </button>
+                                                    <button type="button" class="wrapper-icon" onclick="downMoveSection()">
+                                                        <div class="down-icon"></div>
+                                                    </button>
+                                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                                        <div class="edit-icon"></div>
+                                                    </button>
+                                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                                        <div class="delete-icon"></div>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
-
                         </div>
                     </li>
                 <?php endforeach; ?>
             </ul>
-
             <div class="wrapper-close"></div>
         </div>
 

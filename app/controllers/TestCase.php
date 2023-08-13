@@ -7,6 +7,7 @@ class TestCase extends Controller
     if (isset($_SESSION['username'])) {
       $data['title'] = "Test Case";
       $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
+      $data['test_sections'] = [];
 
       $this->view('templates/header', $data);
       $this->view('test-case/index', $data);
@@ -88,21 +89,21 @@ class TestCase extends Controller
     }
   }
 
-  // public function testsuite($id)
-  // {
-  //   if (isset($_SESSION['username'])) {
-  //     $data['title'] = "Test Case";
-  //     $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
-  //     $data['test_sections'] = $this->model('Testsection_model')->getTestSectionByTestSuiteId($id);
+  public function testsuite($id)
+  {
+    if (isset($_SESSION['username'])) {
+      $data['title'] = "Test Case";
+      $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
+      $data['test_sections'] = $this->model('Testsection_model')->getTestSectionByTestSuiteId($id);
 
-  //     $this->view('templates/header', $data);
-  //     $this->view('test-suite/index', $data);
-  //     $this->view('templates/footer', $data);
-  //   } else {
-  //     header("Location:" . BASEURL . "signin");
-  //     exit;
-  //   };
-  // }
+      $this->view('templates/header', $data);
+      $this->view('test-case/index', $data);
+      $this->view('templates/footer', $data);
+    } else {
+      header("Location:" . BASEURL . "signin");
+      exit;
+    };
+  }
 
   // public function getTestSection($id)
   // {
