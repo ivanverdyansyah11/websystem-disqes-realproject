@@ -87,4 +87,46 @@ class TestCase extends Controller
       exit;
     }
   }
+
+  public function testsuite($id)
+  {
+    if (isset($_SESSION['username'])) {
+      $data['title'] = "Test Case";
+      $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
+      $data['test_sections'] = $this->model('Testsection_model')->getTestSectionByTestSuiteId($id);
+
+      $this->view('templates/header', $data);
+      $this->view('test-suite/index', $data);
+      $this->view('templates/footer', $data);
+    } else {
+      header("Location:" . BASEURL . "signin");
+      exit;
+    };
+  }
+
+  public function getTestSection($id)
+  {
+    $data['test_section'] = $this->model('Testsection_model')->getTestSectionByTestSuiteId($id);
+    $data['test_sectionJson'] = $this->model('Testsection_model')->getTestSectionByTestSuiteIdJson($data['test_section']);
+  }
+
+  public function addTestSection($id)
+  {
+    $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($id);
+    $data['test_sectionJson'] = $this->model('Testsection_model')->getTestSectionByIdJson($data['test_section']);
+  }
+
+  public function addTestSectionAction()
+  {
+    var_dump($_POST);
+    // if ($this->model('Testsection_model')->insertTestSection($_POST) > 0) {
+    //   Flasher::setFlash('success', 'Successfully create test section!');
+    //   header("Location:" . BASEURL . "testcase");
+    //   exit;
+    // } else {
+    //   Flasher::setFlash('danger', 'Failed to create test section!');
+    //   header("Location:" . BASEURL . "testcase");
+    //   exit;
+    // }
+  }
 }

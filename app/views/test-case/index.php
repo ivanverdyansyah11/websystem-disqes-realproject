@@ -71,7 +71,7 @@
                     <div class="add-suite-icon"></div>
                 </div>
             </div>
-            <a href="#" class="suite-header d-flex align-items-center">
+            <a href="<?= BASEURL; ?>testcase" class="suite-header d-flex align-items-center">
                 <div class="all-suite-icon"></div>
                 <p>All Test Cases</p>
             </a>
@@ -82,12 +82,12 @@
                     <li>
                         <div class="wrapper-suite">
                             <div class="wrapper-header position-relative">
-                                <a href="#" class="suite-header d-flex align-items-center justify-content-between position-relative">
+                                <a href="<?= BASEURL; ?>testcase/testsuite/<?= $test_suite['id']; ?>" class="suite-header d-flex align-items-center justify-content-between position-relative">
                                     <div class="wrapper-header d-flex align-items-center">
                                         <div class="suite-icon"></div>
-                                        <p><?= $test_suite['name'] ?></p>
+                                        <p><?= $test_suite['name']; ?></p>
                                     </div>
-                                    <div class="arrow-suite p-1 pe-0">
+                                    <div class="arrow-suite p-1 pe-0" data-target="#getTestSectionByTestSuiteId" data-id="<?= $test_suite['id']; ?>">
                                         <div class="arrow-icon"></div>
                                     </div>
                                 </a>
@@ -113,36 +113,10 @@
                                 </div>
                             </div>
 
-                            <ul class="list-move-section">
-                                <li>
-                                    <a href="#" class="suite-menu position-relative">
-                                        <p class="position-relative">Dashboard Sales</p>
-                                        <div class="wrapper-action action-section d-flex align-items-center">
-                                            <div class="box-rotate position-relative"></div>
-                                            <div class="card-action d-flex position-relative">
-                                                <button type="button" class="wrapper-icon" onclick="upMoveSection()">
-                                                    <div class="up-icon"></div>
-                                                </button>
-                                                <button type="button" class="wrapper-icon" onclick="downMoveSection()">
-                                                    <div class="down-icon"></div>
-                                                </button>
-                                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
-                                                    <div class="edit-icon"></div>
-                                                </button>
-                                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
-                                                    <div class="delete-icon"></div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-
                         </div>
                     </li>
                 <?php endforeach; ?>
             </ul>
-
 
             <div class="wrapper-close"></div>
         </div>
@@ -241,13 +215,14 @@
                     </div>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form id="formaddNewSection" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <input type="hidden" name="test_suite_id" data-value="test_suite_id">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddSection" name="name">
+                            <input type="text" class="input position-relative" id="nameInputAddSection" name="name" autocomplete="off">
                         </div>
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -462,6 +437,18 @@
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
+    $(document).on('click', '[data-bs-target="#addNewSection"]', function() {
+        let id = $(this).data('id');
+        $('#formaddNewSection').attr('action', 'http://localhost/disqes/public/testcase/addTestSectionAction/' + id);
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost/disqes/public/testcase/addTestSection/' + id,
+            success: function(data) {
+                $('[data-value="test_suite_id"]').val(data.id);
+            }
+        });
+    });
+
     $(document).on('click', '[data-bs-target="#editSuite"]', function() {
         let id = $(this).data('id');
         $('#formEditSuite').attr('action', 'http://localhost/disqes/public/testcase/editTestSuiteAction/' + id);
