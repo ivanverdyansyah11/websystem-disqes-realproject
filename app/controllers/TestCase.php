@@ -128,14 +128,10 @@ class TestCase extends Controller
   {
     $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($id);
     $data['test_sectionJson'] = $this->model('Testsection_model')->getTestSectionByIdJson($data['test_section']);
-
-    var_dump($data['test_sectionJson']);
   }
 
   public function editTestSectionAction()
   {
-    return var_dump($_POST);
-
     if ($this->model('Testsection_model')->editTestSection($_POST) > 0) {
       Flasher::setFlash('success', 'Successfully edit test section!');
       header("Location:" . BASEURL . "testcase");
