@@ -13,97 +13,48 @@
     </div>
     <div class="row section-gap">
         <div class="col-md-4 col-lg-3 mb-4">
-            <button type="button" class="card-project d-flex justify-content-center align-items-center">
+            <button type="button" class="card-project d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#addNewProject">
                 <div class="wrapper d-flex flex-column align-items-center">
                     <div class="plus-icon"></div>
                     <h5 class="title-add-project">New Project</h5>
                 </div>
             </button>
         </div>
-        <div class="col-md-4 col-lg-3 mb-4">
-            <div class="card-project d-flex flex-column justify-content-between">
-                <div class="project-header d-flex align-items-center justify-content-between">
-                    <h6 class="project-title">Retail</h6>
-                    <div class="popup-group position-relative">
-                        <div class="wrapper-icon">
-                            <div class="bar-icon"></div>
-                        </div>
-                        <div class="action-popup">
-                            <button type="button" class="popup-button">Edit</button>
-                            <button type="button" class="popup-button">Delete</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-body d-flex justify-content-between align-items-center">
-                    <div class="wrapper d-flex align-items-center gap-4">
-                        <div class="testcase-group">
-                            <div class="testcase-icon"></div>
-                            <p class="badge-count">14</p>
-                        </div>
-                        <div class="testsuite-group">
-                            <div class="testsuite-icon"></div>
-                            <p class="badge-count badge-danger">10</p>
-                        </div>
-                    </div>
-                    <div class="wrapper-icon">
-                        <div class="dashboard-icon"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- <div class="row">
-        <div class="col-12">
-            <div class="table-header d-flex align-items-center">
-                <div class="row align-items-center w-100">
-                    <div class="col">
-                        <p>Name</p>
-                    </div>
-                    <div class="col d-none d-md-inline-block">
-                        <p>Suite Count</p>
-                    </div>
-                    <div class="col d-none d-md-inline-block">
-                        <p>Case Count</p>
-                    </div>
-                    <div class="col">
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-
-            <?php $i = 1; ?>
-            <?php foreach ($data['projects'] as $project) : ?>
-                <div class="table-body d-flex align-items-center">
-                    <div class="row align-items-center w-100">
-                        <div class="col">
-                            <p><?= $project['name']; ?></p>
-                        </div>
-                        <div class="col d-none d-md-inline-block">
-                            <p>-</p>
-                        </div>
-                        <div class="col d-none d-md-inline-block">
-                            <p>-</p>
-                        </div>
-                        <div class="col body-action">
-                            <div class="wrapper-action d-flex align-items-center">
-                                <div class="box-rotate position-relative"></div>
-                                <div class="card-action d-flex position-relative">
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">
-                                        <div class="edit-icon"></div>
-                                    </button>
-                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">
-                                        <div class="delete-icon"></div>
-                                    </button>
-                                </div>
+        <?php $i = 1; ?>
+        <?php foreach ($data['projects'] as $project) : ?>
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card-project d-flex flex-column justify-content-between">
+                    <div class="project-header d-flex align-items-center justify-content-between">
+                        <h6 class="project-title"><?= $project['name'] ?></h6>
+                        <div class="popup-group position-relative">
+                            <div class="wrapper-icon">
+                                <div class="bar-icon"></div>
+                            </div>
+                            <div class="action-popup">
+                                <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">Edit</button>
+                                <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">Delete</button>
                             </div>
                         </div>
                     </div>
+                    <div class="project-body d-flex justify-content-between align-items-center">
+                        <div class="wrapper d-flex align-items-center gap-4">
+                            <div class="testcase-group">
+                                <div class="testcase-icon"></div>
+                                <p class="badge-count">-</p>
+                            </div>
+                            <div class="testsuite-group">
+                                <div class="testsuite-icon"></div>
+                                <p class="badge-count badge-danger">-</p>
+                            </div>
+                        </div>
+                        <div class="wrapper-icon">
+                            <div class="dashboard-icon"></div>
+                        </div>
+                    </div>
                 </div>
-            <?php endforeach; ?>
-
-        </div>
-    </div> -->
+            </div>
+        <?php endforeach; ?>
+    </div>
 
     <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="addNewProjectLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
