@@ -82,7 +82,7 @@
                     <li>
                         <div class="wrapper-suite">
                             <div class="wrapper-header position-relative">
-                                <a href="<?= BASEURL; ?>testcase/testsuite/<?= $test_suite['id']; ?>" class="suite-header d-flex align-items-center justify-content-between position-relative">
+                                <button type="submit" class="suite-header d-flex align-items-center justify-content-between position-relative">
                                     <div class="wrapper-header d-flex align-items-center">
                                         <div class="suite-icon"></div>
                                         <p><?= $test_suite['name']; ?></p>
@@ -90,7 +90,7 @@
                                     <div class="arrow-suite p-1 pe-0" data-target="#getTestSectionByTestSuiteId" data-id="<?= $test_suite['id']; ?>">
                                         <div class="arrow-icon"></div>
                                     </div>
-                                </a>
+                                </button>
                                 <div class="wrapper-action action-suite d-flex align-items-center">
                                     <div class="box-rotate position-relative"></div>
                                     <div class="card-action d-flex position-relative">
@@ -112,6 +112,31 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <ul class="list-move-section">
+                                <li>
+                                    <a href="#" class="suite-menu position-relative">
+                                        <p class="position-relative">Dashboard Sales</p>
+                                        <div class="wrapper-action action-section d-flex align-items-center">
+                                            <div class="box-rotate position-relative"></div>
+                                            <div class="card-action d-flex position-relative">
+                                                <button type="button" class="wrapper-icon" onclick="upMoveSection()">
+                                                    <div class="up-icon"></div>
+                                                </button>
+                                                <button type="button" class="wrapper-icon" onclick="downMoveSection()">
+                                                    <div class="down-icon"></div>
+                                                </button>
+                                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                                    <div class="edit-icon"></div>
+                                                </button>
+                                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                                    <div class="delete-icon"></div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
 
                         </div>
                     </li>
@@ -352,8 +377,8 @@
                 </div>
                 <div class="content-body">
                     <form id="formEditSuite" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
-                        <input type="hidden" name="id">
-                        <div class="input-wrapper w-100 position-relative" data-value="id">
+                        <input type="hidden" name="id" data-value="id">
+                        <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
                             <input type="text" class="input position-relative" id="nameInputEditSuite" name="name" data-value="name" autocomplete="off">
                         </div>
