@@ -310,7 +310,7 @@
                     <h4 class="title">Are you sure?</h4>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form id="formDeleteSection" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <p class="caption-delete">Are you sure you want to delete this <span>test section</span>? This action cannot be undone, and the <span>test section</span> will be permanently removed from the system.</p>
                         <div class="wrapper d-flex gap-2">
                             <button class="button-primary d-flex align-items-center">
@@ -488,6 +488,11 @@
                 $('[data-value="name"]').val(data.name);
             }
         });
+    });
+
+    $(document).on('click', '[data-bs-target="#deleteSection"]', function() {
+        let id = $(this).data('id');
+        $('#formDeleteSection').attr('action', 'http://localhost/disqes/public/testcase/deleteTestSectionAction/' + id);
     });
 
     $(document).on('click', '[data-bs-target="#editSuite"]', function() {
