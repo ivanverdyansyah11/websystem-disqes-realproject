@@ -128,10 +128,10 @@
                                                     <button type="button" class="wrapper-icon" onclick="downMoveSection()">
                                                         <div class="down-icon"></div>
                                                     </button>
-                                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection">
+                                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection" data-id="<?= $test_section['id']; ?>">
                                                         <div class="edit-icon"></div>
                                                     </button>
-                                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection">
+                                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection" data-id="<?= $test_section['id']; ?>">
                                                         <div class="delete-icon"></div>
                                                     </button>
                                                 </div>
@@ -277,13 +277,14 @@
                     </div>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form id="formEditSection" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <input type="hidden" name="id" data-value="id">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputEditSection">
+                            <input type="text" class="input position-relative" id="nameInputEditSection" name="name" data-value="name">
                         </div>
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -471,6 +472,20 @@
             url: 'http://localhost/disqes/public/testcase/addTestSection/' + id,
             success: function(data) {
                 $('[data-value="test_suite_id"]').val(data.id);
+            }
+        });
+    });
+
+    $(document).on('click', '[data-bs-target="#editSection"]', function() {
+        let id = $(this).data('id');
+        $('#formEditSection').attr('action', 'http://localhost/disqes/public/testcase/editTestSectionAction/' + id);
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost/disqes/public/testcase/editTestSection/' + id,
+            success: function(data) {
+                console.log(data);
+                $('[data-value="id"]').val(data.id);
+                $('[data-value="name"]').val(data.name);
             }
         });
     });

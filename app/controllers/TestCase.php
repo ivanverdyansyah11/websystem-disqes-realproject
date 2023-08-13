@@ -105,29 +105,45 @@ class TestCase extends Controller
     };
   }
 
-  // public function getTestSection($id)
-  // {
-  //   $data['test_section'] = $this->model('Testsection_model')->getTestSectionByTestSuiteId($id);
-  //   $data['test_sectionJson'] = $this->model('Testsection_model')->getTestSectionByTestSuiteIdJson($data['test_section']);
-  // }
-
-  // public function addTestSection($id)
-  // {
-  //   $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($id);
-  //   $data['test_sectionJson'] = $this->model('Testsection_model')->getTestSectionByIdJson($data['test_section']);
-  // }
+  public function addTestSection($id)
+  {
+    $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($id);
+    $data['test_sectionJson'] = $this->model('Testsection_model')->getTestSectionByIdJson($data['test_section']);
+  }
 
   public function addTestSectionAction()
   {
-    var_dump($_POST);
-    // if ($this->model('Testsection_model')->insertTestSection($_POST) > 0) {
-    //   Flasher::setFlash('success', 'Successfully create test section!');
-    //   header("Location:" . BASEURL . "testcase");
-    //   exit;
-    // } else {
-    //   Flasher::setFlash('danger', 'Failed to create test section!');
-    //   header("Location:" . BASEURL . "testcase");
-    //   exit;
-    // }
+    if ($this->model('Testsection_model')->insertTestSection($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully create test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to create test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
+
+  public function editTestSection($id)
+  {
+    $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($id);
+    $data['test_sectionJson'] = $this->model('Testsection_model')->getTestSectionByIdJson($data['test_section']);
+
+    var_dump($data['test_sectionJson']);
+  }
+
+  public function editTestSectionAction()
+  {
+    return var_dump($_POST);
+
+    if ($this->model('Testsection_model')->editTestSection($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully edit test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to edit test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
   }
 }

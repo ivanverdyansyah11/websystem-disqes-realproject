@@ -49,11 +49,10 @@ class Testsection_model extends Database
 
   public function editTestSection($data)
   {
-    $query = "UPDATE test_section SET `name`=:name,`description`=:description WHERE id=:id";
+    $query = "UPDATE test_section SET `name`=:name WHERE id=:id";
     $this->db->query($query);
     $this->db->bind('id', $data['id']);
     $this->db->bind('name', $data['name']);
-    $this->db->bind('description', $data['description']);
     $this->db->execute();
     return $this->db->rowCount();
   }
