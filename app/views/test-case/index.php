@@ -170,8 +170,8 @@
                         <li>
                             <div class="case-menu position-relative">
                                 <div class="wrapper d-flex align-items-center gap-2">
-                                    <a href="#"><?= $test_case['name']; ?></a> |
-                                    <a href="#"><?= $test_case['test_section_name']; ?></a>
+                                    <p><?= $test_case['name']; ?></p> |
+                                    <p><?= $test_case['test_section_name']; ?></p>
                                 </div>
                                 <div class="wrapper-action action-case d-flex align-items-center">
                                     <div class="box-rotate position-relative"></div>
@@ -196,7 +196,7 @@
                 <?php else : ?>
                     <li>
                         <div class="case-menu position-relative">
-                            <a href="" class="text-decoration-none">Data Test Case Not Found!</a>
+                            <p class="text-decoration-none">Data Test Case Not Found!</p>
                         </div>
                     </li>
                 <?php endif; ?>
