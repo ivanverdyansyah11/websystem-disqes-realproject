@@ -148,10 +148,11 @@
         <div class="col col-case">
             <div class="table-header d-flex justify-content-between align-items-center">
                 <p class="table-title"><?= $data['title_case']; ?></p>
-                <!-- <a href="<?= BASEURL; ?>testcase/add" class="button-primary d-flex align-items-center">
-                    <div class="add-icon"></div>
-                    New
-                </a> -->
+                <?php if ($data['url_add_case'] == true) : ?>
+                    <a href="<?= BASEURL; ?>testcase/add/<?= $data['url_add_case']; ?>" class="button-primary d-flex align-items-center">
+                        <div class="add-icon"></div>New
+                    </a>
+                <?php endif; ?>
             </div>
             <div class="case-header">
                 <div class="row">
