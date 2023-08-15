@@ -39,10 +39,11 @@ class Testsection_model extends Database
 
   public function insertTestSection($data)
   {
-    $query = "INSERT INTO test_section(name,test_suite_id) VALUES(:name,:test_suite_id)";
+    $query = "INSERT INTO test_section(name,test_suite_id,project_id) VALUES(:name,:test_suite_id,:project_id)";
     $this->db->query($query);
     $this->db->bind('name', $data['name']);
     $this->db->bind('test_suite_id', $data['test_suite_id']);
+    $this->db->bind('project_id', $data['project_id']);
     $this->db->execute();
     return $this->db->rowCount();
   }

@@ -6,8 +6,10 @@ class TestCase extends Controller
   {
     if (isset($_SESSION['username'])) {
       $data['title'] = "Test Case";
+      $data['title_case'] = 'All Test Cases';
       $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
       $data['test_sections'] = [];
+      $data['test_cases'] = $this->model('Testcase_model')->getTestCase($_SESSION['project']);
 
       $this->view('templates/header', $data);
       $this->view('test-case/index', $data);
@@ -93,8 +95,11 @@ class TestCase extends Controller
   {
     if (isset($_SESSION['username'])) {
       $data['title'] = "Test Case";
+      $data['test_suite'] = $this->model('Testsuite_model')->getTestSuiteById($id);
+      $data['title_case'] = $data['test_suite']['name'];
       $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
       $data['test_sections'] = $this->model('Testsection_model')->getTestSectionByTestSuiteId($id);
+      $data['test_cases'] = $this->model('Testcase_model')->getTestCaseByTestSuiteId($id, $_SESSION['project']);
 
       $this->view('templates/header', $data);
       $this->view('test-case/index', $data);
@@ -151,6 +156,42 @@ class TestCase extends Controller
       exit;
     } else {
       Flasher::setFlash('danger', 'Failed to delete test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
+
+  public function testsection($id, $testsection)
+  {
+    if (isset($_SESSION['username'])) {
+      $data['title'] = "Test Case";
+      $data['test_suite'] = $this->model('Testsuite_model')->getTestSuiteById($id);
+      $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($testsection);
+      $data['title_case'] = $data['test_suite']['name'] . ' | ' . $data['test_section']['name'];
+
+      $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
+      $data['test_sections'] = $this->model('Testsection_model')->getTestSectionByTestSuiteId($id);
+      $data['test_cases'] = $this->model('Testcase_model')->getTestCaseByTestSectionId($id, $testsection, $_SESSION['project']);
+
+      $this->view('templates/header', $data);
+      $this->view('test-case/index', $data);
+      $this->view('templates/footer', $data);
+    } else {
+      header("Location:" . BASEURL . "signin");
+      exit;
+    };
+  }
+
+  public function addNewCase()
+  {
+    $_POST['instruction'] = implode(',', $_POST['instruction']);
+
+    if ($this->model('Testcase_model')->insertTestCase($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully create test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to create test case!');
       header("Location:" . BASEURL . "testcase");
       exit;
     }

@@ -6,38 +6,38 @@
     </div>
     <div class="row">
         <div class="col-lg-11 col-xl-10">
-            <form action="" class="card-form d-flex flex-column w-100">
+            <form action="<?= BASEURL; ?>testcase/addNewCase" method="post" class="card-form d-flex flex-column w-100">
                 <div class="row">
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddCase">
+                            <input type="text" class="input position-relative" id="nameInputAddCase" name="name">
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Suite</p>
-                            <select class="input position-relative" id="suiteInputAddCase">
+                            <select class="input position-relative" id="suiteInputAddCase" name="test_suite_id">
                                 <option>Choose Suite Selection</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Section</p>
-                            <select class="input position-relative" id="sectionInputAddCase">
+                            <select class="input position-relative" id="sectionInputAddCase" name="test_section_id">
                                 <option>Choose Section Selection</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Preconditions</p>
-                            <input type="text" class="input position-relative" id="preconditionInputAddCase">
+                            <input type="text" class="input position-relative" id="preconditionInputAddCase" name="precondition">
                         </div>
                     </div>
                     <div class="col-12 mb-4">
@@ -57,35 +57,13 @@
                                         <div class="input-wrapper w-100 position-relative" id="inputWrapperInstructions">
                                             <div class="caption-input-table">
                                                 <p>Instructions</p>
-                                                <div class="wrapper-button">
-                                                    <div class="add-table-icon"></div>
-                                                    <div class="remove-table-icon d-none"></div>
-                                                </div>
                                             </div>
-                                            <label class="input input-table position-relative d-none" id="inputTable">
-                                                <table class="table-input">
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" class="input-transparent">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="input-transparent">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="input-transparent">
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </label>
-                                            <input type="text" class="input position-relative" id="inputText">
+                                            <textarea id="instructionsInput" name="instruction[]">.</textarea>
                                         </div>
                                         <div class="input-wrapper w-100 position-relative">
                                             <p class="caption-input">Expected Result</p>
-                                            <input type="text" class="input position-relative" id="expectedInputAddCase">
+                                            <input type="text" class="input position-relative" id="expectedInputAddCase" name="expected_result">
                                         </div>
-                                        <!-- <div class="wrapper-icon minus-button">
-                                            <div class="minus-icon"></div>
-                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +71,7 @@
                     </div>
                     <div class="col-12">
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -114,6 +92,8 @@
 </div>
 
 <script>
+    var editor = new FroalaEditor('#instructionsInput');
+
     const rowStep = document.querySelector('.row-step');
     const stepButton = document.querySelector('.button-step');
     const resetButton = document.querySelector('.reset-button-add-case');
@@ -123,7 +103,6 @@
         const suiteInput = document.querySelector('#suiteInputAddCase');
         const sectionInput = document.querySelector('#sectionInputAddCase');
         const preconditionInput = document.querySelector('#preconditionInputAddCase');
-        const inputText = document.querySelectorAll('#inputText');
         const inputTable = document.querySelectorAll('.input-transparent');
         const expectedInput = document.querySelectorAll('#expectedInputAddCase');
 
@@ -131,10 +110,6 @@
         suiteInput.value = 'Choose Suite Selection';
         sectionInput.value = 'Choose Section Selection';
         preconditionInput.value = '';
-
-        for (let i = 0; i < inputText.length; i++) {
-            inputText[i].value = '';
-        }
 
         for (let i = 0; i < expectedInput.length; i++) {
             expectedInput[i].value = '';

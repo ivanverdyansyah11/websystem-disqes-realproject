@@ -644,7 +644,8 @@ h4.title {
 
 .content .suite-header:hover,
 .content .suite-header.active,
-.content .suite-menu:hover {
+.content .suite-menu:hover,
+.content .suite-menu.active-bg {
     background-color: rgba(var(--fourth-color), 1);
 }
 
@@ -843,7 +844,7 @@ h4.title {
     background-color: rgba(var(--fourth-color), 1);
 }
 
-.content .case-header > p {
+.content .case-header p {
     font-size: 0.875rem;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.86);
@@ -855,14 +856,14 @@ h4.title {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.content .case-menu > a {
+.content .case-menu a {
     display: inline-block;
     font-size: 0.938rem;
     color: rgba(255, 255, 255, 0.86);
     position: relative;
 }
 
-.content .case-menu > a:hover {
+.content .case-menu a:hover {
     text-decoration: underline;
 }
 
@@ -1091,6 +1092,38 @@ h4.title {
 
 .content .card-project .popup-button:hover {
     background-color: rgba(var(--fourth-color), 1);
+}
+
+.fr-btn-grp.fr-float-right,
+.fr-quick-insert.fr-visible,
+.fr-btn-grp.fr-float-left:nth-child(2) {
+    display: none !important;
+}
+
+.fr-toolbar .fr-newline {
+    background: transparent !important;
+}
+
+.fr-more-toolbar.position-relative.fr-expanded,
+.fr-popup.fr-desktop.fr-active {
+    background-color: rgba(var(--third-color), 1) !important;
+    background: rgba(var(--third-color), 1) !important;
+}
+
+.fr-toolbar.fr-top,
+.fr-box.fr-basic .fr-wrapper,
+.fr-second-toolbar {
+    border: 2px solid rgba(255, 255, 255, 0.06) !important;
+    border-bottom: none;
+    background: rgba(var(--third-color), 1) !important;
+    box-shadow: none;
+    border: none;
+    stroke: none;
+    outline: none;
+}
+
+.fr-box.fr-basic .fr-element {
+    color: rgba(255, 255, 255, 0.86) !important;
 }
 /* END DASHBOARD STYLE */
 

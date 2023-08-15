@@ -77,7 +77,6 @@
             </a>
 
             <ul class="list-move-suite">
-                <?php $i = 1; ?>
                 <?php foreach ($data['test_suites'] as $test_suite) : ?>
                     <li>
                         <div class="wrapper-suite">
@@ -114,10 +113,9 @@
                             </div>
 
                             <ul class="list-move-section">
-                                <?php $i = 1; ?>
                                 <?php foreach ($data['test_sections'] as $test_section) : ?>
                                     <li>
-                                        <a href="#" class="suite-menu position-relative <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?>">
+                                        <a href="<?= BASEURL; ?>testcase/testsection/<?= $test_suite['id']; ?>/<?= $test_section['id']; ?>" class="suite-menu position-relative <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] || $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>">
                                             <p class="position-relative"><?= $test_section['name'] ?></p>
                                             <div class="wrapper-action action-section d-flex align-items-center">
                                                 <div class="box-rotate position-relative"></div>
@@ -149,84 +147,61 @@
 
         <div class="col col-case">
             <div class="table-header d-flex justify-content-between align-items-center">
-                <p class="table-title">Dashboard</p>
-                <a href="<?= BASEURL; ?>testcase/add" class="button-primary d-flex align-items-center">
+                <p class="table-title"><?= $data['title_case']; ?></p>
+                <!-- <a href="<?= BASEURL; ?>testcase/add" class="button-primary d-flex align-items-center">
                     <div class="add-icon"></div>
                     New
-                </a>
+                </a> -->
             </div>
             <div class="case-header">
-                <p>Name</p>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>Name</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Key</p>
+                    </div>
+                </div>
             </div>
 
             <ul class="list-move-case">
-                <li>
-                    <div class="case-menu position-relative">
-                        <a href="#">See a graph of the number of sales transactions per day</a>
-                        <div class="wrapper-action action-case d-flex align-items-center">
-                            <div class="box-rotate position-relative"></div>
-                            <div class="card-action d-flex position-relative">
-                                <button type="button" class="wrapper-icon" onclick="upMoveCase()">
-                                    <div class="up-icon"></div>
-                                </button>
-                                <button type="button" class="wrapper-icon" onclick="downMoveCase()">
-                                    <div class="down-icon"></div>
-                                </button>
-                                <a href="<?= BASEURL; ?>testcase/edit" type="button" class="wrapper-icon">
-                                    <div class="edit-icon"></div>
-                                </a>
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase">
-                                    <div class="delete-icon"></div>
-                                </button>
+                <?php if ($data['test_cases']) : ?>
+                    <?php foreach ($data['test_cases'] as $test_case) : ?>
+                        <li>
+                            <div class="case-menu position-relative">
+                                <div class="wrapper d-flex align-items-center gap-2">
+                                    <a href="#"><?= $test_case['name']; ?></a> |
+                                    <a href="#"><?= $test_case['test_section_name']; ?></a>
+                                </div>
+                                <div class="wrapper-action action-case d-flex align-items-center">
+                                    <div class="box-rotate position-relative"></div>
+                                    <div class="card-action d-flex position-relative">
+                                        <button type="button" class="wrapper-icon" onclick="upMoveCase()">
+                                            <div class="up-icon"></div>
+                                        </button>
+                                        <button type="button" class="wrapper-icon" onclick="downMoveCase()">
+                                            <div class="down-icon"></div>
+                                        </button>
+                                        <a href="<?= BASEURL; ?>testcase/edit" type="button" class="wrapper-icon">
+                                            <div class="edit-icon"></div>
+                                        </a>
+                                        <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase">
+                                            <div class="delete-icon"></div>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+                        </li>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <li>
+                        <div class="case-menu position-relative">
+                            <a href="" class="text-decoration-none">Data Test Case Not Found!</a>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="case-menu position-relative">
-                        <a href="#">Filter the report date of the number of transactions per day</a>
-                        <div class="wrapper-action action-case d-flex align-items-center">
-                            <div class="box-rotate position-relative"></div>
-                            <div class="card-action d-flex position-relative">
-                                <button type="button" class="wrapper-icon" onclick="upMoveCase()">
-                                    <div class="up-icon"></div>
-                                </button>
-                                <button type="button" class="wrapper-icon" onclick="downMoveCase()">
-                                    <div class="down-icon"></div>
-                                </button>
-                                <a href="<?= BASEURL; ?>testcase/edit" type="button" class="wrapper-icon">
-                                    <div class="edit-icon"></div>
-                                </a>
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase">
-                                    <div class="delete-icon"></div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="case-menu position-relative">
-                        <a href="#">View monthly sales report graphs</a>
-                        <div class="wrapper-action action-case d-flex align-items-center">
-                            <div class="box-rotate position-relative"></div>
-                            <div class="card-action d-flex position-relative">
-                                <button type="button" class="wrapper-icon" onclick="upMoveCase()">
-                                    <div class="up-icon"></div>
-                                </button>
-                                <button type="button" class="wrapper-icon" onclick="downMoveCase()">
-                                    <div class="down-icon"></div>
-                                </button>
-                                <a href="<?= BASEURL; ?>testcase/edit" type="button" class="wrapper-icon">
-                                    <div class="edit-icon"></div>
-                                </a>
-                                <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase">
-                                    <div class="delete-icon"></div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                <?php endif; ?>
             </ul>
+
             <div class="wrapper-close"></div>
         </div>
     </div>
@@ -243,6 +218,7 @@
                 <div class="content-body">
                     <form id="formaddNewSection" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <input type="hidden" name="test_suite_id" data-value="test_suite_id">
+                        <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
                             <input type="text" class="input position-relative" id="nameInputAddSection" name="name" autocomplete="off">

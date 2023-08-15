@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="<?= BASEURL; ?>css/style.css">
     <!-- END STYLE CSS -->
 
+    <link href="http://localhost/disqes/node_modules/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://localhost/disqes/node_modules/froala-editor/js/froala_editor.pkgd.min.js"></script>
 </head>
 
 <body>
