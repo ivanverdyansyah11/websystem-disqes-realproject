@@ -86,12 +86,6 @@ class TestCase extends Controller
     };
   }
 
-  public function addTestSection($id)
-  {
-    $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($id);
-    $data['test_sectionJson'] = $this->model('Testsection_model')->getTestSectionByIdJson($data['test_section']);
-  }
-
   public function addTestSectionAction()
   {
     if ($this->model('Testsection_model')->insertTestSection($_POST) > 0) {

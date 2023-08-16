@@ -451,13 +451,7 @@
     $(document).on('click', '[data-bs-target="#addNewSection"]', function() {
         let id = $(this).data('id');
         $('#formaddNewSection').attr('action', 'http://localhost/disqes/public/testcase/addTestSectionAction/' + id);
-        $.ajax({
-            type: 'get',
-            url: 'http://localhost/disqes/public/testcase/addTestSection/' + id,
-            success: function(data) {
-                $('[data-value="test_suite_id"]').val(data.id);
-            }
-        });
+        $('[data-value="test_suite_id"]').val(id);
     });
 
     $(document).on('click', '[data-bs-target="#editSection"]', function() {
