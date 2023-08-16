@@ -679,7 +679,6 @@ h4.title {
 .content .arrow-suite.active {
     transform: rotate(-90deg) !important;
     transition: 0ms !important;
-    background-color: red !important;
 }
 
 .content .suite-menu p {

@@ -86,7 +86,7 @@
                                         <div class="suite-icon"></div>
                                         <p><?= $test_suite['name']; ?></p>
                                     </div>
-                                    <div class="arrow-suite p-1 pe-0">
+                                    <div class="arrow-suite p-1 pe-0 <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>">
                                         <div class="arrow-icon"></div>
                                     </div>
                                 </a>
@@ -149,7 +149,7 @@
             <div class="table-header d-flex justify-content-between align-items-center">
                 <p class="table-title"><?= $data['title_case']; ?></p>
                 <?php if ($data['url_add_case'] == true) : ?>
-                    <a href="<?= BASEURL; ?>testcase/add/<?= $data['url_add_case']; ?>" class="button-primary d-flex align-items-center">
+                    <a href="<?= BASEURL; ?>testcase/addTestCase/<?= $data['url_add_case']; ?>" class="button-primary d-flex align-items-center">
                         <div class="add-icon"></div>New
                     </a>
                 <?php endif; ?>

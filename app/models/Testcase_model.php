@@ -41,14 +41,16 @@ class Testcase_model extends Database
 
   public function insertTestCase($data)
   {
-    $query = "INSERT INTO test_case(name,precondition,instruction,expected_result,test_suite_id,test_section_id) VALUES(:name,:precondition,:instruction,:expected_result,:test_suite_id,:test_section_id)";
+    $query = "INSERT INTO test_case(name,key_case,precondition,instruction,expected_result,test_suite_id,test_section_id,project_id) VALUES(:name,:key_case,:precondition,:instruction,:expected_result,:test_suite_id,:test_section_id,:project_id)";
     $this->db->query($query);
     $this->db->bind('name', $data['name']);
+    $this->db->bind('key_case', $data['key_case']);
     $this->db->bind('precondition', $data['precondition']);
     $this->db->bind('instruction', $data['instruction']);
     $this->db->bind('expected_result', $data['expected_result']);
     $this->db->bind('test_suite_id', $data['test_suite_id']);
     $this->db->bind('test_section_id', $data['test_section_id']);
+    $this->db->bind('project_id', $data['project_id']);
     $this->db->execute();
     return $this->db->rowCount();
   }

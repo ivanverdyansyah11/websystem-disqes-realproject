@@ -6,21 +6,19 @@
     </div>
     <div class="row">
         <div class="col-lg-11 col-xl-10">
-            <form action="<?= BASEURL; ?>testcase/addNewCase" method="post" class="card-form d-flex flex-column w-100">
+            <form action="<?= BASEURL; ?>testcase/addTestCaseAction" method="post" class="card-form d-flex flex-column w-100">
                 <div class="row">
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddCase" name="name">
+                            <input type="text" class="input position-relative" id="nameInputAddCase" name="name" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Suite</p>
                             <select class="input position-relative" id="suiteInputAddCase" name="test_suite_id">
-                                <option>Choose Suite Selection</option>
-                                <option value="1">2</option>
-                                <option value="2">3</option>
+                                <option value="<?= $data['test_suite']['id']; ?>" selected><?= $data['test_suite']['name']; ?></option>
                             </select>
                         </div>
                     </div>
@@ -28,16 +26,14 @@
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Section</p>
                             <select class="input position-relative" id="sectionInputAddCase" name="test_section_id">
-                                <option>Choose Section Selection</option>
-                                <option value="1">2</option>
-                                <option value="2">3</option>
+                                <option value="<?= $data['test_section']['id']; ?>" selected><?= $data['test_section']['name']; ?></option>
                             </select>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Preconditions</p>
-                            <input type="text" class="input position-relative" id="preconditionInputAddCase" name="precondition">
+                            <input type="text" class="input position-relative" id="preconditionInputAddCase" name="precondition" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-12 mb-4">
@@ -58,11 +54,11 @@
                                             <div class="caption-input-table">
                                                 <p>Instructions</p>
                                             </div>
-                                            <textarea id="instructionsInput" name="instruction[]">.</textarea>
+                                            <textarea id="instructionsInput" name="instruction[]" autocomplete="off"></textarea>
                                         </div>
                                         <div class="input-wrapper w-100 position-relative">
                                             <p class="caption-input">Expected Result</p>
-                                            <input type="text" class="input position-relative" id="expectedInputAddCase" name="expected_result">
+                                            <input type="text" class="input position-relative" id="expectedInputAddCase" name="expected_result[]" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -92,8 +88,6 @@
 </div>
 
 <script>
-    var editor = new FroalaEditor('#instructionsInput');
-
     const rowStep = document.querySelector('.row-step');
     const stepButton = document.querySelector('.button-step');
     const resetButton = document.querySelector('.reset-button-add-case');
@@ -175,61 +169,9 @@
         pInstructions.appendChild(textPInstructions);
         captionInputTable.appendChild(pInstructions);
 
-        const wrapperButton = document.createElement('div');
-        wrapperButton.classList.add('wrapper-button');
-        captionInputTable.appendChild(wrapperButton);
-
-        const addTableIcon = document.createElement('div');
-        addTableIcon.classList.add('add-table-icon');
-        const removeTableIcon = document.createElement('div');
-        removeTableIcon.classList.add('remove-table-icon');
-        removeTableIcon.classList.add('d-none');
-
-        wrapperButton.appendChild(addTableIcon);
-        wrapperButton.appendChild(removeTableIcon);
-
-        const inputTableInstructions = document.createElement('label');
-        inputTableInstructions.classList.add('input');
-        inputTableInstructions.classList.add('input-table');
-        inputTableInstructions.classList.add('position-relative');
-        inputTableInstructions.classList.add('d-none');
-        inputTableInstructions.id = 'inputTable';
-
-        const tableInstructions = document.createElement('table');
-        tableInstructions.classList.add('table-input');
-        inputTableInstructions.appendChild(tableInstructions);
-
-        const trTableInstructions = document.createElement('tr');
-        tableInstructions.appendChild(trTableInstructions);
-
-        const tdTableInstructions1 = document.createElement('td');
-        trTableInstructions.appendChild(tdTableInstructions1);
-
-        const inputTransparentInstructions1 = document.createElement('input');
-        inputTransparentInstructions1.type = 'text';
-        inputTransparentInstructions1.classList.add('input-transparent');
-        tdTableInstructions1.appendChild(inputTransparentInstructions1);
-
-        const tdTableInstructions2 = document.createElement('td');
-        trTableInstructions.appendChild(tdTableInstructions2);
-
-        const inputTransparentInstructions2 = document.createElement('input');
-        inputTransparentInstructions2.type = 'text';
-        inputTransparentInstructions2.classList.add('input-transparent');
-        tdTableInstructions2.appendChild(inputTransparentInstructions2);
-
-        const tdTableInstructions3 = document.createElement('td');
-        trTableInstructions.appendChild(tdTableInstructions3);
-
-        const inputTransparentInstructions3 = document.createElement('input');
-        inputTransparentInstructions3.type = 'text';
-        inputTransparentInstructions3.classList.add('input-transparent');
-        tdTableInstructions3.appendChild(inputTransparentInstructions3);
-
-        const inputInstructions = document.createElement('input');
-        inputInstructions.classList.add('input');
-        inputInstructions.type = 'text';
-        inputInstructions.id = 'inputText';
+        const textareaInstructions = document.createElement('textarea');
+        textareaInstructions.setAttribute('name', 'instruction[]');
+        textareaInstructions.id = 'instructionsInput';
 
         const inputWrapperExpected = document.createElement('div');
         inputWrapperExpected.classList.add("input-wrapper");
@@ -244,14 +186,14 @@
         inputExpected.classList.add('input');
         inputExpected.type = 'text';
         inputExpected.id = 'expectedInputAddCase';
+        inputExpected.setAttribute('name', 'expected_result[]');
 
         const wrapperIcon = document.createElement('div');
         wrapperIcon.classList.add('wrapper-icon');
         const minusIcon = document.createElement('div');
         minusIcon.classList.add('minus-icon');
 
-        inputWrapperInstructions.appendChild(inputTableInstructions);
-        inputWrapperInstructions.appendChild(inputInstructions);
+        inputWrapperInstructions.appendChild(textareaInstructions);
 
         inputWrapperExpected.appendChild(pExpected);
         inputWrapperExpected.appendChild(inputExpected);
@@ -263,5 +205,9 @@
         colStep.appendChild(wrapperIcon);
 
         rowStep.appendChild(colStep);
+
+        var editor = new FroalaEditor('#instructionsInput');
     });
+
+    var editor = new FroalaEditor('#instructionsInput');
 </script>

@@ -175,6 +175,32 @@ class TestCase extends Controller
     };
   }
 
+  public function addTestCaseAction()
+  {
+
+    $_POST['instruction'] = implode(',', $_POST['instruction']);
+    $_POST['expected_result'] = implode(',', $_POST['expected_result']);
+
+    $data['test_suite'] = $this->model('Testsuite_model')->getTestSuiteById($_POST['test_suite_id']);
+    $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($_POST['test_section_id']);
+
+    $firstLetterTestSuite = substr($data['test_suite']['name'], 0, 1);
+    $firstLetterTestSection = substr($data['test_section']['name'], 0, 1);
+    $randomKey = rand(1, 1000);
+    $_POST['key_case'] = $firstLetterTestSuite . $firstLetterTestSection . '-' . $randomKey;
+    $_POST['project_id'] = $_SESSION['project'];
+
+    if ($this->model('Testcase_model')->insertTestCase($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully create test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to create test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
+
   public function edit()
   {
     if (isset($_SESSION['username'])) {
@@ -186,20 +212,5 @@ class TestCase extends Controller
       header("Location:" . BASEURL . "signin");
       exit;
     };
-  }
-
-  public function addNewCase()
-  {
-    $_POST['instruction'] = implode(',', $_POST['instruction']);
-
-    if ($this->model('Testcase_model')->insertTestCase($_POST) > 0) {
-      Flasher::setFlash('success', 'Successfully create test case!');
-      header("Location:" . BASEURL . "testcase");
-      exit;
-    } else {
-      Flasher::setFlash('danger', 'Failed to create test case!');
-      header("Location:" . BASEURL . "testcase");
-      exit;
-    }
   }
 }
