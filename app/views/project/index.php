@@ -40,16 +40,16 @@
                         <div class="wrapper d-flex align-items-center gap-4">
                             <div class="testcase-group">
                                 <div class="testcase-icon"></div>
-                                <p class="badge-count">-</p>
+                                <p class="badge-count"><?= $project['test_case_count']; ?></p>
                             </div>
                             <div class="testsuite-group">
                                 <div class="testsuite-icon"></div>
-                                <p class="badge-count badge-danger">-</p>
+                                <p class="badge-count badge-danger"><?= $project['test_suite_count']; ?></p>
                             </div>
                         </div>
-                        <div class="wrapper-icon">
+                        <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="wrapper-icon">
                             <div class="dashboard-icon"></div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ class Project_model extends Database
 
   public function getAllProject()
   {
-    $query = "SELECT * FROM project";
+    $query = "SELECT project.*,COUNT(DISTINCT test_case.id) AS test_case_count,COUNT(DISTINCT test_suite.id) AS test_suite_count FROM project LEFT JOIN test_case ON project.id = test_case.project_id LEFT JOIN test_suite ON project.id = test_suite.project_id GROUP BY project.id;";
     $this->db->query($query);
     $this->db->execute();
     return $this->db->resultSet();

@@ -7,6 +7,7 @@ class Project extends Controller
     if (isset($_SESSION['username'])) {
       $data['title'] = "Project";
       $data['projects'] = $this->model('Project_model')->getAllProject();
+
       $this->view('templates/header', $data);
       $this->view('project/index', $data);
       $this->view('templates/footer', $data);
@@ -14,6 +15,14 @@ class Project extends Controller
       header("Location:" . BASEURL . "signin");
       exit;
     };
+  }
+
+  public function data($id)
+  {
+    $_SESSION['project'] = $id;
+    Flasher::setFlash('success', 'Successfully change project!');
+    header("Location:" . BASEURL . "project");
+    exit;
   }
 
   public function addAction()
