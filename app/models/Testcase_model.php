@@ -18,6 +18,15 @@ class Testcase_model extends Database
     return $this->db->resultSet();
   }
 
+  public function getTestCaseById($id)
+  {
+    $query = "SELECT test_suite.name AS test_suite_name,test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.id=:id;";
+    $this->db->query($query);
+    $this->db->bind('id', $id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
   public function getTestCaseByTestSuiteId($test_suite_id, $project_id)
   {
     $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.test_suite_id=:test_suite_id && test_case.project_id=:project_id;";
@@ -57,10 +66,13 @@ class Testcase_model extends Database
 
   public function editTestCase($data)
   {
-    $query = "UPDATE test_case SET `name`=:name WHERE id=:id";
+    $query = "UPDATE test_case SET `name`=:name,`precondition`=:precondition,`instruction`=:instruction,`expected_result`=:expected_result WHERE id=:id";
     $this->db->query($query);
     $this->db->bind('id', $data['id']);
     $this->db->bind('name', $data['name']);
+    $this->db->bind('precondition', $data['precondition']);
+    $this->db->bind('instruction', $data['instruction']);
+    $this->db->bind('expected_result', $data['expected_result']);
     $this->db->execute();
     return $this->db->rowCount();
   }

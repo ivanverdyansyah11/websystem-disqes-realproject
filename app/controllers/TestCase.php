@@ -201,10 +201,15 @@ class TestCase extends Controller
     }
   }
 
-  public function edit()
+  public function editTestCase($id)
   {
     if (isset($_SESSION['username'])) {
-      $data['title'] = "Edit Test Cases";
+      $data['title'] = "Edit Test Case";
+      $data['test_case'] = $this->model('Testcase_model')->getTestCaseById($id);
+
+      $data['test_case']['instruction'] = explode(',', $data['test_case']['instruction']);
+      $data['test_case']['expected_result'] = explode(',', $data['test_case']['expected_result']);
+
       $this->view('templates/header', $data);
       $this->view('test-case/edit', $data);
       $this->view('templates/footer', $data);
@@ -212,5 +217,21 @@ class TestCase extends Controller
       header("Location:" . BASEURL . "signin");
       exit;
     };
+  }
+
+  public function editTestCaseAction()
+  {
+    $_POST['instruction'] = implode(',', $_POST['instruction']);
+    $_POST['expected_result'] = implode(',', $_POST['expected_result']);
+
+    if ($this->model('Testcase_model')->editTestCase($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully edit test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to edit test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
   }
 }

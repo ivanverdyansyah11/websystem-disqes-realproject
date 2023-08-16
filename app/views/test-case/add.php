@@ -101,16 +101,10 @@
         const expectedInput = document.querySelectorAll('#expectedInputAddCase');
 
         nameInput.value = '';
-        suiteInput.value = 'Choose Suite Selection';
-        sectionInput.value = 'Choose Section Selection';
         preconditionInput.value = '';
 
         for (let i = 0; i < expectedInput.length; i++) {
             expectedInput[i].value = '';
-        }
-
-        for (let i = 0; i < inputTable.length; i++) {
-            inputTable[i].value = '';
         }
     });
 

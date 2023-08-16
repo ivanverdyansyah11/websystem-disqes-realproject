@@ -1,43 +1,40 @@
 <div class="content">
     <div class="row section-gap">
         <div class="col-12">
-            <h4 class="title">Edit Test Cases</h4>
+            <h4 class="title">Edit Test Case</h4>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-11 col-xl-10">
-            <form action="" class="card-form d-flex flex-column w-100">
+            <form action="<?= BASEURL; ?>testcase/editTestCaseAction" method="post" class="card-form d-flex flex-column w-100">
+                <input type="hidden" name="id" value="<?= $data['test_case']['id']; ?>">
                 <div class="row">
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddCase">
+                            <input type="text" class="input position-relative" id="nameInputAddCase" name="name" autocomplete="off" value="<?= $data['test_case']['name']; ?>">
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Suite</p>
-                            <select class="input position-relative" id="suiteInputAddCase">
-                                <option>Choose Suite Selection</option>
-                                <option>2</option>
-                                <option>3</option>
+                            <select class="input position-relative" id="suiteInputAddCase" name="test_suite_id">
+                                <option value="<?= $data['test_case']['test_suite_id']; ?>" selected><?= $data['test_case']['test_suite_name']; ?></option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Section</p>
-                            <select class="input position-relative" id="sectionInputAddCase">
-                                <option>Choose Section Selection</option>
-                                <option>2</option>
-                                <option>3</option>
+                            <select class="input position-relative" id="sectionInputAddCase" name="test_section_id">
+                                <option value="<?= $data['test_case']['test_section_id']; ?>" selected><?= $data['test_case']['test_section_name']; ?></option>
                             </select>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Preconditions</p>
-                            <input type="text" class="input position-relative" id="preconditionInputAddCase">
+                            <input type="text" class="input position-relative" id="preconditionInputAddCase" name="precondition" autocomplete="off" value="<?= $data['test_case']['precondition']; ?>">
                         </div>
                     </div>
                     <div class="col-12 mb-4">
@@ -52,48 +49,33 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="row row-step">
-                                    <div class="col-12 d-flex justify-content-between align-items-center gap-4 col-step">
-                                        <div class="input-wrapper w-100 position-relative" id="inputWrapperInstructions">
-                                            <div class="caption-input-table">
-                                                <p>Instructions</p>
-                                                <div class="wrapper-button">
-                                                    <div class="add-table-icon"></div>
-                                                    <div class="remove-table-icon d-none"></div>
+                                <div class="row row-step gap-4">
+                                    <?php $i = 0; ?>
+                                    <?php foreach ($data['test_case']['instruction'] as $data['instruction']) : ?>
+                                        <div class="col-12 d-flex justify-content-between align-items-center gap-4 col-step">
+                                            <div class="input-wrapper w-100 position-relative" id="inputWrapperInstructions">
+                                                <div class="caption-input-table">
+                                                    <p>Instructions</p>
                                                 </div>
+                                                <textarea id="instructionsInput" name="instruction[]" autocomplete="off"><?= $data['instruction']; ?></textarea>
                                             </div>
-                                            <label class="input input-table position-relative d-none" id="inputTable">
-                                                <table class="table-input">
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" class="input-transparent">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="input-transparent">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="input-transparent">
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </label>
-                                            <input type="text" class="input position-relative" id="inputText">
+                                            <div class="input-wrapper w-100 position-relative">
+                                                <p class="caption-input">Expected Result</p>
+                                                <input type="text" class="input position-relative" id="expectedInputAddCase" name="expected_result[]" autocomplete="off" value="<?= $data['test_case']['expected_result'][$i]; ?>">
+                                            </div>
+                                            <div class="wrapper-icon">
+                                                <div class="minus-icon"></div>
+                                            </div>
                                         </div>
-                                        <div class="input-wrapper w-100 position-relative">
-                                            <p class="caption-input">Expected Result</p>
-                                            <input type="text" class="input position-relative" id="expectedInputAddCase">
-                                        </div>
-                                        <!-- <div class="wrapper-icon minus-button">
-                                            <div class="minus-icon"></div>
-                                        </div> -->
-                                    </div>
+                                        <?php $i++; ?>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -123,25 +105,14 @@
         const suiteInput = document.querySelector('#suiteInputAddCase');
         const sectionInput = document.querySelector('#sectionInputAddCase');
         const preconditionInput = document.querySelector('#preconditionInputAddCase');
-        const inputText = document.querySelectorAll('#inputText');
         const inputTable = document.querySelectorAll('.input-transparent');
         const expectedInput = document.querySelectorAll('#expectedInputAddCase');
 
         nameInput.value = '';
-        suiteInput.value = 'Choose Suite Selection';
-        sectionInput.value = 'Choose Section Selection';
         preconditionInput.value = '';
-
-        for (let i = 0; i < inputText.length; i++) {
-            inputText[i].value = '';
-        }
 
         for (let i = 0; i < expectedInput.length; i++) {
             expectedInput[i].value = '';
-        }
-
-        for (let i = 0; i < inputTable.length; i++) {
-            inputTable[i].value = '';
         }
     });
 
@@ -200,61 +171,9 @@
         pInstructions.appendChild(textPInstructions);
         captionInputTable.appendChild(pInstructions);
 
-        const wrapperButton = document.createElement('div');
-        wrapperButton.classList.add('wrapper-button');
-        captionInputTable.appendChild(wrapperButton);
-
-        const addTableIcon = document.createElement('div');
-        addTableIcon.classList.add('add-table-icon');
-        const removeTableIcon = document.createElement('div');
-        removeTableIcon.classList.add('remove-table-icon');
-        removeTableIcon.classList.add('d-none');
-
-        wrapperButton.appendChild(addTableIcon);
-        wrapperButton.appendChild(removeTableIcon);
-
-        const inputTableInstructions = document.createElement('label');
-        inputTableInstructions.classList.add('input');
-        inputTableInstructions.classList.add('input-table');
-        inputTableInstructions.classList.add('position-relative');
-        inputTableInstructions.classList.add('d-none');
-        inputTableInstructions.id = 'inputTable';
-
-        const tableInstructions = document.createElement('table');
-        tableInstructions.classList.add('table-input');
-        inputTableInstructions.appendChild(tableInstructions);
-
-        const trTableInstructions = document.createElement('tr');
-        tableInstructions.appendChild(trTableInstructions);
-
-        const tdTableInstructions1 = document.createElement('td');
-        trTableInstructions.appendChild(tdTableInstructions1);
-
-        const inputTransparentInstructions1 = document.createElement('input');
-        inputTransparentInstructions1.type = 'text';
-        inputTransparentInstructions1.classList.add('input-transparent');
-        tdTableInstructions1.appendChild(inputTransparentInstructions1);
-
-        const tdTableInstructions2 = document.createElement('td');
-        trTableInstructions.appendChild(tdTableInstructions2);
-
-        const inputTransparentInstructions2 = document.createElement('input');
-        inputTransparentInstructions2.type = 'text';
-        inputTransparentInstructions2.classList.add('input-transparent');
-        tdTableInstructions2.appendChild(inputTransparentInstructions2);
-
-        const tdTableInstructions3 = document.createElement('td');
-        trTableInstructions.appendChild(tdTableInstructions3);
-
-        const inputTransparentInstructions3 = document.createElement('input');
-        inputTransparentInstructions3.type = 'text';
-        inputTransparentInstructions3.classList.add('input-transparent');
-        tdTableInstructions3.appendChild(inputTransparentInstructions3);
-
-        const inputInstructions = document.createElement('input');
-        inputInstructions.classList.add('input');
-        inputInstructions.type = 'text';
-        inputInstructions.id = 'inputText';
+        const textareaInstructions = document.createElement('textarea');
+        textareaInstructions.setAttribute('name', 'instruction[]');
+        textareaInstructions.id = 'instructionsInput';
 
         const inputWrapperExpected = document.createElement('div');
         inputWrapperExpected.classList.add("input-wrapper");
@@ -269,14 +188,14 @@
         inputExpected.classList.add('input');
         inputExpected.type = 'text';
         inputExpected.id = 'expectedInputAddCase';
+        inputExpected.setAttribute('name', 'expected_result[]');
 
         const wrapperIcon = document.createElement('div');
         wrapperIcon.classList.add('wrapper-icon');
         const minusIcon = document.createElement('div');
         minusIcon.classList.add('minus-icon');
 
-        inputWrapperInstructions.appendChild(inputTableInstructions);
-        inputWrapperInstructions.appendChild(inputInstructions);
+        inputWrapperInstructions.appendChild(textareaInstructions);
 
         inputWrapperExpected.appendChild(pExpected);
         inputWrapperExpected.appendChild(inputExpected);
@@ -288,5 +207,9 @@
         colStep.appendChild(wrapperIcon);
 
         rowStep.appendChild(colStep);
+
+        var editor = new FroalaEditor('#instructionsInput');
     });
+
+    var editor = new FroalaEditor('#instructionsInput');
 </script>

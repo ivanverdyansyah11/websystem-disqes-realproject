@@ -170,9 +170,16 @@
                     <?php foreach ($data['test_cases'] as $test_case) : ?>
                         <li>
                             <div class="case-menu position-relative">
-                                <div class="wrapper d-flex align-items-center gap-2">
-                                    <p><?= $test_case['name']; ?></p> |
-                                    <p><?= $test_case['test_section_name']; ?></p>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="wrapper d-flex align-items-center gap-2">
+                                            <p><?= $test_case['name']; ?></p> |
+                                            <p><?= $test_case['test_section_name']; ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <p><?= $test_case['key_case']; ?></p>
+                                    </div>
                                 </div>
                                 <div class="wrapper-action action-case d-flex align-items-center">
                                     <div class="box-rotate position-relative"></div>
@@ -183,7 +190,7 @@
                                         <button type="button" class="wrapper-icon" onclick="downMoveCase()">
                                             <div class="down-icon"></div>
                                         </button>
-                                        <a href="<?= BASEURL; ?>testcase/edit" type="button" class="wrapper-icon">
+                                        <a href="<?= BASEURL; ?>testcase/editTestCase/<?= $test_case['id']; ?>" class="wrapper-icon">
                                             <div class="edit-icon"></div>
                                         </a>
                                         <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase">
