@@ -193,7 +193,7 @@
                                         <a href="<?= BASEURL; ?>testcase/editTestCase/<?= $test_case['id']; ?>" class="wrapper-icon">
                                             <div class="edit-icon"></div>
                                         </a>
-                                        <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase">
+                                        <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteCase" data-id="<?= $test_case['id']; ?>">
                                             <div class="delete-icon"></div>
                                         </button>
                                     </div>
@@ -424,10 +424,10 @@
                     <h4 class="title">Are you sure?</h4>
                 </div>
                 <div class="content-body">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                    <form id="formDeleteCase" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <p class="caption-delete">Are you sure you want to delete this <span>test case</span>? This action cannot be undone, and the <span>test case</span> will be permanently removed from the system.</p>
                         <div class="wrapper d-flex gap-2">
-                            <button class="button-primary d-flex align-items-center">
+                            <button type="submit" class="button-primary d-flex align-items-center">
                                 <div class="save-icon"></div>
                                 Save
                             </button>
@@ -496,6 +496,11 @@
     $(document).on('click', '[data-bs-target="#deleteSuite"]', function() {
         let id = $(this).data('id');
         $('#formDeleteSuite').attr('action', 'http://localhost/disqes/public/testcase/deleteTestSuiteAction/' + id);
+    });
+
+    $(document).on('click', '[data-bs-target="#deleteCase"]', function() {
+        let id = $(this).data('id');
+        $('#formDeleteCase').attr('action', 'http://localhost/disqes/public/testcase/deleteTestCaseAction/' + id);
     });
 
     let listMoveCase = document.querySelector('.list-move-case');
