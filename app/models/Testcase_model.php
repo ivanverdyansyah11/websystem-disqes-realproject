@@ -9,6 +9,15 @@ class Testcase_model extends Database
     $this->db = new Database();
   }
 
+  public function getTestCaseByFilter($keyCase)
+  {
+    $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE key_case=:key_case;";
+    $this->db->query($query);
+    $this->db->bind('key_case', $keyCase);
+    $this->db->execute();
+    return $this->db->resultSet();
+  }
+
   public function getTestCase($project_id)
   {
     $query = "SELECT test_suite.name AS test_suite_name,test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.project_id=:project_id;";

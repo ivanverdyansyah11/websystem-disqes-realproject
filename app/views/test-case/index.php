@@ -11,57 +11,70 @@
             <h4 class="title">Test Case</h4>
         </div>
     </div>
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="filter-bar">
-                <div class="filter-button d-flex justify-content-between align-items-center">
-                    <div class="wrapper d-flex align-items-center gap-2">
-                        <div class="filter-icon"></div>
-                        <p>Filter</p>
+    <?php if ($_GET['url'] == 'testcase' || $_GET['url'] == 'testcase/filterTestCase') : ?>
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="filter-bar">
+                    <div class="filter-button d-flex justify-content-between align-items-center">
+                        <div class="wrapper d-flex align-items-center gap-2">
+                            <div class="filter-icon"></div>
+                            <p>Filter</p>
+                            <?php if ($_GET['url'] == 'testcase/filterTestCase') : ?>
+                                | <p class="filter-searching"><?= $data['filterKeyCase']; ?></p>
+                                | <p class="filter-searching"><?= $data['filterName']; ?></p>
+                                <?php foreach ($data['test_suites'] as $test_suite) : ?>
+                                    <?php if ($data['filterTestSuite'] == $test_suite['id']) : ?>
+                                        | <p class="filter-searching"><?= $test_suite['name']; ?></p>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                        <div class="arrow-icon"></div>
                     </div>
-                    <div class="arrow-icon"></div>
-                </div>
-                <div class="filter-content">
-                    <form action="" style="width: 100%; gap: 24px;" class="d-flex flex-column">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-wrapper w-100 position-relative">
-                                    <p class="caption-input">Key</p>
-                                    <input type="text" class="input position-relative" id="keyInput">
+                    <div class="filter-content">
+                        <form action="<?= BASEURL; ?>testcase/filterTestCase" method="POST" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                            <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-wrapper w-100 position-relative">
+                                        <p class="caption-input">Key</p>
+                                        <input type="text" class="input position-relative" id="keyInput" name="key_case" autocomplete="off" required value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-4 mt-md-0">
+                                    <div class="input-wrapper w-100 position-relative">
+                                        <p class="caption-input">Name</p>
+                                        <input type="text" class="input position-relative" id="nameInput" name="name" autocomplete="off" required value="">
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <div class="input-wrapper w-100 position-relative">
+                                        <p class="caption-input">Suite</p>
+                                        <select class="input position-relative" id="suiteInput" required name="test_suite_id">
+                                            <option selected>Choose Suite Selection</option>
+                                            <?php foreach ($data['test_suites'] as $test_suite) : ?>
+                                                <option value="<?= $test_suite['id']; ?>"><?= $test_suite['name']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-4 mt-md-0">
-                                <div class="input-wrapper w-100 position-relative">
-                                    <p class="caption-input">Name</p>
-                                    <input type="text" class="input position-relative" id="nameInput">
-                                </div>
+                            <div class="wrapper d-flex gap-2">
+                                <button type="submit" class="button-primary d-flex align-items-center">
+                                    <div class="search-icon"></div>
+                                    Search
+                                </button>
+                                <button type="button" class="reset-button button-transparent d-flex align-items-center">
+                                    <div class="reset-icon"></div>
+                                    Reset
+                                </button>
                             </div>
-                            <div class="col-12 mt-4">
-                                <div class="input-wrapper w-100 position-relative">
-                                    <p class="caption-input">Suite</p>
-                                    <select class="input position-relative" id="suiteInput">
-                                        <option>Choose Suite Selection</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wrapper d-flex gap-2">
-                            <button type="button" class="button-primary d-flex align-items-center">
-                                <div class="search-icon"></div>
-                                Search
-                            </button>
-                            <button type="button" class="reset-button button-transparent d-flex align-items-center">
-                                <div class="reset-icon"></div>
-                                Reset
-                            </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 
     <div class="row">
         <div class="col-12 col-lg-3 mb-4 mb-lg-0">

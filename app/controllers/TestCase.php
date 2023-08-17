@@ -21,6 +21,31 @@ class TestCase extends Controller
     };
   }
 
+  public function filterTestCase()
+  {
+    if (isset($_SESSION['username'])) {
+      $data['title'] = "Test Case";
+      $data['url_add_case'] = [];
+      $data['title_case'] = 'All Test Cases';
+      $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
+      $data['test_sections'] = [];
+
+      $data['keyCase'] = $_POST['key_case'] ?? '';
+
+      $data['test_cases'] = $this->model('Testcase_model')->getTestCaseByFilter($data['keyCase']);
+      $data['filterKeyCase'] = $data['test_cases'][0]['key_case'];
+      $data['filterName'] = $data['test_cases'][0]['name'];
+      $data['filterTestSuite'] = $data['test_cases'][0]['test_suite_id'];
+
+      $this->view('templates/header', $data);
+      $this->view('test-case/index', $data);
+      $this->view('templates/footer', $data);
+    } else {
+      header("Location:" . BASEURL . "signin");
+      exit;
+    };
+  }
+
   public function addTestSuiteAction()
   {
     if ($this->model('Testsuite_model')->insertTestSuite($_POST) > 0) {

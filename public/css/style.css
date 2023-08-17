@@ -497,6 +497,13 @@ h4.title {
     color: rgba(255, 255, 255, 0.86);
 }
 
+.filter-bar .filter-searching {
+    font-size: 0.875rem;
+    background-color: rgba(var(--fourth-color), 1);
+    padding: 5px 12px;
+    border-radius: 9999px;
+}
+
 .filter-bar .arrow-icon {
     width: 10px;
     height: 10px;
