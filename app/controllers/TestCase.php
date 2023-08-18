@@ -215,7 +215,7 @@ class TestCase extends Controller
     $randomKey = '';
 
     if ($data['test_case']) {
-      $randomKey = $data['test_case']['id'] + 1;
+      $randomKey = $data['test_case']['totalTestCase'] + 1;
     } else {
       $randomKey = 1;
     }

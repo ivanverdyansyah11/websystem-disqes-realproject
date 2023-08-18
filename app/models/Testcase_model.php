@@ -11,7 +11,7 @@ class Testcase_model extends Database
 
   public function getTestCaseLatestId()
   {
-    $query = "SELECT * FROM test_case ORDER BY test_case.id DESC LIMIT 1;";
+    $query = "SELECT COUNT(*) AS totalTestCase FROM test_case;";
     $this->db->query($query);
     $this->db->execute();
     return $this->db->resultSingle();
