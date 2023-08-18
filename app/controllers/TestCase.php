@@ -33,9 +33,16 @@ class TestCase extends Controller
       $data['keyCase'] = $_POST['key_case'] ?? '';
 
       $data['test_cases'] = $this->model('Testcase_model')->getTestCaseByFilter($data['keyCase']);
-      $data['filterKeyCase'] = $data['test_cases'][0]['key_case'];
-      $data['filterName'] = $data['test_cases'][0]['name'];
-      $data['filterTestSuite'] = $data['test_cases'][0]['test_suite_id'];
+
+      if ($data['test_cases']) {
+        $data['filterKeyCase'] = $data['test_cases'][0]['key_case'];
+        $data['filterName'] = $data['test_cases'][0]['name'];
+        $data['filterTestSuite'] = $data['test_cases'][0]['test_suite_id'];
+      } else {
+        $data['filterKeyCase'] = '';
+        $data['filterName'] = '';
+        $data['filterTestSuite'] = '';
+      }
 
       $this->view('templates/header', $data);
       $this->view('test-case/index', $data);
@@ -196,16 +203,23 @@ class TestCase extends Controller
 
   public function addTestCaseAction()
   {
-
     $_POST['instruction'] = implode(',', $_POST['instruction']);
     $_POST['expected_result'] = implode(',', $_POST['expected_result']);
 
     $data['test_suite'] = $this->model('Testsuite_model')->getTestSuiteById($_POST['test_suite_id']);
     $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($_POST['test_section_id']);
+    $data['test_case'] = $this->model('Testcase_model')->getTestCaseLatestId();
 
     $firstLetterTestSuite = substr($data['test_suite']['name'], 0, 1);
     $firstLetterTestSection = substr($data['test_section']['name'], 0, 1);
-    $randomKey = rand(1, 1000);
+    $randomKey = '';
+
+    if ($data['test_case']) {
+      $randomKey = $data['test_case']['id'] + 1;
+    } else {
+      $randomKey = 1;
+    }
+
     $_POST['key_case'] = $firstLetterTestSuite . $firstLetterTestSection . '-' . $randomKey;
     $_POST['project_id'] = $_SESSION['project'];
 

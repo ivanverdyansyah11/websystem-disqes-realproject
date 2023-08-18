@@ -9,6 +9,14 @@ class Testcase_model extends Database
     $this->db = new Database();
   }
 
+  public function getTestCaseLatestId()
+  {
+    $query = "SELECT * FROM test_case ORDER BY test_case.id DESC LIMIT 1;";
+    $this->db->query($query);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
   public function getTestCaseByFilter($keyCase)
   {
     $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE key_case=:key_case;";
