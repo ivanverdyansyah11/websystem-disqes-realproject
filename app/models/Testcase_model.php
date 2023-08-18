@@ -17,11 +17,12 @@ class Testcase_model extends Database
     return $this->db->resultSingle();
   }
 
-  public function getTestCaseByFilter($keyCase)
+  public function getTestCaseByFilter($data)
   {
-    $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE key_case=:key_case;";
+    $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.name LIKE CONCAT('%', :name, '%') AND test_case.project_id=:project_id;";
     $this->db->query($query);
-    $this->db->bind('key_case', $keyCase);
+    $this->db->bind('name', $data['name']);
+    $this->db->bind('project_id', $data['project_id']);
     $this->db->execute();
     return $this->db->resultSet();
   }
