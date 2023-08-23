@@ -68,10 +68,12 @@ class Testcase_model extends Database
 
   public function insertTestCase($data)
   {
-    $query = "INSERT INTO test_case(name,key_case,precondition,instruction,expected_result,test_suite_id,test_section_id,project_id) VALUES(:name,:key_case,:precondition,:instruction,:expected_result,:test_suite_id,:test_section_id,:project_id)";
+    $query = "INSERT INTO test_case(name,key_case,priority,behavior,precondition,instruction,expected_result,test_suite_id,test_section_id,project_id) VALUES(:name,:key_case,:priority,:behavior,:precondition,:instruction,:expected_result,:test_suite_id,:test_section_id,:project_id)";
     $this->db->query($query);
     $this->db->bind('name', $data['name']);
     $this->db->bind('key_case', $data['key_case']);
+    $this->db->bind('priority', $data['priority']);
+    $this->db->bind('behavior', $data['behavior']);
     $this->db->bind('precondition', $data['precondition']);
     $this->db->bind('instruction', $data['instruction']);
     $this->db->bind('expected_result', $data['expected_result']);
@@ -84,10 +86,12 @@ class Testcase_model extends Database
 
   public function editTestCase($data)
   {
-    $query = "UPDATE test_case SET `name`=:name,`precondition`=:precondition,`instruction`=:instruction,`expected_result`=:expected_result WHERE id=:id";
+    $query = "UPDATE test_case SET `name`=:name,`priority`=:priority,`behavior`=:behavior,`precondition`=:precondition,`instruction`=:instruction,`expected_result`=:expected_result WHERE id=:id";
     $this->db->query($query);
     $this->db->bind('id', $data['id']);
     $this->db->bind('name', $data['name']);
+    $this->db->bind('priority', $data['priority']);
+    $this->db->bind('behavior', $data['behavior']);
     $this->db->bind('precondition', $data['precondition']);
     $this->db->bind('instruction', $data['instruction']);
     $this->db->bind('expected_result', $data['expected_result']);

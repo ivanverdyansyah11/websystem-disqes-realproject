@@ -32,6 +32,28 @@
                     </div>
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
+                            <p class="caption-input">Priority <span class="input-required">*</span></p>
+                            <select class="input position-relative" id="sectionInputAddCase" name="priority">
+                                <option value="Not Set" selected>Not Set</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="input-wrapper w-100 position-relative">
+                            <p class="caption-input">Behavior <span class="input-required">*</span></p>
+                            <select class="input position-relative" id="sectionInputAddCase" name="behavior">
+                                <option value="Not Set" selected>Not Set</option>
+                                <option value="Positive">Positive</option>
+                                <option value="Negative">Negative</option>
+                                <option value="Destructive">Destructive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Preconditions <span class="input-required">*</span></p>
                             <input type="text" class="input position-relative" id="preconditionInputAddCase" name="precondition" autocomplete="off" required>
                         </div>

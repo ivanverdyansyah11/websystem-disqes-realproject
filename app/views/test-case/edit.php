@@ -33,6 +33,28 @@
                     </div>
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
+                            <p class="caption-input">Priority <span class="input-required">*</span></p>
+                            <select class="input position-relative" id="sectionInputAddCase" name="priority">
+                                <option value="Not Set" <?= $data['test_case']['priority'] === "Not Set" ? 'selected' : '' ?>>Not Set</option>
+                                <option value="High" <?= $data['test_case']['priority'] === "High" ? 'selected' : '' ?>>High</option>
+                                <option value="Medium" <?= $data['test_case']['priority'] === "Medium" ? 'selected' : '' ?>>Medium</option>
+                                <option value="Low" <?= $data['test_case']['priority'] === "Low" ? 'selected' : '' ?>>Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="input-wrapper w-100 position-relative">
+                            <p class="caption-input">Behavior <span class="input-required">*</span></p>
+                            <select class="input position-relative" id="sectionInputAddCase" name="behavior">
+                                <option value="Not Set" <?= $data['test_case']['behavior'] === "Not Set" ? 'selected' : '' ?>>Not Set</option>
+                                <option value="Positive" <?= $data['test_case']['behavior'] === "Positive" ? 'selected' : '' ?>>Positive</option>
+                                <option value="Negative" <?= $data['test_case']['behavior'] === "Negative" ? 'selected' : '' ?>>Negative</option>
+                                <option value="Destructive" <?= $data['test_case']['behavior'] === "Destructive" ? 'selected' : '' ?>>Destructive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Preconditions <span class="input-required">*</span></p>
                             <input type="text" class="input position-relative" id="preconditionInputAddCase" name="precondition" autocomplete="off" value="<?= $data['test_case']['precondition']; ?>" required>
                         </div>
