@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col-12 mt-4 mt-md-0">
                                 <div class="input-wrapper w-100 position-relative">
-                                    <p class="caption-input">Name</p>
+                                    <p class="caption-input">Name <span class="input-required">*</span></p>
                                     <input type="text" class="input position-relative" id="nameInput" name="name" autocomplete="off" required value="">
                                 </div>
                             </div>
@@ -103,10 +103,17 @@
                             </div>
 
                             <ul class="list-move-section">
+
+                                <!-- <?php if (!empty($data['test_section'])) : ?>
+                                    <?php if ($data['test_section']['name'] === $test_section['name']) : ?>
+                                        <p class="position-relative"><?= $test_section['name'] ?></p>
+                                    <?php endif ?>
+                                <?php endif ?> -->
+
                                 <?php foreach ($data['test_sections'] as $test_section) : ?>
                                     <li>
-                                        <a href="<?= BASEURL; ?>testcase/testsection/<?= $test_suite['id']; ?>/<?= $test_section['id']; ?>" class="suite-menu position-relative <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] || $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>">
-                                            <p class="position-relative"><?= $test_section['name'] ?></p>
+                                        <div class="suite-menu position-relative <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] || $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>">
+                                            <a href="<?= BASEURL; ?>testcase/testsection/<?= $test_suite['id']; ?>/<?= $test_section['id']; ?>" class="position-relative"><?= $test_section['name']; ?></a>
                                             <div class="wrapper-action action-section d-flex align-items-center">
                                                 <div class="box-rotate position-relative"></div>
                                                 <div class="card-action d-flex position-relative">
@@ -124,7 +131,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </div>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
@@ -146,10 +153,10 @@
             </div>
             <div class="case-header">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-10">
                         <p>Name</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-2">
                         <p>Key</p>
                     </div>
                 </div>
@@ -161,13 +168,13 @@
                         <li>
                             <div class="case-menu position-relative">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-10">
                                         <div class="wrapper d-flex align-items-center gap-2">
                                             <p><?= $test_case['name']; ?></p> |
                                             <p><?= $test_case['test_section_name']; ?></p>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-2">
                                         <p><?= $test_case['key_case']; ?></p>
                                     </div>
                                 </div>
@@ -218,8 +225,8 @@
                         <input type="hidden" name="test_suite_id" data-value="test_suite_id">
                         <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddSection" name="name" autocomplete="off">
+                            <p class="caption-input">Name <span class="input-required">*</span></p>
+                            <input type="text" class="input position-relative" id="nameInputAddSection" name="name" autocomplete="off" required>
                         </div>
                         <div class="wrapper d-flex gap-2">
                             <button type="submit" class="button-primary d-flex align-items-center">
@@ -254,8 +261,8 @@
                     <form id="formEditSection" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <input type="hidden" name="id" data-value="id">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputEditSection" name="name" data-value="name">
+                            <p class="caption-input">Name <span class="input-required">*</span></p>
+                            <input type="text" class="input position-relative" id="nameInputEditSection" name="name" data-value="name" required>
                         </div>
                         <div class="wrapper d-flex gap-2">
                             <button type="submit" class="button-primary d-flex align-items-center">
@@ -315,8 +322,8 @@
                     <form action="<?= BASEURL; ?>testcase/addTestSuiteAction" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddSuite" name="name" autocomplete="off">
+                            <p class="caption-input">Name <span class="input-required">*</span></p>
+                            <input type="text" class="input position-relative" id="nameInputAddSuite" name="name" autocomplete="off" required>
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
@@ -355,8 +362,8 @@
                     <form id="formEditSuite" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <input type="hidden" name="id" data-value="id">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputEditSuite" name="name" data-value="name" autocomplete="off">
+                            <p class="caption-input">Name <span class="input-required">*</span></p>
+                            <input type="text" class="input position-relative" id="nameInputEditSuite" name="name" data-value="name" autocomplete="off" required>
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>

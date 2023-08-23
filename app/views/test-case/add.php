@@ -5,18 +5,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-11 col-xl-10">
+        <div class="col-12">
             <form action="<?= BASEURL; ?>testcase/addTestCaseAction" method="post" class="card-form d-flex flex-column w-100">
                 <div class="row">
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddCase" name="name" autocomplete="off">
+                            <p class="caption-input">Name <span class="input-required">*</span></p>
+                            <input type="text" class="input position-relative" id="nameInputAddCase" name="name" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Suite</p>
+                            <p class="caption-input">Suite <span class="input-required">*</span></p>
                             <select class="input position-relative" id="suiteInputAddCase" name="test_suite_id">
                                 <option value="<?= $data['test_suite']['id']; ?>" selected><?= $data['test_suite']['name']; ?></option>
                             </select>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Section</p>
+                            <p class="caption-input">Section <span class="input-required">*</span></p>
                             <select class="input position-relative" id="sectionInputAddCase" name="test_section_id">
                                 <option value="<?= $data['test_section']['id']; ?>" selected><?= $data['test_section']['name']; ?></option>
                             </select>
@@ -32,8 +32,8 @@
                     </div>
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Preconditions</p>
-                            <input type="text" class="input position-relative" id="preconditionInputAddCase" name="precondition" autocomplete="off">
+                            <p class="caption-input">Preconditions <span class="input-required">*</span></p>
+                            <input type="text" class="input position-relative" id="preconditionInputAddCase" name="precondition" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="col-12 mb-4">

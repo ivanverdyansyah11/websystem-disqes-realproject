@@ -688,7 +688,7 @@ h4.title {
     transition: 0ms !important;
 }
 
-.content .suite-menu p {
+.content .suite-menu a {
     color: rgba(255, 255, 255, 0.86);
     margin-left: 30px;
     font-size: 0.938rem;
@@ -1133,6 +1133,22 @@ h4.title {
 
 .fr-box.fr-basic .fr-element {
     color: rgba(255, 255, 255, 0.86) !important;
+}
+
+span.fr-sr-only {
+    display: none !important;
+}
+
+svg.fr-svg > *{
+    fill: rgba(255, 255, 255, 0.64) !important;
+}
+
+.fr-toolbar .fr-command.fr-btn, .fr-popup .fr-command.fr-btn, .fr-modal .fr-command.fr-btn {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+span.input-required {
+    color: rgba(var(--red-color), 1);
 }
 /* END DASHBOARD STYLE */
 
