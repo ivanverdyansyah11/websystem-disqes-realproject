@@ -491,9 +491,8 @@
     let listMoveSuite = document.querySelector('.list-move-suite');
     const filterButton = document.querySelector('.filter-button');
     const filterBar = document.querySelector('.filter-bar');
-    const keyInput = document.querySelector('#keyInput');
-    const nameInput = document.querySelector('#nameInput');
     const resetButton = document.querySelector('.reset-button');
+    const nameInput = document.querySelector('#nameInput');
     const arrowSuite = document.querySelectorAll('.arrow-suite');
     const wrapperHeader = document.querySelectorAll('.wrapper-header');
     const caseMenu = document.querySelectorAll('.case-menu');
@@ -564,9 +563,12 @@
     });
 
     resetButton.addEventListener('click', function() {
-        keyInput.value = '';
         nameInput.value = '';
-        suiteInput.value = 'Choose Suite Selection';
+
+        const filterSearching = document.querySelector('.filter-searching');
+        if (filterSearching) {
+            filterSearching.style.display = 'none';
+        }
     });
 
     resetButtonAddSuite.addEventListener('click', function() {

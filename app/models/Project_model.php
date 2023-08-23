@@ -9,6 +9,32 @@ class Project_model extends Database
     $this->db = new Database();
   }
 
+  public function getCountProject()
+  {
+    $query = "SELECT COUNT(project.id) AS total_project FROM project;";
+    $this->db->query($query);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
+  public function getCountTestSuite($project_id)
+  {
+    $query = "SELECT COUNT(test_suite.id) AS total_test_suite FROM test_suite WHERE test_suite.project_id=:project_id;";
+    $this->db->query($query);
+    $this->db->bind('project_id', $project_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
+  public function getCountTestCase($project_id)
+  {
+    $query = "SELECT COUNT(test_case.id) AS total_test_case FROM test_case WHERE test_case.project_id=:project_id;";
+    $this->db->query($query);
+    $this->db->bind('project_id', $project_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
   public function getAllProject()
   {
     $query = "SELECT project.*,COUNT(DISTINCT test_case.id) AS test_case_count,COUNT(DISTINCT test_suite.id) AS test_suite_count FROM project LEFT JOIN test_case ON project.id = test_case.project_id LEFT JOIN test_suite ON project.id = test_suite.project_id GROUP BY project.id;";

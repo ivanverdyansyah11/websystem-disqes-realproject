@@ -8,7 +8,7 @@ class Signin extends Controller
       $data['title'] = "Signin";
       $this->view('signin/index', $data);
     } else {
-      header("Location:" . BASEURL . "project");
+      header("Location:" . BASEURL . "dashboard");
       exit;
     };
   }
@@ -26,7 +26,7 @@ class Signin extends Controller
       $_SESSION['project'] = $data['project']['id'];
 
       $_SESSION['username'] = $data['user']['username'];
-      header("Location:" . BASEURL . "project");
+      header("Location:" . BASEURL . "dashboard");
       exit;
     }
   }

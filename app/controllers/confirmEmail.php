@@ -8,7 +8,7 @@ class ConfirmEmail extends Controller
       $data['title'] = "Confirm Email";
       $this->view('confirmEmail/index', $data);
     } else {
-      header("Location:" . BASEURL . "project");
+      header("Location:" . BASEURL . "dashboard");
       exit;
     };
   }

@@ -38,14 +38,14 @@
                     </div>
                     <div class="project-body d-flex justify-content-between align-items-center">
                         <div class="wrapper d-flex align-items-center gap-4">
-                            <div class="testcase-group">
+                            <a href="<?= BASEURL; ?>testcase" class="testcase-group">
                                 <div class="testcase-icon"></div>
                                 <p class="badge-count"><?= $project['test_case_count']; ?></p>
-                            </div>
-                            <div class="testsuite-group">
+                            </a>
+                            <!-- <a href="<?= BASEURL; ?>testcase" class="testsuite-group">
                                 <div class="testsuite-icon"></div>
                                 <p class="badge-count badge-danger"><?= $project['test_suite_count']; ?></p>
-                            </div>
+                            </a> -->
                         </div>
                         <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="wrapper-icon">
                             <div class="dashboard-icon"></div>

@@ -1026,6 +1026,7 @@ h4.title {
 }
 
 .content .card-project .testcase-group,
+.content .card-project a.testcase-group,
 .content .card-project .testsuite-group {
     position: relative;
 }
@@ -1050,8 +1051,10 @@ h4.title {
     background-image: url('../img/icon/dashboard-icon.svg');
 }
 
-.content .card-project .badge-count {
+.content .card-project .badge-count,
+.content .card-project a.badge-count {
     position: absolute;
+    color: rgba(var(--fourth-color), 1);
     top: -14px;
     right: -18px;
     font-size: 0.675rem;

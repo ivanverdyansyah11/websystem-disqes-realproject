@@ -21,7 +21,7 @@ class Project extends Controller
   {
     $_SESSION['project'] = $id;
     Flasher::setFlash('success', 'Successfully change project!');
-    header("Location:" . BASEURL . "project");
+    header("Location:" . BASEURL . "dashboard");
     exit;
   }
 

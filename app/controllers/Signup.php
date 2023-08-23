@@ -8,7 +8,7 @@ class Signup extends Controller
       $data['title'] = "Signup";
       $this->view('signup/index', $data);
     } else {
-      header("Location:" . BASEURL . "project");
+      header("Location:" . BASEURL . "dashboard");
       exit;
     };
   }
