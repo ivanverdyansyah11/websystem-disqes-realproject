@@ -21,6 +21,13 @@ class TestCase extends Controller
     };
   }
 
+  public function project($project_id)
+  {
+    $_SESSION['project'] = $project_id;
+    header("Location:" . BASEURL . "testcase");
+    exit;
+  }
+
   public function filterTestCase()
   {
     if (isset($_SESSION['username'])) {
