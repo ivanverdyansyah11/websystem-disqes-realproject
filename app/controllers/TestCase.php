@@ -40,9 +40,6 @@ class TestCase extends Controller
       $data['test_cases'] = $this->model('Testcase_model')->getTestCaseByFilter($_POST);
       $data['filterName'] = $_POST['name'];
 
-      // return var_dump($data['test_cases']);
-
-
       $this->view('templates/header', $data);
       $this->view('test-case/index', $data);
       $this->view('templates/footer', $data);
@@ -184,12 +181,11 @@ class TestCase extends Controller
     };
   }
 
-  public function addTestCase($test_suite_id, $test_section_id)
+  public function addTestCase()
   {
     if (isset($_SESSION['username'])) {
       $data['title'] = "New Test Case";
-      $data['test_suite'] = $this->model('Testsuite_model')->getTestSuiteById($test_suite_id);
-      $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($test_section_id);
+      $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
 
       $this->view('templates/header', $data);
       $this->view('test-case/add', $data);
@@ -198,6 +194,17 @@ class TestCase extends Controller
       header("Location:" . BASEURL . "signin");
       exit;
     };
+  }
+
+  public function getAllTestSection($test_suite)
+  {
+    $data['test_sections'] = $this->model('Testsection_model')->getTestSectionByProjectId($_SESSION['project'], $test_suite);
+
+    $test_section = [];
+    foreach ($data['test_sections'] as $test_section) {
+      $test_section[] = "<option value='" . $test_section['id'] . "'>" . $test_section['name'] . "</option>";
+      echo $test_section[0];
+    }
   }
 
   public function addTestCaseAction()
@@ -241,6 +248,8 @@ class TestCase extends Controller
 
       $data['test_case']['instruction'] = explode(',', $data['test_case']['instruction']);
       $data['test_case']['expected_result'] = explode(',', $data['test_case']['expected_result']);
+
+      $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
 
       $this->view('templates/header', $data);
       $this->view('test-case/edit', $data);

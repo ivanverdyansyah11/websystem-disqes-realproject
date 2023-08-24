@@ -18,22 +18,25 @@
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Suite <span class="input-required">*</span></p>
                             <select class="input position-relative" id="suiteInputAddCase" name="test_suite_id">
-                                <option value="<?= $data['test_suite']['id']; ?>" selected><?= $data['test_suite']['name']; ?></option>
+                                <option value="-">Select suite</option>
+                                <?php foreach ($data['test_suites'] as $test_suite) : ?>
+                                    <option value="<?= $test_suite['id']; ?>"><?= $test_suite['name']; ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 mb-4" id="sectionInput">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Section <span class="input-required">*</span></p>
                             <select class="input position-relative" id="sectionInputAddCase" name="test_section_id">
-                                <option value="<?= $data['test_section']['id']; ?>" selected><?= $data['test_section']['name']; ?></option>
+                                <option value="-">Select section</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Priority <span class="input-required">*</span></p>
-                            <select class="input position-relative" id="sectionInputAddCase" name="priority">
+                            <select class="input position-relative" id="priorityInputAddCase" name="priority">
                                 <option value="Not Set" selected>Not Set</option>
                                 <option value="High">High</option>
                                 <option value="Medium">Medium</option>
@@ -44,7 +47,7 @@
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Behavior <span class="input-required">*</span></p>
-                            <select class="input position-relative" id="sectionInputAddCase" name="behavior">
+                            <select class="input position-relative" id="behaviorInputAddCase" name="behavior">
                                 <option value="Not Set" selected>Not Set</option>
                                 <option value="Positive">Positive</option>
                                 <option value="Negative">Negative</option>
@@ -109,7 +112,24 @@
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script>
+    $(document).ready(function() {
+        $("#suiteInputAddCase").change(function() {
+            suiteInput = $(this).val();
+
+            $('#sectionInputAddCase').empty();
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost/disqes/public/testcase/getAllTestSection/' + suiteInput,
+                success: function(data) {
+                    let optionSelect = '<option value="-">Select section</option>';
+                    $('#sectionInputAddCase').append(optionSelect, data);
+                }
+            });
+        });
+    });
+
     const rowStep = document.querySelector('.row-step');
     const stepButton = document.querySelector('.button-step');
     const resetButton = document.querySelector('.reset-button-add-case');
@@ -118,11 +138,16 @@
         const nameInput = document.querySelector('#nameInputAddCase');
         const suiteInput = document.querySelector('#suiteInputAddCase');
         const sectionInput = document.querySelector('#sectionInputAddCase');
+        const priorityInputAddCase = document.querySelector('#priorityInputAddCase');
+        const behaviorInputAddCase = document.querySelector('#behaviorInputAddCase');
         const preconditionInput = document.querySelector('#preconditionInputAddCase');
-        const inputTable = document.querySelectorAll('.input-transparent');
         const expectedInput = document.querySelectorAll('#expectedInputAddCase');
 
         nameInput.value = '';
+        priorityInputAddCase.value = 'Not Set';
+        priorityInputAddCase.html = 'Not Set';
+        behaviorInputAddCase.value = 'Not Set';
+        behaviorInputAddCase.html = 'Not Set';
         preconditionInput.value = '';
 
         for (let i = 0; i < expectedInput.length; i++) {

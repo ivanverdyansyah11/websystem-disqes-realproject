@@ -9,6 +9,16 @@ class Testsection_model extends Database
     $this->db = new Database();
   }
 
+  public function getTestSectionByProjectId($project_id, $test_suite_id)
+  {
+    $query = "SELECT * FROM test_section WHERE project_id=:project_id AND test_suite_id=:test_suite_id";
+    $this->db->query($query);
+    $this->db->bind('project_id', $project_id);
+    $this->db->bind('test_suite_id', $test_suite_id);
+    $this->db->execute();
+    return $this->db->resultSet();
+  }
+
   public function getTestSectionByTestSuiteId($data)
   {
     $query = "SELECT * FROM test_section WHERE test_suite_id=:test_suite_id";

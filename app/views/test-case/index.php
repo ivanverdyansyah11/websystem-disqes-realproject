@@ -103,13 +103,6 @@
                             </div>
 
                             <ul class="list-move-section">
-
-                                <!-- <?php if (!empty($data['test_section'])) : ?>
-                                    <?php if ($data['test_section']['name'] === $test_section['name']) : ?>
-                                        <p class="position-relative"><?= $test_section['name'] ?></p>
-                                    <?php endif ?>
-                                <?php endif ?> -->
-
                                 <?php foreach ($data['test_sections'] as $test_section) : ?>
                                     <li>
                                         <div class="suite-menu position-relative <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] || $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>">
@@ -145,11 +138,14 @@
         <div class="col col-case">
             <div class="table-header d-flex justify-content-between align-items-center">
                 <p class="table-title"><?= $data['title_case']; ?></p>
-                <?php if ($data['url_add_case'] == true) : ?>
+                <!-- <?php if ($data['url_add_case'] == true) : ?>
                     <a href="<?= BASEURL; ?>testcase/addTestCase/<?= $data['url_add_case']; ?>" class="button-primary d-flex align-items-center">
                         <div class="add-icon"></div>New
                     </a>
-                <?php endif; ?>
+                    <?php endif; ?> -->
+                <a href="<?= BASEURL; ?>testcase/addTestCase" class="button-primary d-flex align-items-center">
+                    <div class="add-icon"></div>New
+                </a>
             </div>
             <div class="case-header">
                 <div class="row">
