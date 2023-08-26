@@ -65,18 +65,18 @@
                 <div class="all-suite-icon"></div>
                 <p>All Test Cases</p>
             </a>
-
             <ul class="list-move-suite">
-                <?php foreach ($data['test_suites'] as $test_suite) : ?>
+                <?php foreach ($data['test_suites'] as $i => $test_suite) : ?>
                     <li>
                         <div class="wrapper-suite">
                             <div class="wrapper-header position-relative">
-                                <a href="<?= BASEURL; ?>testcase/testsuite/<?= $test_suite['id']; ?>" class="suite-header d-flex align-items-center justify-content-between position-relative">
+                                <a href="<?= BASEURL; ?>testcase/testsuite/<?= $test_suite['id']; ?>" class="suite-header d-flex align-items-center justify-content-between position-relative <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?>">
                                     <div class="wrapper-header d-flex align-items-center">
                                         <div class="suite-icon"></div>
                                         <p><?= $test_suite['name']; ?></p>
                                     </div>
-                                    <div class="arrow-suite p-1 pe-0 <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>">
+                                    <!-- <div class="arrow-suite p-1 pe-0 <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>"> -->
+                                    <div class="arrow-suite p-1 pe-0 <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?>">
                                         <div class="arrow-icon"></div>
                                     </div>
                                 </a>
@@ -104,28 +104,30 @@
 
                             <ul class="list-move-section">
                                 <?php foreach ($data['test_sections'] as $test_section) : ?>
-                                    <li>
-                                        <div class="suite-menu position-relative <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] || $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>">
-                                            <a href="<?= BASEURL; ?>testcase/testsection/<?= $test_suite['id']; ?>/<?= $test_section['id']; ?>" class="position-relative"><?= $test_section['name']; ?></a>
-                                            <div class="wrapper-action action-section d-flex align-items-center">
-                                                <div class="box-rotate position-relative"></div>
-                                                <div class="card-action d-flex position-relative">
-                                                    <button type="button" class="wrapper-icon" onclick="upMoveSection()">
-                                                        <div class="up-icon"></div>
-                                                    </button>
-                                                    <button type="button" class="wrapper-icon" onclick="downMoveSection()">
-                                                        <div class="down-icon"></div>
-                                                    </button>
-                                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection" data-id="<?= $test_section['id']; ?>">
-                                                        <div class="edit-icon"></div>
-                                                    </button>
-                                                    <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection" data-id="<?= $test_section['id']; ?>">
-                                                        <div class="delete-icon"></div>
-                                                    </button>
+                                    <?php if ($test_suite['id'] == $test_section['test_suite_id']) : ?>
+                                        <li>
+                                            <div class="suite-menu position-relative active <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] || $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>">
+                                                <a href="<?= BASEURL; ?>testcase/testsection/<?= $test_suite['id']; ?>/<?= $test_section['id']; ?>" class="position-relative"><?= $test_section['name']; ?></a>
+                                                <div class="wrapper-action action-section d-flex align-items-center">
+                                                    <div class="box-rotate position-relative"></div>
+                                                    <div class="card-action d-flex position-relative">
+                                                        <button type="button" class="wrapper-icon" onclick="upMoveSection()">
+                                                            <div class="up-icon"></div>
+                                                        </button>
+                                                        <button type="button" class="wrapper-icon" onclick="downMoveSection()">
+                                                            <div class="down-icon"></div>
+                                                        </button>
+                                                        <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection" data-id="<?= $test_section['id']; ?>">
+                                                            <div class="edit-icon"></div>
+                                                        </button>
+                                                        <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#deleteSection" data-id="<?= $test_section['id']; ?>">
+                                                            <div class="delete-icon"></div>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </ul>
                         </div>

@@ -450,27 +450,56 @@ h4.title {
     background-color: rgba(var(--primary-dark-color), 1);
 }
 
+.content .project-icon,
+.content .test-suite-icon,
 .content .test-case-icon,
-.content .test-ruins-icon,
+.content .not-set-icon,
+.content .high-icon,
+.content .medium-icon,
+.content .low-icon,
 .content .status-icon {
     width: 20px;
     height: 17px;
-    background-image: url('../img/dashboard/test-case.svg');
+    background-image: url('../img/dashboard/project.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.content .test-ruins-icon {
+.content .test-suite-icon {
     width: 20px;
-    height: 16px;
-    background-image: url('../img/dashboard/test-ruins.svg');
+    height: 15px;
+    background-image: url('../img/dashboard/test-suite.svg');
 }
 
-.content .status-icon {
+.content .test-case-icon {
+    width: 17px;
+    height: 19px;
+    background-image: url('../img/dashboard/test-case.svg');
+}
+
+.content .not-set-icon {
+    width: 19px;
+    height: 19px;
+    background-image: url('../img/dashboard/not-set.svg');
+}
+
+.content .high-icon {
+    width: 20px;
+    height: 15px;
+    background-image: url('../img/dashboard/high.svg');
+}
+
+.content .medium-icon {
     width: 18px;
-    height: 18px;
-    background-image: url('../img/dashboard/status.svg');
+    height: 15px;
+    background-image: url('../img/dashboard/medium.svg');
+}
+
+.content .low-icon {
+    width: 20px;
+    height: 15px;
+    background-image: url('../img/dashboard/low.svg');
 }
 
 .filter-bar {
@@ -688,7 +717,12 @@ h4.title {
     transition: 0ms !important;
 }
 
-.content .suite-menu a {
+.content .suite-menu a,
+.content .suite-menu > button {
+    outline: none;
+    border: none;
+    stroke: none;
+    background-color: transparent;
     color: rgba(255, 255, 255, 0.86);
     margin-left: 30px;
     font-size: 0.938rem;

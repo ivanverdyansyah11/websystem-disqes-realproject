@@ -69,7 +69,7 @@
                     <form action="<?= BASEURL; ?>project/addAction" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputAddProject" name="name" autocomplete="off">
+                            <input type="text" class="input position-relative" id="nameInputAddProject" name="name" autocomplete="off" required>
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>
@@ -109,7 +109,7 @@
                         <input type="hidden" name="id" data-value="id">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name</p>
-                            <input type="text" class="input position-relative" id="nameInputEditProject" name="name" autocomplete="off" data-value="name">
+                            <input type="text" class="input position-relative" id="nameInputEditProject" name="name" autocomplete="off" data-value="name" required>
                         </div>
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Description</p>

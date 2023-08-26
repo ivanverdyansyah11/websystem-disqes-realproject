@@ -169,11 +169,17 @@ class TestCase extends Controller
       $data['title_case'] = $data['test_suite']['name'] . ' | ' . $data['test_section']['name'];
 
       $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
+
+      $test_section = array();
+      foreach ($data['test_suites'] as $test_suite) {
+        array_push($test_section, $this->model('Testsection_model')->getTestSectionByTestSuiteId($test_suite['id']));
+      }
+
       $data['test_sections'] = $this->model('Testsection_model')->getTestSectionByTestSuiteId($test_suite_id);
       $data['test_cases'] = $this->model('Testcase_model')->getTestCaseByTestSectionId($test_suite_id, $test_section_id, $_SESSION['project']);
 
       $this->view('templates/header', $data);
-      $this->view('test-case/index', $data);
+      $this->view('test-case/index', $data, $test_section);
       $this->view('templates/footer', $data);
     } else {
       header("Location:" . BASEURL . "signin");
@@ -209,34 +215,40 @@ class TestCase extends Controller
 
   public function addTestCaseAction()
   {
-    $_POST['instruction'] = implode(',', $_POST['instruction']);
-    $_POST['expected_result'] = implode(',', $_POST['expected_result']);
-
-    $data['test_suite'] = $this->model('Testsuite_model')->getTestSuiteById($_POST['test_suite_id']);
-    $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($_POST['test_section_id']);
-    $data['test_case'] = $this->model('Testcase_model')->getTestCaseLatestId();
-
-    $firstLetterTestSuite = substr($data['test_suite']['name'], 0, 1);
-    $firstLetterTestSection = substr($data['test_section']['name'], 0, 1);
-    $randomKey = '';
-
-    if ($data['test_case']) {
-      $randomKey = $data['test_case']['totalTestCase'] + 1;
-    } else {
-      $randomKey = 1;
-    }
-
-    $_POST['key_case'] = $firstLetterTestSuite . $firstLetterTestSection . '-' . $randomKey;
-    $_POST['project_id'] = $_SESSION['project'];
-
-    if ($this->model('Testcase_model')->insertTestCase($_POST) > 0) {
-      Flasher::setFlash('success', 'Successfully create test case!');
-      header("Location:" . BASEURL . "testcase");
+    if ($_POST['name'] == '' || $_POST['test_section_id'] == '-' || $_POST['precondition'] == '') {
+      Flasher::setFlash('danger', 'Input data correctly!');
+      header("Location:" . BASEURL . "testcase/addTestCase");
       exit;
     } else {
-      Flasher::setFlash('danger', 'Failed to create test case!');
-      header("Location:" . BASEURL . "testcase");
-      exit;
+      $_POST['instruction'] = implode(',', $_POST['instruction']);
+      $_POST['expected_result'] = implode(',', $_POST['expected_result']);
+
+      $data['test_suite'] = $this->model('Testsuite_model')->getTestSuiteById($_POST['test_suite_id']);
+      $data['test_section'] = $this->model('Testsection_model')->getTestSectionById($_POST['test_section_id']);
+      $data['test_case'] = $this->model('Testcase_model')->getTestCaseLatestId();
+
+      $firstLetterTestSuite = substr($data['test_suite']['name'], 0, 1);
+      $firstLetterTestSection = substr($data['test_section']['name'], 0, 1);
+      $randomKey = '';
+
+      if ($data['test_case']) {
+        $randomKey = $data['test_case']['totalTestCase'] + 1;
+      } else {
+        $randomKey = 1;
+      }
+
+      $_POST['key_case'] = $firstLetterTestSuite . $firstLetterTestSection . '-' . $randomKey;
+      $_POST['project_id'] = $_SESSION['project'];
+
+      if ($this->model('Testcase_model')->insertTestCase($_POST) > 0) {
+        Flasher::setFlash('success', 'Successfully create test case!');
+        header("Location:" . BASEURL . "testcase");
+        exit;
+      } else {
+        Flasher::setFlash('danger', 'Failed to create test case!');
+        header("Location:" . BASEURL . "testcase");
+        exit;
+      }
     }
   }
 

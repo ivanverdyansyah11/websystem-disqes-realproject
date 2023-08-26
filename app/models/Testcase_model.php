@@ -36,6 +36,15 @@ class Testcase_model extends Database
     return $this->db->resultSet();
   }
 
+  public function getTestCaseByJustId($test_section_id)
+  {
+    $query = "SELECT * FROM test_case WHERE test_case.test_section_id=:test_section_id;";
+    $this->db->query($query);
+    $this->db->bind('test_section_id', $test_section_id);
+    $this->db->execute();
+    return $this->db->resultSet();
+  }
+
   public function getTestCaseById($id)
   {
     $query = "SELECT test_suite.name AS test_suite_name,test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.id=:id;";

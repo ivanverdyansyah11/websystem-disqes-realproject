@@ -1,4 +1,11 @@
 <div class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="flasher-wrap w-100">
+                <?php Flasher::flash(); ?>
+            </div>
+        </div>
+    </div>
     <div class="row section-gap">
         <div class="col-12">
             <h4 class="title">New Test Case</h4>
@@ -17,8 +24,7 @@
                     <div class="col-md-6 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Suite <span class="input-required">*</span></p>
-                            <select class="input position-relative" id="suiteInputAddCase" name="test_suite_id">
-                                <option value="-">Select suite</option>
+                            <select class="input position-relative" id="suiteInputAddCase" name="test_suite_id" required>
                                 <?php foreach ($data['test_suites'] as $test_suite) : ?>
                                     <option value="<?= $test_suite['id']; ?>"><?= $test_suite['name']; ?></option>
                                 <?php endforeach; ?>
@@ -28,8 +34,8 @@
                     <div class="col-md-6 mb-4" id="sectionInput">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Section <span class="input-required">*</span></p>
-                            <select class="input position-relative" id="sectionInputAddCase" name="test_section_id">
-                                <option value="-">Select section</option>
+                            <select class="input position-relative" id="sectionInputAddCase" name="test_section_id" required>
+                                <option value="-">Select suite first</option>
                             </select>
                         </div>
                     </div>
@@ -47,7 +53,7 @@
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Behavior <span class="input-required">*</span></p>
-                            <select class="input position-relative" id="behaviorInputAddCase" name="behavior">
+                            <select class="input position-relative" id="behaviorInputAddCase" name="behavior" required>
                                 <option value="Not Set" selected>Not Set</option>
                                 <option value="Positive">Positive</option>
                                 <option value="Negative">Negative</option>
@@ -123,8 +129,7 @@
                 type: 'get',
                 url: 'http://localhost/disqes/public/testcase/getAllTestSection/' + suiteInput,
                 success: function(data) {
-                    let optionSelect = '<option value="-">Select section</option>';
-                    $('#sectionInputAddCase').append(optionSelect, data);
+                    $('#sectionInputAddCase').append(data);
                 }
             });
         });

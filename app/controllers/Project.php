@@ -6,7 +6,7 @@ class Project extends Controller
   {
     if (isset($_SESSION['username'])) {
       $data['title'] = "Project";
-      $data['projects'] = $this->model('Project_model')->getAllProject();
+      $data['projects'] = $this->model('Project_model')->getAllProject($_SESSION['user']);
 
       $this->view('templates/header', $data);
       $this->view('project/index', $data);
@@ -27,7 +27,7 @@ class Project extends Controller
 
   public function addAction()
   {
-    if ($this->model('Project_model')->insertProject($_POST) > 0) {
+    if ($this->model('Project_model')->insertProject($_POST, $_SESSION['user']) > 0) {
       Flasher::setFlash('success', 'Successfully create project!');
       header("Location:" . BASEURL . "project");
       exit;
