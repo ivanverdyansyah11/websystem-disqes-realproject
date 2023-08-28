@@ -27,7 +27,7 @@ class Testcase_model extends Database
 
   public function getTestCaseByFilter($data)
   {
-    $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.name LIKE CONCAT('%', :name, '%') AND test_case.project_id=:project_id;";
+    $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.name LIKE CONCAT('%', :name, '%') AND test_case.project_id=:project_id ORDER BY test_case.id ASC;";
     $this->db->query($query);
     $this->db->bind('name', $data['name']);
     $this->db->bind('project_id', $data['project_id']);
@@ -37,7 +37,7 @@ class Testcase_model extends Database
 
   public function getTestCase($project_id)
   {
-    $query = "SELECT test_suite.name AS test_suite_name,test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.project_id=:project_id;";
+    $query = "SELECT test_suite.name AS test_suite_name,test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.project_id=:project_id ORDER BY test_case.id ASC;";
     $this->db->query($query);
     $this->db->bind('project_id', $project_id);
     $this->db->execute();
@@ -55,7 +55,7 @@ class Testcase_model extends Database
 
   public function getTestCaseById($id)
   {
-    $query = "SELECT test_suite.name AS test_suite_name,test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.id=:id;";
+    $query = "SELECT test_suite.name AS test_suite_name,test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.id=:id ORDER BY test_case.id ASC;";
     $this->db->query($query);
     $this->db->bind('id', $id);
     $this->db->execute();
@@ -64,7 +64,7 @@ class Testcase_model extends Database
 
   public function getTestCaseByTestSuiteId($test_suite_id, $project_id)
   {
-    $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.test_suite_id=:test_suite_id && test_case.project_id=:project_id;";
+    $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.test_suite_id=:test_suite_id && test_case.project_id=:project_id ORDER BY test_case.id ASC;";
     $this->db->query($query);
     $this->db->bind('test_suite_id', $test_suite_id);
     $this->db->bind('project_id', $project_id);
@@ -74,13 +74,33 @@ class Testcase_model extends Database
 
   public function getTestCaseByTestSectionId($id, $testsection, $data)
   {
-    $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.test_suite_id=:test_suite_id AND test_case.test_section_id=:test_section_id AND test_case.project_id=:project_id";
+    $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_suite ON test_case.test_suite_id=test_suite.id INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.test_suite_id=:test_suite_id AND test_case.test_section_id=:test_section_id AND test_case.project_id=:project_id ORDER BY test_case.id ASC;";
     $this->db->query($query);
     $this->db->bind('test_suite_id', $id);
     $this->db->bind('test_section_id', $testsection);
     $this->db->bind('project_id', $data);
     $this->db->execute();
     return $this->db->resultSet();
+  }
+
+  public function editTestCaseUp($data)
+  {
+    $query = "UPDATE test_case SET id = CASE WHEN id = :id_1 THEN :id_2 WHEN id = :id_2 THEN :id_1 END WHERE id IN (:id_1, :id_2);";
+    $this->db->query($query);
+    $this->db->bind('id_2', $data['test_case_select_id']);
+    $this->db->bind('id_1', $data['test_case_moved_id']);
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
+
+  public function editTestCaseDown($data)
+  {
+    $query = "UPDATE test_case SET id = CASE WHEN id = :id_1 THEN :id_2 WHEN id = :id_2 THEN :id_1 END WHERE id IN (:id_1, :id_2);";
+    $this->db->query($query);
+    $this->db->bind('id_2', $data['test_case_moved_id']);
+    $this->db->bind('id_1', $data['test_case_select_id']);
+    $this->db->execute();
+    return $this->db->rowCount();
   }
 
   public function insertTestCase($data)

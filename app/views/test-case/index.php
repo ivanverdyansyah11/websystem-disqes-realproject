@@ -75,7 +75,6 @@
                                         <div class="suite-icon"></div>
                                         <p><?= $test_suite['name']; ?></p>
                                     </div>
-                                    <!-- <div class="arrow-suite p-1 pe-0 <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>"> -->
                                     <div class="arrow-suite p-1 pe-0 <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?>">
                                         <div class="arrow-icon"></div>
                                     </div>
@@ -111,12 +110,12 @@
                                                 <div class="wrapper-action action-section d-flex align-items-center">
                                                     <div class="box-rotate position-relative"></div>
                                                     <div class="card-action d-flex position-relative">
-                                                        <button type="button" class="wrapper-icon" onclick="upMoveSection()">
+                                                        <a href="<?= BASEURL; ?>testcase/moveUpSection/<?= $test_section['id']; ?>" class="wrapper-icon">
                                                             <div class="up-icon"></div>
-                                                        </button>
-                                                        <button type="button" class="wrapper-icon" onclick="downMoveSection()">
+                                                        </a>
+                                                        <a href="<?= BASEURL; ?>testcase/moveDownSection/<?= $test_section['id']; ?>" class="wrapper-icon">
                                                             <div class="down-icon"></div>
-                                                        </button>
+                                                        </a>
                                                         <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection" data-id="<?= $test_section['id']; ?>">
                                                             <div class="edit-icon"></div>
                                                         </button>
@@ -179,12 +178,12 @@
                                 <div class="wrapper-action action-case d-flex align-items-center">
                                     <div class="box-rotate position-relative"></div>
                                     <div class="card-action d-flex position-relative">
-                                        <button type="button" class="wrapper-icon" onclick="upMoveCase()">
+                                        <a href="<?= BASEURL; ?>testcase/moveUpCase/<?= $test_case['id']; ?>" class="wrapper-icon">
                                             <div class="up-icon"></div>
-                                        </button>
-                                        <button type="button" class="wrapper-icon" onclick="downMoveCase()">
+                                        </a>
+                                        <a href="<?= BASEURL; ?>testcase/moveDownCase/<?= $test_case['id']; ?>" class="wrapper-icon">
                                             <div class="down-icon"></div>
-                                        </button>
+                                        </a>
                                         <a href="<?= BASEURL; ?>testcase/editTestCase/<?= $test_case['id']; ?>" class="wrapper-icon">
                                             <div class="edit-icon"></div>
                                         </a>

@@ -11,7 +11,7 @@ class Testsuite_model extends Database
 
   public function getTestSuiteByProjectId($data)
   {
-    $query = "SELECT * FROM test_suite WHERE project_id=:project_id";
+    $query = "SELECT * FROM test_suite WHERE project_id=:project_id ORDER BY test_suite.id ASC;";
     $this->db->query($query);
     $this->db->bind('project_id', $data);
     $this->db->execute();
@@ -59,6 +59,26 @@ class Testsuite_model extends Database
     $this->db->bind('id', $data['id']);
     $this->db->bind('name', $data['name']);
     $this->db->bind('description', $data['description']);
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
+
+  public function editTestSuiteUp($data)
+  {
+    $query = "UPDATE test_suite SET id = CASE WHEN id = :id_1 THEN :id_2 WHEN id = :id_2 THEN :id_1 END WHERE id IN (:id_1, :id_2);";
+    $this->db->query($query);
+    $this->db->bind('id_2', $data['test_suite_select_id']);
+    $this->db->bind('id_1', $data['test_suite_moved_id']);
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
+
+  public function editTestSuiteDown($data)
+  {
+    $query = "UPDATE test_suite SET id = CASE WHEN id = :id_1 THEN :id_2 WHEN id = :id_2 THEN :id_1 END WHERE id IN (:id_1, :id_2);";
+    $this->db->query($query);
+    $this->db->bind('id_2', $data['test_suite_moved_id']);
+    $this->db->bind('id_1', $data['test_suite_select_id']);
     $this->db->execute();
     return $this->db->rowCount();
   }

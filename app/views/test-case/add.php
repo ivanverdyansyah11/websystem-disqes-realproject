@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-12">
             <form action="<?= BASEURL; ?>testcase/addTestCaseAction" method="post" class="card-form d-flex flex-column w-100">
-                <input type="text" name="id" value="<?= !empty($data['test_case_id']['id']) ? $data['test_case_id']['id'] + 1 : '1'; ?>">
+                <input type="hidden" name="id" value="<?= !empty($data['test_case_id']['id']) ? $data['test_case_id']['id'] + 1 : '1'; ?>">
                 <div class="row">
                     <div class="col-12 mb-4">
                         <div class="input-wrapper w-100 position-relative">

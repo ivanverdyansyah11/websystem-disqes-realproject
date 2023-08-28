@@ -24,9 +24,185 @@ class TestCase extends Controller
     };
   }
 
-  // public function moveUpSuite($test_suite_id)
-  // {
-  // }
+  public function moveUpSuite($test_suite_id)
+  {
+    $test_suite_select = $this->model('Testsuite_model')->getTestSuiteById($test_suite_id);
+    if ($test_suite_select['id'] == '1') {
+      Flasher::setFlash('danger', 'Failed to move up test suite!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+
+    $test_suite_select_id = $test_suite_select['id'];
+
+    $test_suite_moved_id = $test_suite_id - 1;
+    $test_suite_moved = $this->model('Testsuite_model')->getTestSuiteById($test_suite_moved_id);
+    $test_suite_moved_id = $test_suite_moved['id'];
+
+    $_POST['test_suite_moved_id'] = $test_suite_moved_id;
+    $_POST['test_suite_select_id'] = $test_suite_select_id;
+
+    if ($this->model('Testsuite_model')->editTestSuiteUp($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully move up test suite!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to move up test suite!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
+
+  public function moveDownSuite($test_suite_id)
+  {
+    $test_suite_id_last = $this->model('Testsuite_model')->getTestSuiteId();
+
+    $test_suite_select = $this->model('Testsuite_model')->getTestSuiteById($test_suite_id);
+    if ($test_suite_select['id'] == $test_suite_id_last['id']) {
+      Flasher::setFlash('danger', 'Failed to move down test suite!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+
+    $test_suite_select_id = $test_suite_select['id'];
+
+    $test_suite_moved_id = $test_suite_id + 1;
+    $test_suite_moved = $this->model('Testsuite_model')->getTestSuiteById($test_suite_moved_id);
+    $test_suite_moved_id = $test_suite_moved['id'];
+
+    $_POST['test_suite_moved_id'] = $test_suite_moved_id;
+    $_POST['test_suite_select_id'] = $test_suite_select_id;
+
+    if ($this->model('Testsuite_model')->editTestSuiteDown($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully move down test suite!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to move down test suite!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
+
+  public function moveUpSection($test_section_id)
+  {
+    $test_section_select = $this->model('Testsection_model')->getTestSectionById($test_section_id);
+    if ($test_section_select['id'] == '1') {
+      Flasher::setFlash('danger', 'Failed to move up test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+
+    $test_section_select_id = $test_section_select['id'];
+
+    $test_section_moved_id = $test_section_select_id - 1;
+    $test_section_moved = $this->model('Testsection_model')->getTestSectionById($test_section_moved_id);
+    $test_section_moved_id = $test_section_moved['id'];
+
+    $_POST['test_section_moved_id'] = $test_section_moved_id; // 1
+    $_POST['test_section_select_id'] = $test_section_select_id; // 2
+
+    if ($this->model('Testsection_model')->editTestSectionUp($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully move up test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to move up test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
+
+  public function moveDownSection($test_section_id)
+  {
+    $test_section_id_last = $this->model('Testsection_model')->getTestSectionId();
+
+    $test_section_select = $this->model('Testsection_model')->getTestSectionById($test_section_id);
+    if ($test_section_select['id'] == $test_section_id_last['id']) {
+      Flasher::setFlash('danger', 'Failed to move down test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+
+    $test_section_select_id = $test_section_select['id'];
+
+    $test_section_moved_id = $test_section_select_id + 1;
+    $test_section_moved = $this->model('Testsection_model')->getTestSectionById($test_section_moved_id);
+    $test_section_moved_id = $test_section_moved['id'];
+
+    $_POST['test_section_moved_id'] = $test_section_moved_id;
+    $_POST['test_section_select_id'] = $test_section_select_id;
+
+    if ($this->model('Testsection_model')->editTestSectionDown($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully move down test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to move down test section!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
+
+  public function moveUpCase($test_case_id)
+  {
+    $test_case_select = $this->model('Testcase_model')->getTestCaseById($test_case_id);
+    if ($test_case_select['id'] == '1') {
+      Flasher::setFlash('danger', 'Failed to move up test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+
+    $test_case_select_id = $test_case_select['id'];
+
+    $test_case_moved_id = $test_case_select_id - 1;
+    $test_case_moved = $this->model('Testcase_model')->getTestCaseById($test_case_moved_id);
+    $test_case_moved_id = $test_case_moved['id'];
+
+    $_POST['test_case_moved_id'] = $test_case_moved_id;
+    $_POST['test_case_select_id'] = $test_case_select_id;
+
+    if ($this->model('Testcase_model')->editTestCaseUp($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully move up test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to move up test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
+
+  public function moveDownCase($test_case_id)
+  {
+    $test_case_id_last = $this->model('Testcase_model')->getTestCaseId();
+
+    $test_case_select = $this->model('Testcase_model')->getTestCaseById($test_case_id);
+    if ($test_case_select['id'] == $test_case_id_last['id']) {
+      Flasher::setFlash('danger', 'Failed to move down test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+
+    $test_case_select_id = $test_case_select['id'];
+
+    $test_case_moved_id = $test_case_select_id + 1;
+    $test_case_moved = $this->model('Testcase_model')->getTestCaseById($test_case_moved_id);
+    $test_case_moved_id = $test_case_moved['id'];
+
+    $_POST['test_case_moved_id'] = $test_case_moved_id;
+    $_POST['test_case_select_id'] = $test_case_select_id;
+
+    if ($this->model('Testcase_model')->editTestCaseDown($_POST) > 0) {
+      Flasher::setFlash('success', 'Successfully move down test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to move down test case!');
+      header("Location:" . BASEURL . "testcase");
+      exit;
+    }
+  }
 
   public function project($project_id)
   {
