@@ -13,7 +13,6 @@ class TestCase extends Controller
       $data['test_cases'] = $this->model('Testcase_model')->getTestCase($_SESSION['project']);
 
       $data['test_suite_id'] = $this->model('Testsuite_model')->getTestSuiteId();
-
       $data['test_section_id'] = $this->model('Testsection_model')->getTestSectionId();
 
       $this->view('templates/header', $data);
@@ -113,6 +112,9 @@ class TestCase extends Controller
       $data['test_sections'] = $this->model('Testsection_model')->getTestSectionByTestSuiteId($test_suite_id);
       $data['test_cases'] = $this->model('Testcase_model')->getTestCaseByTestSuiteId($test_suite_id, $_SESSION['project']);
 
+      $data['test_suite_id'] = $this->model('Testsuite_model')->getTestSuiteId();
+      $data['test_section_id'] = $this->model('Testsection_model')->getTestSectionId();
+
       $this->view('templates/header', $data);
       $this->view('test-case/index', $data);
       $this->view('templates/footer', $data);
@@ -177,6 +179,8 @@ class TestCase extends Controller
       $data['title_case'] = $data['test_suite']['name'] . ' | ' . $data['test_section']['name'];
 
       $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
+      $data['test_suite_id'] = $this->model('Testsuite_model')->getTestSuiteId();
+      $data['test_section_id'] = $this->model('Testsection_model')->getTestSectionId();
 
       $test_section = array();
       foreach ($data['test_suites'] as $test_suite) {
@@ -200,6 +204,7 @@ class TestCase extends Controller
     if (isset($_SESSION['username'])) {
       $data['title'] = "New Test Case";
       $data['test_suites'] = $this->model('Testsuite_model')->getTestSuiteByProjectId($_SESSION['project']);
+      $data['test_case_id'] = $this->model('Testcase_model')->getTestCaseId();
 
       $this->view('templates/header', $data);
       $this->view('test-case/add', $data);

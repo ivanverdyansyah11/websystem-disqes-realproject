@@ -17,6 +17,14 @@ class Testcase_model extends Database
     return $this->db->resultSingle();
   }
 
+  public function getTestCaseId()
+  {
+    $query = "SELECT test_case.id FROM test_case ORDER BY test_case.id DESC LIMIT 1;";
+    $this->db->query($query);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
   public function getTestCaseByFilter($data)
   {
     $query = "SELECT test_section.name AS test_section_name,test_case.* FROM test_case INNER JOIN test_section ON test_case.test_section_id=test_section.id WHERE test_case.name LIKE CONCAT('%', :name, '%') AND test_case.project_id=:project_id;";
@@ -77,8 +85,9 @@ class Testcase_model extends Database
 
   public function insertTestCase($data)
   {
-    $query = "INSERT INTO test_case(name,key_case,priority,behavior,precondition,instruction,expected_result,test_suite_id,test_section_id,project_id) VALUES(:name,:key_case,:priority,:behavior,:precondition,:instruction,:expected_result,:test_suite_id,:test_section_id,:project_id)";
+    $query = "INSERT INTO test_case(id,name,key_case,priority,behavior,precondition,instruction,expected_result,test_suite_id,test_section_id,project_id) VALUES(:id,:name,:key_case,:priority,:behavior,:precondition,:instruction,:expected_result,:test_suite_id,:test_section_id,:project_id)";
     $this->db->query($query);
+    $this->db->bind('id', $data['id']);
     $this->db->bind('name', $data['name']);
     $this->db->bind('key_case', $data['key_case']);
     $this->db->bind('priority', $data['priority']);

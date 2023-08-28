@@ -220,7 +220,7 @@
                 </div>
                 <div class="content-body">
                     <form id="formaddNewSection" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
-                        <input type="text" name="id" value="<?= !empty($data['test_section_id']['id']) ? $data['test_section_id']['id'] + 1 : '1'; ?>">
+                        <input type="hidden" name="id" value="<?= !empty($data['test_section_id']['id']) ? $data['test_section_id']['id'] + 1 : '1'; ?>">
                         <input type="hidden" name="test_suite_id" data-value="test_suite_id">
                         <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
                         <div class="input-wrapper w-100 position-relative">
