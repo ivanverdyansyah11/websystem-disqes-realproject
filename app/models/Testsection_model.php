@@ -19,6 +19,14 @@ class Testsection_model extends Database
     return $this->db->resultSet();
   }
 
+  public function getTestSectionId()
+  {
+    $query = "SELECT test_section.id FROM test_section ORDER BY test_section.id DESC LIMIT 1;";
+    $this->db->query($query);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
   public function getTestSectionJustByProjectId($data)
   {
     $query = "SELECT * FROM test_section WHERE project_id=:project_id";
@@ -58,8 +66,9 @@ class Testsection_model extends Database
 
   public function insertTestSection($data)
   {
-    $query = "INSERT INTO test_section(name,test_suite_id,project_id) VALUES(:name,:test_suite_id,:project_id)";
+    $query = "INSERT INTO test_section(id,name,test_suite_id,project_id) VALUES(:id,:name,:test_suite_id,:project_id)";
     $this->db->query($query);
+    $this->db->bind('id', $data['id']);
     $this->db->bind('name', $data['name']);
     $this->db->bind('test_suite_id', $data['test_suite_id']);
     $this->db->bind('project_id', $data['project_id']);

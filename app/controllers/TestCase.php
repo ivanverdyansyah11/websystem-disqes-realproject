@@ -12,6 +12,10 @@ class TestCase extends Controller
       $data['test_sections'] = [];
       $data['test_cases'] = $this->model('Testcase_model')->getTestCase($_SESSION['project']);
 
+      $data['test_suite_id'] = $this->model('Testsuite_model')->getTestSuiteId();
+
+      $data['test_section_id'] = $this->model('Testsection_model')->getTestSectionId();
+
       $this->view('templates/header', $data);
       $this->view('test-case/index', $data);
       $this->view('templates/footer', $data);
@@ -20,6 +24,10 @@ class TestCase extends Controller
       exit;
     };
   }
+
+  // public function moveUpSuite($test_suite_id)
+  // {
+  // }
 
   public function project($project_id)
   {
