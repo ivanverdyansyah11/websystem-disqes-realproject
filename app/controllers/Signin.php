@@ -22,7 +22,7 @@ class Signin extends Controller
       header("Location:" . BASEURL . "signin");
       exit;
     } else {
-      $data['project'] = $this->model('Project_model')->getProjectFirst();
+      $data['project'] = $this->model('Project_model')->getProjectFirst($data['user']['id']);
       $_SESSION['project'] = $data['project']['id'];
       $_SESSION['user'] = $data['user']['id'];
 
