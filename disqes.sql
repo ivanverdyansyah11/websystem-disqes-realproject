@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 26, 2023 at 02:48 PM
+-- Generation Time: Aug 28, 2023 at 11:14 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -68,8 +68,10 @@ CREATE TABLE `test_case` (
 --
 
 INSERT INTO `test_case` (`id`, `name`, `key_case`, `priority`, `behavior`, `precondition`, `instruction`, `expected_result`, `test_suite_id`, `test_section_id`, `project_id`) VALUES
-(23, '123', 'HN-1', 'High', 'Positive', '123', '', '', 7, 12, 6),
-(24, '345', 'HN-2', 'Medium', 'Negative', '123425', '', '', 7, 12, 6);
+(1, 'Header Condition True', 'HN-1', 'High', 'Positive', 'Lorem', '', '', 1, 1, 6),
+(2, 'Header Condition False', 'HN-2', 'Medium', 'Negative', 'Lorem', '', '', 1, 1, 6),
+(4, 'Hero Condiiton True', 'HH-3', 'High', 'Negative', 'Lorem', '', '', 1, 2, 6),
+(3, 'Hero Condiiton False', 'HN-4', 'High', 'Destructive', 'Lorem', '', '', 1, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -89,12 +91,9 @@ CREATE TABLE `test_section` (
 --
 
 INSERT INTO `test_section` (`id`, `name`, `test_suite_id`, `project_id`) VALUES
-(12, 'Navigation Bar', 7, 6),
-(13, 'Header Section', 7, 6),
-(14, 'About Section', 8, 6),
-(15, 'Product Section', 8, 6),
-(16, 'Footer Section', 9, 6),
-(17, 'Copyright', 9, 6);
+(3, 'Navigation', 1, 6),
+(1, 'Hero', 1, 6),
+(2, 'About', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -114,9 +113,9 @@ CREATE TABLE `test_suite` (
 --
 
 INSERT INTO `test_suite` (`id`, `name`, `description`, `project_id`) VALUES
-(7, 'Header', '', 6),
-(8, 'Body', '', 6),
-(9, 'Footer', '', 6);
+(1, 'Header', '', 6),
+(2, 'Body', '', 6),
+(3, 'Footer', '', 6);
 
 -- --------------------------------------------------------
 
@@ -155,24 +154,24 @@ ALTER TABLE `project`
 -- Indexes for table `test_case`
 --
 ALTER TABLE `test_case`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `project_id` (`project_id`),
   ADD KEY `test_section_id` (`test_section_id`),
-  ADD KEY `test_suite_id` (`test_suite_id`);
+  ADD KEY `test_suite_id` (`test_suite_id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `test_section`
 --
 ALTER TABLE `test_section`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `test_suite_id` (`test_suite_id`),
-  ADD KEY `project_id` (`project_id`);
+  ADD KEY `project_id` (`project_id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `test_suite`
 --
 ALTER TABLE `test_suite`
-  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`),
   ADD KEY `project_id` (`project_id`);
 
 --
@@ -190,24 +189,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `project`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `test_case`
---
-ALTER TABLE `test_case`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `test_section`
---
-ALTER TABLE `test_section`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `test_suite`
---
-ALTER TABLE `test_suite`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`

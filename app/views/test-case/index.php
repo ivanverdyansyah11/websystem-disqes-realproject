@@ -8,7 +8,7 @@
     </div>
     <div class="row section-gap">
         <div class="col-12">
-            <h4 class="title">Test Case</h4>
+            <h4 class="title">Test Cases</h4>
         </div>
     </div>
     <div class="row mb-4">
@@ -17,7 +17,7 @@
                 <div class="filter-button d-flex justify-content-between align-items-center">
                     <div class="wrapper d-flex align-items-center gap-2">
                         <div class="filter-icon"></div>
-                        <p>Searching</p>
+                        <p>Search</p>
                         <?php if ($_GET['url'] == 'testcase/filterTestCase') : ?>
                             | <p class="filter-searching"><?= $data['filterName']; ?></p>
                         <?php endif; ?>
@@ -75,6 +75,7 @@
                                         <div class="suite-icon"></div>
                                         <p><?= $test_suite['name']; ?></p>
                                     </div>
+                                    <!-- <div class="arrow-suite p-1 pe-0 <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?> <?= $_GET['url'] == 'testcase/testsection/' . $test_suite['id'] . '/' . $test_section['id'] ? 'active-bg' : '' ?>"> -->
                                     <div class="arrow-suite p-1 pe-0 <?= $_GET['url'] == 'testcase/testsuite/' . $test_suite['id'] ? 'active' : '' ?>">
                                         <div class="arrow-icon"></div>
                                     </div>
@@ -82,12 +83,12 @@
                                 <div class="wrapper-action action-suite d-flex align-items-center">
                                     <div class="box-rotate position-relative"></div>
                                     <div class="card-action d-flex position-relative">
-                                        <a href="<?= BASEURL; ?>testcase/moveUpSuite/<?= $test_suite['id']; ?>" class="wrapper-icon">
+                                        <button type="button" class="wrapper-icon" onclick="upMoveSuite()">
                                             <div class="up-icon"></div>
-                                        </a>
-                                        <a href="<?= BASEURL; ?>testcase/moveDownSuite/<?= $test_suite['id']; ?>" class="wrapper-icon">
+                                        </button>
+                                        <button type="button" class="wrapper-icon" onclick="downMoveSuite()">
                                             <div class="down-icon"></div>
-                                        </a>
+                                        </button>
                                         <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#addNewSection" data-id="<?= $test_suite['id']; ?>">
                                             <div class="add-section-icon"></div>
                                         </button>
@@ -110,12 +111,12 @@
                                                 <div class="wrapper-action action-section d-flex align-items-center">
                                                     <div class="box-rotate position-relative"></div>
                                                     <div class="card-action d-flex position-relative">
-                                                        <a href="<?= BASEURL; ?>testcase/moveUpSection/<?= $test_section['id']; ?>" class="wrapper-icon">
+                                                        <button type="button" class="wrapper-icon" onclick="upMoveSection()">
                                                             <div class="up-icon"></div>
-                                                        </a>
-                                                        <a href="<?= BASEURL; ?>testcase/moveDownSection/<?= $test_section['id']; ?>" class="wrapper-icon">
+                                                        </button>
+                                                        <button type="button" class="wrapper-icon" onclick="downMoveSection()">
                                                             <div class="down-icon"></div>
-                                                        </a>
+                                                        </button>
                                                         <button type="button" class="wrapper-icon" data-bs-toggle="modal" data-bs-target="#editSection" data-id="<?= $test_section['id']; ?>">
                                                             <div class="edit-icon"></div>
                                                         </button>
@@ -167,8 +168,8 @@
                                 <div class="row">
                                     <div class="col-10">
                                         <div class="wrapper d-flex align-items-center gap-2">
-                                            <p><?= $test_case['name']; ?></p> |
-                                            <p><?= $test_case['test_section_name']; ?></p>
+                                            <p><?= $test_case['test_section_name']; ?></p> |
+                                            <p><?= $test_case['name']; ?></p> 
                                         </div>
                                     </div>
                                     <div class="col-2">
@@ -178,12 +179,12 @@
                                 <div class="wrapper-action action-case d-flex align-items-center">
                                     <div class="box-rotate position-relative"></div>
                                     <div class="card-action d-flex position-relative">
-                                        <a href="<?= BASEURL; ?>testcase/moveUpCase/<?= $test_case['id']; ?>" class="wrapper-icon">
+                                        <button type="button" class="wrapper-icon" onclick="upMoveCase()">
                                             <div class="up-icon"></div>
-                                        </a>
-                                        <a href="<?= BASEURL; ?>testcase/moveDownCase/<?= $test_case['id']; ?>" class="wrapper-icon">
+                                        </button>
+                                        <button type="button" class="wrapper-icon" onclick="downMoveCase()">
                                             <div class="down-icon"></div>
-                                        </a>
+                                        </button>
                                         <a href="<?= BASEURL; ?>testcase/editTestCase/<?= $test_case['id']; ?>" class="wrapper-icon">
                                             <div class="edit-icon"></div>
                                         </a>
@@ -219,7 +220,6 @@
                 </div>
                 <div class="content-body">
                     <form id="formaddNewSection" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
-                        <input type="hidden" name="id" value="<?= !empty($data['test_section_id']['id']) ? $data['test_section_id']['id'] + 1 : '1'; ?>">
                         <input type="hidden" name="test_suite_id" data-value="test_suite_id">
                         <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
                         <div class="input-wrapper w-100 position-relative">
@@ -318,7 +318,6 @@
                 </div>
                 <div class="content-body">
                     <form action="<?= BASEURL; ?>testcase/addTestSuiteAction" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
-                        <input type="hidden" name="id" value="<?= !empty($data['test_suite_id']['id']) ? $data['test_suite_id']['id'] + 1 : '1'; ?>">
                         <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name <span class="input-required">*</span></p>

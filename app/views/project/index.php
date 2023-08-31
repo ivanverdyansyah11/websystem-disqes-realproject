@@ -38,8 +38,12 @@
                     </div>
                     <div class="project-body d-flex justify-content-between align-items-center">
                         <div class="wrapper d-flex align-items-center gap-4">
-                            <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="testcase-group">
+                            <!-- <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="testcase-group">
                                 <div class="testcase-icon"></div>
+                                <p class="badge-count"><?= $project['test_case_count']; ?></p>
+                            </a> -->
+                            <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="testcase-group">
+                                <div class="testsuite-icon"></div>
                                 <p class="badge-count"><?= $project['test_case_count']; ?></p>
                             </a>
                             <!-- <a href="<?= BASEURL; ?>testcase" class="testsuite-group">
@@ -68,7 +72,7 @@
                 <div class="content-body">
                     <form action="<?= BASEURL; ?>project/addAction" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Name</p>
+                            <p class="caption-input">Name <span class="input-required">*</span></p>
                             <input type="text" class="input position-relative" id="nameInputAddProject" name="name" autocomplete="off" required>
                         </div>
                         <div class="input-wrapper w-100 position-relative">
@@ -108,7 +112,7 @@
                     <form id="formEditProject" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
                         <input type="hidden" name="id" data-value="id">
                         <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Name</p>
+                            <p class="caption-input">Name <span class="input-required">*</span></p>
                             <input type="text" class="input position-relative" id="nameInputEditProject" name="name" autocomplete="off" data-value="name" required>
                         </div>
                         <div class="input-wrapper w-100 position-relative">

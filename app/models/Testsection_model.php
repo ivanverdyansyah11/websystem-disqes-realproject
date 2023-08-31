@@ -11,20 +11,12 @@ class Testsection_model extends Database
 
   public function getTestSectionByProjectId($project_id, $test_suite_id)
   {
-    $query = "SELECT * FROM test_section WHERE project_id=:project_id AND test_suite_id=:test_suite_id;";
+    $query = "SELECT * FROM test_section WHERE project_id=:project_id AND test_suite_id=:test_suite_id";
     $this->db->query($query);
     $this->db->bind('project_id', $project_id);
     $this->db->bind('test_suite_id', $test_suite_id);
     $this->db->execute();
     return $this->db->resultSet();
-  }
-
-  public function getTestSectionId()
-  {
-    $query = "SELECT test_section.id FROM test_section ORDER BY test_section.id DESC LIMIT 1;";
-    $this->db->query($query);
-    $this->db->execute();
-    return $this->db->resultSingle();
   }
 
   public function getTestSectionJustByProjectId($data)
@@ -38,7 +30,7 @@ class Testsection_model extends Database
 
   public function getTestSectionByTestSuiteId($data)
   {
-    $query = "SELECT * FROM test_section WHERE test_suite_id=:test_suite_id ORDER BY test_section.id ASC;";
+    $query = "SELECT * FROM test_section WHERE test_suite_id=:test_suite_id";
     $this->db->query($query);
     $this->db->bind('test_suite_id', $data);
     $this->db->execute();
@@ -64,31 +56,10 @@ class Testsection_model extends Database
     return $this->db->jsonResponse($data);
   }
 
-  public function editTestSectionUp($data)
-  {
-    $query = "UPDATE test_section SET id = CASE WHEN id = :id_1 THEN :id_2 WHEN id = :id_2 THEN :id_1 END WHERE id IN (:id_1, :id_2);";
-    $this->db->query($query);
-    $this->db->bind('id_2', $data['test_section_select_id']);
-    $this->db->bind('id_1', $data['test_section_moved_id']);
-    $this->db->execute();
-    return $this->db->rowCount();
-  }
-
-  public function editTestSectionDown($data)
-  {
-    $query = "UPDATE test_section SET id = CASE WHEN id = :id_1 THEN :id_2 WHEN id = :id_2 THEN :id_1 END WHERE id IN (:id_1, :id_2);";
-    $this->db->query($query);
-    $this->db->bind('id_2', $data['test_section_moved_id']);
-    $this->db->bind('id_1', $data['test_section_select_id']);
-    $this->db->execute();
-    return $this->db->rowCount();
-  }
-
   public function insertTestSection($data)
   {
-    $query = "INSERT INTO test_section(id,name,test_suite_id,project_id) VALUES(:id,:name,:test_suite_id,:project_id)";
+    $query = "INSERT INTO test_section(name,test_suite_id,project_id) VALUES(:name,:test_suite_id,:project_id)";
     $this->db->query($query);
-    $this->db->bind('id', $data['id']);
     $this->db->bind('name', $data['name']);
     $this->db->bind('test_suite_id', $data['test_suite_id']);
     $this->db->bind('project_id', $data['project_id']);

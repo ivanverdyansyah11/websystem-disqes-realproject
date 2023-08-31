@@ -17,7 +17,49 @@ class Project_model extends Database
     $this->db->execute();
     return $this->db->resultSingle();
   }
+  
+  // function total test suites untuk dashboard page global
+  public function getTotalTestSuites($user_id)
+  {
+    $query = "SELECT COUNT(ts.id) AS total_test_suites
+              FROM test_suite ts
+              INNER JOIN project p ON ts.project_id = p.id
+              WHERE p.user_id = :user_id";
+    $this->db->query($query);
+    $this->db->bind('user_id', $user_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+  
+  // function total test suites untuk dashboard page global
+  public function getTotalTestCases($user_id)
+  {
+    $query = "SELECT COUNT(tc.id) AS total_test_cases
+              FROM test_case tc
+              INNER JOIN test_suite ts ON tc.test_suite_id = ts.id
+              INNER JOIN project p ON ts.project_id = p.id
+              WHERE p.user_id = :user_id";
+    $this->db->query($query);
+    $this->db->bind('user_id', $user_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
 
+  // function total test cases priority not set untuk dashboard page global (belum bekerja, peru dibenerin)
+  public function getTotalTestCasesNotSets($user_id)
+    {
+        $query = "SELECT COUNT(tc.id) AS total_test_cases_not_sets
+        FROM test_case tc
+        INNER JOIN test_section ts ON tc.test_section_id = ts.id
+        INNER JOIN project p ON ts.project_id = p.id
+        WHERE p.user_id = :user_id AND tc.priority = 'not set'";
+        $this->db->query($query);
+        $this->db->bind('user_id', $user_id);
+        $this->db->execute();
+        $result = $this->db->resultSingle();
+    }
+
+  // function awal mula
   public function getCountTestSuite($project_id, $user_id)
   {
     $query = "SELECT COUNT(test_suite.id) AS total_test_suite FROM test_suite INNER JOIN project ON test_suite.project_id=project.id WHERE test_suite.project_id=:project_id AND project.user_id=:user_id;";
