@@ -15,7 +15,6 @@ class Signup extends Controller
 
   public function signUpAction()
   {
-
     if (empty($_POST['role'])) {
       Flasher::setFlash('danger', 'Select role user first!');
       header("Location:" . BASEURL . "signup");

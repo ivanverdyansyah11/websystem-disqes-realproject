@@ -7,6 +7,7 @@ class Project extends Controller
     if (isset($_SESSION['username'])) {
       $data['title'] = "Project";
       $data['projects'] = $this->model('Project_model')->getAllProject($_SESSION['user']);
+      $data['users'] = $this->model('User_model')->getAllUserMember();
 
       $this->view('templates/header', $data);
       $this->view('project/index', $data);
@@ -45,6 +46,36 @@ class Project extends Controller
       exit;
     } else {
       Flasher::setFlash('danger', 'Failed to create project!');
+      header("Location:" . BASEURL . "project");
+      exit;
+    }
+  }
+
+  public function memberProject($id)
+  {
+    $data['project'] = $this->model('Project_model')->getProjectById($id);
+    $data['user'] = $this->model('User_model')->getUserMember($data['project']);
+
+    $user = [];
+    foreach ($data['user'] as $user) {
+      $user[] = "<option value='" . $user['id'] . "'>" . $user['username'] . "</option>";
+      echo $user[0];
+    }
+  }
+
+  public function AddMemberProject()
+  {
+
+    $project = $this->model('Project_model')->getProjectById($_POST['id']);
+    $userProject = strval($project['user_id']);
+    $newUserProject = $userProject . ',' . $_POST['user_id'];
+
+    if ($this->model('Project_model')->AddMemberProject($_POST['id'], $newUserProject) > 0) {
+      Flasher::setFlash('success', 'Successfully add new member project!');
+      header("Location:" . BASEURL . "project");
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Failed to add new member project!');
       header("Location:" . BASEURL . "project");
       exit;
     }
