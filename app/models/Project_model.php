@@ -18,7 +18,67 @@ class Project_model extends Database
     return $this->db->resultSingle();
   }
 
-  // function total test suites untuk dashboard page global
+  public function getTotalTestSuitesUser($user_id)
+  {
+    $query = "SELECT COUNT(ts.id) AS total_test_suites
+              FROM test_suite ts
+              INNER JOIN project p ON ts.project_id = p.id
+              WHERE p.user_id = :user_id";
+    $this->db->query($query);
+    $this->db->bind('user_id', $user_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
+  public function getTotalTestCasesUser($user_id)
+  {
+    $query = "SELECT COUNT(tc.id) AS total_test_cases
+              FROM test_case tc
+              INNER JOIN test_suite ts ON tc.test_suite_id = ts.id
+              INNER JOIN project p ON ts.project_id = p.id
+              WHERE p.user_id = :user_id";
+    $this->db->query($query);
+    $this->db->bind('user_id', $user_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
+  public function getCountTestCaseNotSetUser($user_id)
+  {
+    $query = "SELECT COUNT(test_case.id) AS total_test_case_not_set FROM test_case INNER JOIN project ON test_case.project_id=project.id WHERE project.user_id=:user_id AND test_case.priority='Not Set';";
+    $this->db->query($query);
+    $this->db->bind('user_id', $user_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
+  public function getCountTestCaseHighUser($user_id)
+  {
+    $query = "SELECT COUNT(test_case.id) AS total_test_case_high FROM test_case INNER JOIN project ON test_case.project_id=project.id WHERE project.user_id=:user_id AND test_case.priority='High';";
+    $this->db->query($query);
+    $this->db->bind('user_id', $user_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
+  public function getCountTestCaseMediumUser($user_id)
+  {
+    $query = "SELECT COUNT(test_case.id) AS total_test_case_medium FROM test_case INNER JOIN project ON test_case.project_id=project.id WHERE project.user_id=:user_id AND test_case.priority='Medium';";
+    $this->db->query($query);
+    $this->db->bind('user_id', $user_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
+  public function getCountTestCaseLowUser($user_id)
+  {
+    $query = "SELECT COUNT(test_case.id) AS total_test_case_low FROM test_case INNER JOIN project ON test_case.project_id=project.id WHERE project.user_id=:user_id AND test_case.priority='Low';";
+    $this->db->query($query);
+    $this->db->bind('user_id', $user_id);
+    $this->db->execute();
+    return $this->db->resultSingle();
+  }
+
   public function getTotalTestSuites($user_id, $project_id)
   {
     $query = "SELECT COUNT(ts.id) AS total_test_suites
@@ -32,7 +92,6 @@ class Project_model extends Database
     return $this->db->resultSingle();
   }
 
-  // function total test suites untuk dashboard page global
   public function getTotalTestCases($user_id, $project_id)
   {
     $query = "SELECT COUNT(tc.id) AS total_test_cases
@@ -47,7 +106,6 @@ class Project_model extends Database
     return $this->db->resultSingle();
   }
 
-  // function total test cases priority not set untuk dashboard page global (belum bekerja, peru dibenerin)
   public function getTotalTestCasesNotSets($user_id)
   {
     $query = "SELECT COUNT(tc.id) AS total_test_cases_not_sets
@@ -61,7 +119,6 @@ class Project_model extends Database
     $result = $this->db->resultSingle();
   }
 
-  // function awal mula
   public function getCountTestSuite($project_id, $user_id)
   {
     $query = "SELECT COUNT(test_suite.id) AS total_test_suite FROM test_suite INNER JOIN project ON test_suite.project_id=project.id WHERE test_suite.project_id=:project_id AND project.user_id=:user_id;";
