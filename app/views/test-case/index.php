@@ -318,7 +318,7 @@
                 </div>
                 <div class="content-body">
                     <form action="<?= BASEURL; ?>testcase/addTestSuiteAction" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
-                        <input type="text" name="project_id" value="<?= $_SESSION['project']; ?>">
+                        <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
                         <div class="input-wrapper w-100 position-relative">
                             <p class="caption-input">Name <span class="input-required">*</span></p>
                             <input type="text" class="input position-relative" id="nameInputAddSuite" name="name" autocomplete="off" required>

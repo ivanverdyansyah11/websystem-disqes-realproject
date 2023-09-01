@@ -15,6 +15,12 @@ class Signin extends Controller
 
   public function signInAction()
   {
+    if (empty($_POST['role'])) {
+      Flasher::setFlash('danger', 'Select role super admin or member first!');
+      header("Location:" . BASEURL . "signin");
+      exit;
+    }
+
     $data['user'] = $this->model('User_model')->getUserSignIn($_POST);
 
     if ($data['user'] == NULL) {
