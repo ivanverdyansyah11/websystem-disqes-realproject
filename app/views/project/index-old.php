@@ -7,93 +7,57 @@
         </div>
     </div>
     <div class="row section-gap">
-        <div class="col-12 d-flex justify-content-md-between align-items-center gap-3 gap-md-0">
+        <div class="col-12">
             <h4 class="title">Projects</h4>
-            <div class="wrapper d-flex gap-2">
-                <button type="button" class="button-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addNewProject">
-                    <div class="add-icon"></div>
-                    New
-                </button>
-                <a href="<?= BASEURL; ?>/project/exportFile" class="button-primary d-flex align-items-center">
-                    Export File
-                </a>
-            </div>
         </div>
     </div>
     <div class="row section-gap">
-        <div class="col-12 d-flex justify-content-md-between align-items-center gap-3 gap-md-0">
-            <div class="wrapper-filter">
-                <div class="filter-content">
-                    <form action="<?= BASEURL; ?>project/filterProject" method="POST" style="width: 100%; gap: 12px;" class="d-flex align-items-center">
-                        <div class="row">
-                            <div class="col-12 mt-4 mt-md-0">
-                                <div class="input-wrapper w-100 position-relative">
-                                    <!-- <p class="caption-input">Name <span class="input-required">*</span></p> -->
-                                    <input type="text" class="input position-relative" id="nameInput" name="name" autocomplete="off" required value="" placeholder="Search for Projects" style="padding: 14px 18px;">
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="button-primary d-flex align-items-center" style="padding: 14px 18px;">
-                            <div class="search-icon"></div>
-                            Search
-                        </button>
-                    </form>
+        <div class="col-md-4 col-lg-3 mb-4">
+            <button type="button" class="card-project d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#addNewProject">
+                <div class="wrapper d-flex flex-column align-items-center">
+                    <div class="plus-icon"></div>
+                    <h5 class="title-add-project">New Project</h5>
                 </div>
-            </div>
+            </button>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="table-header d-flex align-items-center">
-                <div class="row align-items-center w-100">
-                    <div class="col">
-                        <p>Name</p>
-                    </div>
-                    <div class="col d-none d-md-inline-block">
-                        <p>Team Members</p>
-                    </div>
-                    <div class="col-2">
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-
-            <?php $i = 1; ?>
-            <?php foreach ($data['projects'] as $project) : ?>
-                <div class="table-body d-flex align-items-center" style="padding-top: 16px; padding-bottom: 16px;">
-                    <div class="row align-items-center w-100">
-                        <div class="col d-flex align-items-center gap-3">
-                            <img src="https://ui-avatars.com/api/?name=<?= $project['name']; ?>&background=7582eb&color=111827&bold=true" class="img-fluid rounded" alt="Image Project" width="40">
-                            <p><?= $project['name']; ?></p>
-                        </div>
-                        <div class="col d-none d-md-flex gap-2">
-                            <?php $members = explode(',', $project['user_id']); ?>
-                            <?php foreach ($data['users'] as $user) : ?>
-                                <?php if (in_array($user['id'], $members)) : ?>
-                                    <img src="https://ui-avatars.com/api/?name=<?= $user['username'];; ?>&background=192036&color=7582eb&bold=true" class="img-fluid rounded" alt="Image Project" width="40">
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="col-2 d-flex justify-content-end">
-                            <div class="popup-group position-relative" style="width: fit-content;">
-                                <div class="wrapper-icon">
-                                    <div class="bar-icon"></div>
-                                </div>
-                                <div class="action-popup">
-                                    <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="popup-button">Dashboard </a>
-                                    <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="popup-button">Manage</a>
-                                    <?php if ($_SESSION['role'] == 'super admin') : ?>
-                                        <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#addMemberProject" data-id="<?= $project['id']; ?>">Team Member</button>
-                                        <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">Edit</button>
-                                        <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">Delete</button>
-                                    <?php endif; ?>
-                                </div>
+        <?php $i = 1; ?>
+        <?php foreach ($data['projects'] as $project) : ?>
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card-project d-flex flex-column justify-content-between">
+                    <div class="project-header d-flex align-items-center justify-content-between">
+                        <h6 class="project-title"><?= $project['name'] ?></h6>
+                        <div class="popup-group position-relative">
+                            <div class="wrapper-icon">
+                                <div class="bar-icon"></div>
+                            </div>
+                            <div class="action-popup">
+                                <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">Edit</button>
+                                <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">Delete</button>
                             </div>
                         </div>
                     </div>
+                    <div class="project-body d-flex justify-content-between align-items-center">
+                        <div class="wrapper d-flex align-items-center gap-4">
+                            <!-- <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="testcase-group">
+                                <div class="testcase-icon"></div>
+                                <p class="badge-count"><?= $project['test_case_count']; ?></p>
+                            </a> -->
+                            <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="testcase-group">
+                                <div class="testsuite-icon"></div>
+                                <p class="badge-count"><?= $project['test_case_count']; ?></p>
+                            </a>
+                            <!-- <a href="<?= BASEURL; ?>testcase" class="testsuite-group">
+                                <div class="testsuite-icon"></div>
+                                <p class="badge-count badge-danger"><?= $project['test_suite_count']; ?></p>
+                            </a> -->
+                        </div>
+                        <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="wrapper-icon">
+                            <div class="dashboard-icon"></div>
+                        </a>
+                    </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 
     <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="addNewProjectLabel" aria-hidden="true">
@@ -123,39 +87,6 @@
                             <button type="button" class="reset-button-add-project button-transparent d-flex align-items-center">
                                 <div class="reset-icon"></div>
                                 Reset
-                            </button>
-                            <button type="button" class="button-transparent d-flex align-items-center" data-bs-dismiss="modal">
-                                <div class="cancel-icon"></div>
-                                Cancel
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="addMemberProject" tabindex="-1" aria-labelledby="addMemberProjectLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content d-flex flex-column">
-                <div class="content-header d-flex justify-content-between align-items-center">
-                    <h4 class="title">Member Project</h4>
-                    <div class="wrapper-icon" data-bs-dismiss="modal">
-                        <div class="exit-icon"></div>
-                    </div>
-                </div>
-                <div class="content-body">
-                    <form id="formAddMemberProject" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
-                        <input type="hidden" name="id" data-value="id">
-                        <div class="input-wrapper w-100 position-relative">
-                            <p class="caption-input">Add New Member</p>
-                            <select id="newInputAddmember" name="user_id" class="input position-relative">
-                            </select>
-                        </div>
-                        <div class="wrapper d-flex gap-2">
-                            <button type="submit" class="button-primary d-flex align-items-center">
-                                <div class="save-icon"></div>
-                                Save
                             </button>
                             <button type="button" class="button-transparent d-flex align-items-center" data-bs-dismiss="modal">
                                 <div class="cancel-icon"></div>
@@ -239,28 +170,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <script>
-    $(document).on('click', '[data-bs-target="#addMemberProject"]', function() {
-        let id = $(this).data('id');
-        $('#formAddMemberProject').attr('action', 'http://localhost/disqes/public/project/AddMemberProject');
-
-        $('#newInputAddmember').empty();
-        $.ajax({
-            type: 'get',
-            url: 'http://localhost/disqes/public/project/memberProject/' + id,
-            success: function(data) {
-                $('#newInputAddmember').append(data);
-            }
-        });
-        $.ajax({
-            type: 'get',
-            url: 'http://localhost/disqes/public/project/edit/' + id,
-            success: function(data) {
-                console.log(data);
-                $('[data-value="id"]').val(data.id);
-            }
-        });
-    });
-
     $(document).on('click', '[data-bs-target="#editProject"]', function() {
         let id = $(this).data('id');
         $('#formEditProject').attr('action', 'http://localhost/disqes/public/project/editAction/' + id);
